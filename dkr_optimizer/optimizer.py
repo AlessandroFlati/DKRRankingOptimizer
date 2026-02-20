@@ -13,6 +13,17 @@ from dkr_optimizer.models import (
 # Number of positions above the player to analyze for each tier
 TIER_TARGETS = [1, 3, 5, 10, 15, 20, 25]
 
+# Exponential difficulty factor for overtake plans.
+# weighted_cost = time_delta * exp(DIFFICULTY_K * (1 - target_rank / current_rank))
+# k=5 means reaching rank 1 costs ~148x the raw cs.
+DIFFICULTY_K = 5.0
+
+
+def _difficulty_weight(current_rank: int, target_rank: int) -> float:
+    """Exponential weight penalizing large leaderboard climbs."""
+    climb = 1.0 - target_rank / current_rank
+    return math.exp(DIFFICULTY_K * climb)
+
 
 def compute_opportunities(
     player_times: list[PlayerTrackTime],
@@ -397,14 +408,23 @@ def compute_overtake_plan(
             feasible=False,
         )
 
+    # Apply exponential difficulty weighting to DP costs
+    weighted_groups = []
+    for group in groups:
+        weighted = []
+        for pos, cost, item in group:
+            weight = _difficulty_weight(item.current_rank, item.new_rank)
+            weighted.append((pos, cost * weight, item))
+        weighted_groups.append(weighted)
+
     cap = max_positions + 1
     INF = float("inf")
 
     dp = [INF] * cap
     dp[0] = 0
-    prev = [None] * len(groups)
+    prev = [None] * len(weighted_groups)
 
-    for g_idx, group in enumerate(groups):
+    for g_idx, group in enumerate(weighted_groups):
         new_dp = [INF] * cap
         new_prev = {}
 
@@ -435,10 +455,10 @@ def compute_overtake_plan(
 
     ranked_items = []
     current_p = best_p
-    for g_idx in range(len(groups) - 1, -1, -1):
+    for g_idx in range(len(weighted_groups) - 1, -1, -1):
         opt_idx, prev_p = prev[g_idx][current_p]
         if opt_idx >= 0:
-            _pos, _cost, item = groups[g_idx][opt_idx]
+            _pos, _cost, item = weighted_groups[g_idx][opt_idx]
             ranked_items.append(item)
         current_p = prev_p
 
@@ -472,8 +492,10 @@ def compute_overtake_plan_min_tracks(
 ) -> OvertakePlan:
     """Find the fewest tracks to improve to overtake the target player.
 
-    For each track, uses all players above to find max positions available.
-    Greedy: sort by positions descending, take until gap is closed.
+    For each track, picks the tier with the best difficulty-adjusted value
+    (positions / exponential_weight) rather than raw max positions.  This
+    avoids selecting unrealistically large leaderboard climbs.
+    Greedy: sort by selected positions descending, take until gap is closed.
     """
     af_gap = current_af - target_af
     if af_gap <= 0:
@@ -495,12 +517,14 @@ def compute_overtake_plan_min_tracks(
         player_times, leaderboards, total_tracks, player_username
     )
 
-    # For each ranked group, pick the option with max positions (last option)
+    # For each ranked group, pick the tier with best positions/difficulty ratio
     candidates = []
     for group in groups:
-        best = max(group, key=lambda x: x[0])
-        candidates.append(best[2])  # the OvertakePlanItem
-    # Also include N/A items
+        best = max(
+            group,
+            key=lambda x: x[0] / _difficulty_weight(x[2].current_rank, x[2].new_rank),
+        )
+        candidates.append(best[2])
     for item in na_items:
         candidates.append(item)
 
