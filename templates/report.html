@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DKR Ranking Optimizer - {{ profile.username }}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; }
+        a { color: #64b5f6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { font-size: 1.8em; margin-bottom: 5px; color: #fff; }
+        h2 { font-size: 1.3em; margin: 30px 0 15px; color: #90caf9; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        .meta { color: #888; font-size: 0.85em; margin-bottom: 25px; }
+
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .summary-card { background: #16213e; border-radius: 8px; padding: 18px; border: 1px solid #2a2a4a; }
+        .summary-card .label { font-size: 0.8em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .summary-card .value { font-size: 1.8em; font-weight: bold; margin-top: 5px; }
+        .summary-card .value.rank { color: #ffd54f; }
+        .summary-card .value.af { color: #ef5350; }
+        .summary-card .value.good { color: #66bb6a; }
+        .summary-card .value.warn { color: #ff9800; }
+
+        table { width: 100%; border-collapse: collapse; background: #16213e; border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+        th { background: #0f3460; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; color: #90caf9; white-space: nowrap; }
+        td { padding: 8px 12px; border-top: 1px solid #1a1a3e; font-size: 0.9em; }
+        tr:hover { background: #1e2a4a; }
+
+        .priority-high { border-left: 3px solid #ef5350; }
+        .priority-med { border-left: 3px solid #ff9800; }
+        .priority-low { border-left: 3px solid #66bb6a; }
+        .priority-na { border-left: 3px solid #ce93d8; background: #1a1230; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; }
+        .badge-na { background: #4a148c; color: #ce93d8; }
+        .badge-car { background: #1b5e20; color: #a5d6a7; }
+        .badge-hover { background: #01579b; color: #81d4fa; }
+        .badge-plane { background: #bf360c; color: #ffab91; }
+        .badge-standard { background: #263238; color: #b0bec5; }
+        .badge-shortcut { background: #4e342e; color: #bcaaa4; }
+
+        .time { font-family: 'Courier New', monospace; }
+        .rank-num { font-weight: bold; }
+        .af-gain { color: #66bb6a; font-weight: bold; }
+        .efficiency { font-family: 'Courier New', monospace; }
+
+        .section-desc { color: #888; font-size: 0.9em; margin-bottom: 15px; }
+
+        .tier-selector { display: inline-flex; gap: 6px; margin-bottom: 16px; }
+        .tier-btn { background: #263238; color: #b0bec5; border: 1px solid #37474f; padding: 6px 16px; border-radius: 5px; cursor: pointer; font-size: 0.9em; font-weight: 600; transition: all 0.15s; }
+        .tier-btn:hover { background: #1a3a5c; border-color: #90caf9; }
+        .tier-btn.active { background: #0f3460; color: #90caf9; border-color: #1a73e8; }
+
+        th.sortable { cursor: pointer; user-select: none; position: relative; padding-right: 22px; }
+        th.sortable::after { content: '\2195'; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); opacity: 0.4; font-size: 0.9em; }
+        th.sortable.sort-asc::after { content: '\25B2'; opacity: 1; }
+        th.sortable.sort-desc::after { content: '\25BC'; opacity: 1; }
+
+        .legend { background: #16213e; border: 1px solid #2a2a4a; border-radius: 8px; padding: 18px 22px; margin-bottom: 20px; }
+        .legend h3 { font-size: 1em; color: #90caf9; margin-bottom: 12px; }
+        .legend dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 0.85em; }
+        .legend dt { color: #b0bec5; font-weight: 600; white-space: nowrap; }
+        .legend dd { color: #888; margin: 0; }
+        .legend .tier-example { margin-top: 14px; padding-top: 12px; border-top: 1px solid #2a2a4a; }
+        .legend .tier-example p { color: #888; font-size: 0.85em; line-height: 1.5; }
+        .legend .tier-example code { background: #0f3460; color: #90caf9; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>DKR Ranking Optimizer</h1>
+    <div class="meta">
+        Player: <strong>{{ profile.username }}</strong> ({{ profile.country | upper }})
+        &middot; Generated: {{ timestamp }}
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="label">Combined Rank</div>
+            <div class="value rank">#{{ current_rank }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Average Finish</div>
+            <div class="value af">{{ "%.3f" | format(current_af) }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Tracks with Times</div>
+            <div class="value good">{{ (ranked_opps | length) + (no_improvement | length) }} / {{ total_tracks }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Missing Times (N/A)</div>
+            <div class="value warn">{{ na_opps | length }}</div>
+        </div>
+    </div>
+
+    {% if na_opps %}
+    <h2>HIGH PRIORITY -- Missing Times (N/A)</h2>
+    <p class="section-desc">These tracks have no submitted time. Submitting ANY time gives a large AF boost since you move from last place.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Est. Positions Gained</th>
+                <th>Est. AF Improvement</th>
+                <th>Worst Submitted Time</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in na_opps %}
+            <tr class="priority-na">
+                <td>{{ o.track_name }}</td>
+                <td><span class="badge badge-{{ o.vehicle }}">{{ o.vehicle }}</span></td>
+                <td><span class="badge badge-{{ o.category }}">{{ o.category }}</span></td>
+                <td>{{ o.laps }}</td>
+                {% if o.tiers %}
+                <td class="rank-num">+{{ o.tiers[0].positions_gained }}</td>
+                <td class="af-gain">-{{ "%.3f" | format(o.tiers[0].af_improvement) }}</td>
+                <td class="time">{{ format_time(o.tiers[0].target_time_cs) }}</td>
+                {% else %}
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                {% endif %}
+                <td><a href="{{ o.leaderboard_url }}" target="_blank">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if ranked_opps %}
+    <h2>Improvement Opportunities</h2>
+
+    <div class="legend">
+        <h3>Column Legend</h3>
+        <dl>
+            <dt>Current Rank / Your Time</dt>
+            <dd>Your current position and time on that leaderboard.</dd>
+            <dt>New Rank</dt>
+            <dd>The rank you would achieve after surpassing the target opponent(s).</dd>
+            <dt>Opponent Time</dt>
+            <dd>The actual time of the opponent you need to beat. You must go strictly faster than this.</dd>
+            <dt>Time to Save</dt>
+            <dd>How much faster you need to be vs. your current time to surpass the opponent (includes the 1cs surpass margin).</dd>
+            <dt>AF Gain</dt>
+            <dd>How much your Average Finish decreases (lower = better). Formula: positions_gained / total_tracks.</dd>
+            <dt>Efficiency</dt>
+            <dd>AF Gain per centisecond of improvement needed. Higher = best bang for your practice time.</dd>
+        </dl>
+    </div>
+
+    <p class="section-desc">Select how many players above you to target. Click <strong>AF Gain</strong> or <strong>Efficiency</strong> to sort.</p>
+
+    <div class="tier-selector" id="tier-selector">
+        <button class="tier-btn active" data-tier="0">Beat +1</button>
+        <button class="tier-btn" data-tier="1">Beat +3</button>
+        <button class="tier-btn" data-tier="2">Beat +5</button>
+        <button class="tier-btn" data-tier="3">Beat +10</button>
+        <button class="tier-btn" data-tier="4">Beat +15</button>
+        <button class="tier-btn" data-tier="5">Beat +20</button>
+        <button class="tier-btn" data-tier="6">Beat +25</button>
+    </div>
+
+    <table id="opp-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Current Rank</th>
+                <th>Your Time</th>
+                <th>New Rank</th>
+                <th>Opponent Time</th>
+                <th>Time to Save</th>
+                <th class="sortable" data-col="af-gain" data-type="float">AF Gain</th>
+                <th class="sortable sort-desc" data-col="efficiency" data-type="float">Efficiency</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in ranked_opps %}
+            <tr class="opp-primary" data-tiers='{{ o.tiers_json | tojson }}'>
+                <td class="row-num">{{ loop.index }}</td>
+                <td>{{ o.track_name }}</td>
+                <td><span class="badge badge-{{ o.vehicle }}">{{ o.vehicle }}</span></td>
+                <td><span class="badge badge-{{ o.category }}">{{ o.category }}</span></td>
+                <td>{{ o.laps }}</td>
+                <td class="rank-num">{{ o.current_rank }}</td>
+                <td class="time">{{ format_time(o.current_time_cs) }}</td>
+                <td class="rank-num cell-new-rank"></td>
+                <td class="time cell-opp-time"></td>
+                <td class="time cell-delta"></td>
+                <td class="af-gain cell-af"></td>
+                <td class="efficiency cell-eff"></td>
+                <td><a href="{{ o.leaderboard_url }}" target="_blank">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if no_improvement %}
+    <h2>Already at #1 ({{ no_improvement | length }} tracks)</h2>
+    <p class="section-desc">No further improvement possible on these tracks.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Rank</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in no_improvement %}
+            <tr class="priority-low">
+                <td>{{ o.track_name }}</td>
+                <td><span class="badge badge-{{ o.vehicle }}">{{ o.vehicle }}</span></td>
+                <td><span class="badge badge-{{ o.category }}">{{ o.category }}</span></td>
+                <td>{{ o.laps }}</td>
+                <td class="rank-num">{{ o.current_rank }}</td>
+                <td class="time">{{ format_time(o.current_time_cs) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+<script>
+(function() {
+    var table = document.getElementById('opp-table');
+    if (!table) return;
+
+    var currentTierIdx = 0;
+    var currentSortCol = 'efficiency';
+    var currentSortDesc = true;
+
+    // Format centiseconds to MM:SS:CC
+    function fmtTime(cs) {
+        var m = Math.floor(cs / 6000);
+        var r = cs % 6000;
+        var s = Math.floor(r / 100);
+        var c = r % 100;
+        return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') + ':' + String(c).padStart(2,'0');
+    }
+
+    // Parse tier JSON and populate cells for the selected tier index
+    function applyTier(tierIdx) {
+        currentTierIdx = tierIdx;
+        var rows = table.querySelectorAll('tr.opp-primary');
+        rows.forEach(function(row) {
+            var tiers = JSON.parse(row.getAttribute('data-tiers'));
+            // Use requested tier, fall back to last available
+            var t = tiers[tierIdx] || tiers[tiers.length - 1];
+            var hasTier = !!t;
+
+            row.querySelector('.cell-new-rank').textContent = hasTier ? t.target_rank : '--';
+            row.querySelector('.cell-opp-time').textContent = hasTier ? fmtTime(t.opponent_time_cs) : '--';
+            row.querySelector('.cell-delta').textContent = hasTier ? fmtTime(t.time_delta_cs) : '--';
+            row.querySelector('.cell-af').textContent = hasTier ? '-' + t.af_improvement.toFixed(4) : '--';
+            row.querySelector('.cell-eff').textContent = hasTier ? (t.efficiency === Infinity ? 'INF' : t.efficiency.toFixed(6)) : '--';
+
+            // Store sort values as data attributes
+            row.setAttribute('data-af-gain', hasTier ? t.af_improvement : 0);
+            row.setAttribute('data-efficiency', hasTier ? (t.efficiency === Infinity ? 1e18 : t.efficiency) : 0);
+        });
+    }
+
+    // Sort table by a data attribute
+    function sortTable(col, descending) {
+        currentSortCol = col;
+        currentSortDesc = descending;
+
+        var tbody = table.querySelector('tbody');
+        var rows = Array.from(tbody.querySelectorAll('tr.opp-primary'));
+
+        rows.sort(function(a, b) {
+            var va = parseFloat(a.getAttribute('data-' + col)) || 0;
+            var vb = parseFloat(b.getAttribute('data-' + col)) || 0;
+            return descending ? vb - va : va - vb;
+        });
+
+        rows.forEach(function(row, idx) {
+            row.querySelector('.row-num').textContent = idx + 1;
+            tbody.appendChild(row);
+        });
+    }
+
+    // Tier selector buttons
+    var tierBtns = document.querySelectorAll('#tier-selector .tier-btn');
+    tierBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            tierBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            applyTier(parseInt(btn.getAttribute('data-tier')));
+            sortTable(currentSortCol, currentSortDesc);
+        });
+    });
+
+    // Sortable column headers
+    var headers = table.querySelectorAll('th.sortable');
+    headers.forEach(function(th) {
+        th.addEventListener('click', function() {
+            var col = th.getAttribute('data-col');
+            var isDesc = th.classList.contains('sort-desc');
+            var newDir = isDesc ? 'asc' : 'desc';
+            headers.forEach(function(h) { h.classList.remove('sort-asc', 'sort-desc'); });
+            th.classList.add('sort-' + newDir);
+            sortTable(col, newDir === 'desc');
+        });
+    });
+
+    // Initialize: apply tier 0 (Beat +1) and sort by efficiency desc
+    applyTier(0);
+    sortTable('efficiency', true);
+})();
+</script>
+</body>
+</html>

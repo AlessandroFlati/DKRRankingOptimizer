@@ -1,0 +1,4 @@
+username: "ChasingGhosts"
+cache_ttl_hours: 24
+request_delay_seconds: 0.5
+output_dir: "output"
