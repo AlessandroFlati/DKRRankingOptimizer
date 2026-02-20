@@ -61,7 +61,7 @@ def generate_reports(
         format_time=format_time,
         float_inf=float("inf"),
     )
-    html_path = os.path.join(output_dir, "report.html")
+    html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html)
 
