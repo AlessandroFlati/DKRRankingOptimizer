@@ -124,6 +124,9 @@ def main():
     )
 
     # Step 6: Compute overtake plans
+    exclude_raw = config.get("exclude_from_plans", [])
+    exclude = [(e["track"], e["vehicle"]) for e in exclude_raw] if exclude_raw else None
+
     overtake_min_time = None
     overtake_min_tracks = None
     if current_rank > 1:
@@ -133,6 +136,8 @@ def main():
         )
         if target_entry:
             print(f"\nComputing overtake plans to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
+            if exclude:
+                print(f"  Excluding {len(exclude)} track/vehicle combos from plans")
             overtake_min_time = compute_overtake_plan(
                 player_times=player_times,
                 leaderboards=leaderboards,
@@ -141,6 +146,7 @@ def main():
                 total_tracks=valid_tracks,
                 player_username=username,
                 target_username=target_entry.username,
+                exclude=exclude,
             )
             overtake_min_tracks = compute_overtake_plan_min_tracks(
                 player_times=player_times,
@@ -150,6 +156,7 @@ def main():
                 total_tracks=valid_tracks,
                 player_username=username,
                 target_username=target_entry.username,
+                exclude=exclude,
             )
             if overtake_min_time.feasible:
                 print(f"  Min time:   {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")

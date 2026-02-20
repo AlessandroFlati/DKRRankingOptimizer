@@ -2,3 +2,17 @@ username: "ChasingGhosts"
 cache_ttl_hours: 24
 request_delay_seconds: 0.5
 output_dir: "output"
+
+# Track/vehicle combos to exclude from overtake plans
+# (tracks where improvement is not realistic for you)
+exclude_from_plans:
+  - track: ancient-lake
+    vehicle: car
+  - track: ancient-lake
+    vehicle: plane
+  - track: fossil-canyon
+    vehicle: car
+  - track: jungle-falls
+    vehicle: car
+  - track: hot-top-volcano
+    vehicle: hover

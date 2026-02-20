@@ -255,16 +255,23 @@ def _build_overtake_groups(
     leaderboards: dict[str, list[LeaderboardEntry]],
     total_tracks: int,
     player_username: str,
+    exclude: list[tuple[str, str]] | None = None,
 ) -> tuple[list[OvertakePlanItem], list[list[tuple]]]:
     """Build N/A items and ranked groups with ALL possible tiers for overtake plans.
+
+    Args:
+        exclude: List of (track_slug, vehicle) tuples to skip.
 
     Returns (na_items, groups) where each group is a list of
     (positions_gained, time_delta_cs, plan_item) tuples.
     """
+    exclude_set = set(exclude) if exclude else set()
     na_items = []
     groups = []
 
     for pt in player_times:
+        if (pt.track_slug, pt.vehicle) in exclude_set:
+            continue
         lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
         entries = leaderboards.get(lb_key, [])
         if not entries:
@@ -346,6 +353,7 @@ def compute_overtake_plan(
     total_tracks: int,
     player_username: str,
     target_username: str,
+    exclude: list[tuple[str, str]] | None = None,
 ) -> OvertakePlan:
     """Find the minimum-cost set of improvements to overtake the target player.
 
@@ -372,7 +380,7 @@ def compute_overtake_plan(
     positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
 
     na_items, groups = _build_overtake_groups(
-        player_times, leaderboards, total_tracks, player_username
+        player_times, leaderboards, total_tracks, player_username, exclude
     )
     na_positions = sum(it.positions_gained for it in na_items)
 
@@ -489,6 +497,7 @@ def compute_overtake_plan_min_tracks(
     total_tracks: int,
     player_username: str,
     target_username: str,
+    exclude: list[tuple[str, str]] | None = None,
 ) -> OvertakePlan:
     """Find the fewest tracks to improve to overtake the target player.
 
@@ -514,7 +523,7 @@ def compute_overtake_plan_min_tracks(
     positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
 
     na_items, groups = _build_overtake_groups(
-        player_times, leaderboards, total_tracks, player_username
+        player_times, leaderboards, total_tracks, player_username, exclude
     )
 
     # For each ranked group, pick the tier with best positions/difficulty ratio
