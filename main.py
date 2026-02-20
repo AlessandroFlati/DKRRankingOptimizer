@@ -134,17 +134,21 @@ def main():
         if target_entry:
             print(f"\nComputing overtake plans to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
             overtake_min_time = compute_overtake_plan(
-                opportunities=opportunities,
+                player_times=player_times,
+                leaderboards=leaderboards,
                 current_af=current_af,
                 target_af=target_entry.af,
                 total_tracks=valid_tracks,
+                player_username=username,
                 target_username=target_entry.username,
             )
             overtake_min_tracks = compute_overtake_plan_min_tracks(
-                opportunities=opportunities,
+                player_times=player_times,
+                leaderboards=leaderboards,
                 current_af=current_af,
                 target_af=target_entry.af,
                 total_tracks=valid_tracks,
+                player_username=username,
                 target_username=target_entry.username,
             )
             if overtake_min_time.feasible:

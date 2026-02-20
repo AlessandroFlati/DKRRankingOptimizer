@@ -333,7 +333,7 @@
         var r = cs % 6000;
         var s = Math.floor(r / 100);
         var c = r % 100;
-        return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') + ':' + String(c).padStart(2,'0');
+        return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') + '.' + String(c).padStart(2,'0');
     }
 
     // Parse tier JSON and populate cells for the selected tier index

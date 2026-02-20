@@ -16,7 +16,7 @@ def format_time(cs: int) -> str:
     remainder = cs % 6000
     seconds = remainder // 100
     centiseconds = remainder % 100
-    return f"{minutes:02d}:{seconds:02d}:{centiseconds:02d}"
+    return f"{minutes:02d}:{seconds:02d}.{centiseconds:02d}"
 
 
 @dataclass
