@@ -1,7 +1,11 @@
+import math
+
 from dkr_optimizer.models import (
     LeaderboardEntry,
     Opportunity,
     OpportunityTier,
+    OvertakePlan,
+    OvertakePlanItem,
     PlayerTrackTime,
     format_time,
 )
@@ -207,4 +211,286 @@ def _compute_existing_time_opportunity(
         tiers=tiers,
         best_efficiency=best_efficiency,
         best_tier_idx=best_tier_idx,
+    )
+
+
+def compute_overtake_plan(
+    opportunities: list[Opportunity],
+    current_af: float,
+    target_af: float,
+    total_tracks: int,
+    target_username: str,
+) -> OvertakePlan:
+    """Find the minimum-cost set of improvements to overtake the target player.
+
+    Uses multi-choice knapsack DP: for each track pick at most one tier,
+    minimize total time_delta_cs while gaining enough positions to close
+    the AF gap.  N/A tracks are included unconditionally (cost = 0) since
+    submitting any time is qualitatively different from shaving centiseconds.
+    """
+    af_gap = current_af - target_af
+    if af_gap <= 0:
+        return OvertakePlan(
+            target_username=target_username,
+            target_af=target_af,
+            current_af=current_af,
+            af_gap=0.0,
+            total_positions_needed=0,
+            total_positions_gained=0,
+            total_time_investment_cs=0,
+            new_af=current_af,
+            feasible=True,
+        )
+
+    # Strict inequality: need sum(positions) > gap * total_tracks
+    positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
+
+    # -- Phase 1: always include all N/A tracks (free positions) --
+    na_items = []
+    na_positions = 0
+    for opp in opportunities:
+        if opp.is_na and opp.tiers:
+            tier = opp.tiers[0]
+            na_positions += tier.positions_gained
+            na_items.append(OvertakePlanItem(
+                track_slug=opp.track_slug,
+                track_name=opp.track_name,
+                vehicle=opp.vehicle,
+                category=opp.category,
+                laps=opp.laps,
+                is_na=True,
+                current_rank=opp.current_rank,
+                current_time_cs=0,
+                new_rank=tier.target_rank,
+                target_time_cs=tier.target_time_cs,
+                opponent_time_cs=tier.opponent_time_cs,
+                positions_gained=tier.positions_gained,
+                af_improvement=tier.af_improvement,
+                time_delta_cs=0,
+                efficiency=float("inf"),
+            ))
+
+    remaining = positions_needed - na_positions
+    if remaining <= 0:
+        total_gained = na_positions
+        new_af = current_af - total_gained / total_tracks
+        return OvertakePlan(
+            target_username=target_username,
+            target_af=target_af,
+            current_af=current_af,
+            af_gap=af_gap,
+            total_positions_needed=positions_needed,
+            total_positions_gained=total_gained,
+            total_time_investment_cs=0,
+            new_af=new_af,
+            items=na_items,
+            feasible=True,
+        )
+
+    # -- Phase 2: multi-choice knapsack on ranked tracks --
+    # Build groups: one per track with tiers, each option = (pos, cost, opp, tier_idx)
+    groups = []
+    for opp in opportunities:
+        if opp.is_na or not opp.tiers:
+            continue
+        options = []
+        for tier_idx, tier in enumerate(opp.tiers):
+            options.append((tier.positions_gained, tier.time_delta_cs, opp, tier_idx))
+        groups.append(options)
+
+    max_positions = sum(max(pos for pos, _, _, _ in g) for g in groups) if groups else 0
+    if max_positions < remaining:
+        # Not enough improvement available across all tracks
+        return OvertakePlan(
+            target_username=target_username,
+            target_af=target_af,
+            current_af=current_af,
+            af_gap=af_gap,
+            total_positions_needed=positions_needed,
+            total_positions_gained=na_positions,
+            total_time_investment_cs=0,
+            new_af=current_af - na_positions / total_tracks,
+            items=na_items,
+            feasible=False,
+        )
+
+    cap = max_positions + 1
+    INF = float("inf")
+
+    # dp[p] = minimum total time cost to gain exactly p positions
+    dp = [INF] * cap
+    dp[0] = 0
+
+    # Backtracking: prev[g][p] = (option_idx, previous_p) or (-1, p) for skip
+    prev = [None] * len(groups)
+
+    for g_idx, group in enumerate(groups):
+        new_dp = [INF] * cap
+        new_prev = {}
+
+        # Option: skip this group
+        for p in range(cap):
+            if dp[p] < new_dp[p]:
+                new_dp[p] = dp[p]
+                new_prev[p] = (-1, p)
+
+        # Option: pick one tier from this group
+        for opt_idx, (pos, cost, _opp, _tidx) in enumerate(group):
+            for p in range(pos, cap):
+                val = dp[p - pos] + cost
+                if val < new_dp[p]:
+                    new_dp[p] = val
+                    new_prev[p] = (opt_idx, p - pos)
+
+        dp = new_dp
+        prev[g_idx] = new_prev
+
+    # Find the cheapest solution with positions >= remaining
+    best_p = None
+    best_cost = INF
+    for p in range(remaining, cap):
+        if dp[p] < best_cost:
+            best_cost = dp[p]
+            best_p = p
+
+    if best_p is None or best_cost == INF:
+        raise RuntimeError("DP found no solution despite feasibility check passing")
+
+    # Backtrack to recover selected items
+    ranked_items = []
+    current_p = best_p
+    for g_idx in range(len(groups) - 1, -1, -1):
+        opt_idx, prev_p = prev[g_idx][current_p]
+        if opt_idx >= 0:
+            _pos, _cost, opp, tier_idx = groups[g_idx][opt_idx]
+            tier = opp.tiers[tier_idx]
+            ranked_items.append(OvertakePlanItem(
+                track_slug=opp.track_slug,
+                track_name=opp.track_name,
+                vehicle=opp.vehicle,
+                category=opp.category,
+                laps=opp.laps,
+                is_na=False,
+                current_rank=opp.current_rank,
+                current_time_cs=opp.current_time_cs,
+                new_rank=tier.target_rank,
+                target_time_cs=tier.target_time_cs,
+                opponent_time_cs=tier.opponent_time_cs,
+                positions_gained=tier.positions_gained,
+                af_improvement=tier.af_improvement,
+                time_delta_cs=tier.time_delta_cs,
+                efficiency=tier.efficiency,
+            ))
+        current_p = prev_p
+
+    # Sort all items by AF gain desc
+    ranked_items.sort(key=lambda x: x.af_improvement, reverse=True)
+
+    all_items = na_items + ranked_items
+    all_items.sort(key=lambda x: x.af_improvement, reverse=True)
+    total_gained = na_positions + sum(it.positions_gained for it in ranked_items)
+    total_time = sum(it.time_delta_cs for it in ranked_items)
+    new_af = current_af - total_gained / total_tracks
+
+    return OvertakePlan(
+        target_username=target_username,
+        target_af=target_af,
+        current_af=current_af,
+        af_gap=af_gap,
+        total_positions_needed=positions_needed,
+        total_positions_gained=total_gained,
+        total_time_investment_cs=total_time,
+        new_af=new_af,
+        items=all_items,
+        feasible=True,
+    )
+
+
+def compute_overtake_plan_min_tracks(
+    opportunities: list[Opportunity],
+    current_af: float,
+    target_af: float,
+    total_tracks: int,
+    target_username: str,
+) -> OvertakePlan:
+    """Find the fewest tracks to improve to overtake the target player.
+
+    For each track, picks the tier with maximum positions gained.
+    Greedy: sort by positions descending, take until gap is closed.
+    """
+    af_gap = current_af - target_af
+    if af_gap <= 0:
+        return OvertakePlan(
+            target_username=target_username,
+            target_af=target_af,
+            current_af=current_af,
+            af_gap=0.0,
+            total_positions_needed=0,
+            total_positions_gained=0,
+            total_time_investment_cs=0,
+            new_af=current_af,
+            feasible=True,
+        )
+
+    positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
+
+    # For each opportunity with tiers, pick the tier with max positions
+    candidates = []
+    for opp in opportunities:
+        if not opp.tiers:
+            continue
+        best_tier_idx = max(
+            range(len(opp.tiers)), key=lambda i: opp.tiers[i].positions_gained
+        )
+        best_tier = opp.tiers[best_tier_idx]
+        candidates.append((opp, best_tier))
+
+    # Sort by positions_gained descending (= max AF gain per track)
+    candidates.sort(key=lambda x: x[1].positions_gained, reverse=True)
+
+    items = []
+    total_positions = 0
+    total_time = 0
+
+    for opp, tier in candidates:
+        if total_positions >= positions_needed:
+            break
+        items.append(OvertakePlanItem(
+            track_slug=opp.track_slug,
+            track_name=opp.track_name,
+            vehicle=opp.vehicle,
+            category=opp.category,
+            laps=opp.laps,
+            is_na=opp.is_na,
+            current_rank=opp.current_rank,
+            current_time_cs=opp.current_time_cs if not opp.is_na else 0,
+            new_rank=tier.target_rank,
+            target_time_cs=tier.target_time_cs,
+            opponent_time_cs=tier.opponent_time_cs,
+            positions_gained=tier.positions_gained,
+            af_improvement=tier.af_improvement,
+            time_delta_cs=tier.time_delta_cs if not opp.is_na else 0,
+            efficiency=tier.efficiency,
+        ))
+        total_positions += tier.positions_gained
+        if not opp.is_na:
+            total_time += tier.time_delta_cs
+
+    feasible = total_positions >= positions_needed
+    new_af = current_af - total_positions / total_tracks
+
+    # Sort items by AF gain desc
+    items.sort(key=lambda x: x.af_improvement, reverse=True)
+
+    return OvertakePlan(
+        target_username=target_username,
+        target_af=target_af,
+        current_af=current_af,
+        af_gap=af_gap,
+        total_positions_needed=positions_needed,
+        total_positions_gained=total_positions,
+        total_time_investment_cs=total_time,
+        new_af=new_af,
+        items=items,
+        feasible=feasible,
     )

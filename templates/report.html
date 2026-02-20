@@ -95,6 +95,88 @@
         </div>
     </div>
 
+    {% macro overtake_table(plan, label) %}
+    {% if plan.feasible %}
+    <h3 style="color:#b0bec5; margin:20px 0 10px; font-size:1.1em;">{{ label }}</h3>
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="label">Tracks to Improve</div>
+            <div class="value good">{{ plan.items | length }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Positions Gained</div>
+            <div class="value rank">{{ plan.total_positions_gained }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Total Time to Save</div>
+            <div class="value af">{{ format_time(plan.total_time_investment_cs) }}</div>
+        </div>
+        <div class="summary-card">
+            <div class="label">Resulting AF</div>
+            <div class="value good">{{ "%.4f" | format(plan.new_af) }}</div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Current Rank</th>
+                <th>Your Time</th>
+                <th>New Rank</th>
+                <th>Opponent Time</th>
+                <th>Time to Save</th>
+                <th>Positions</th>
+                <th>AF Gain</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for it in plan.items %}
+            <tr class="{{ 'priority-na' if it.is_na else 'priority-high' }}">
+                <td>{{ loop.index }}</td>
+                <td>{{ it.track_name }}</td>
+                <td><span class="badge badge-{{ it.vehicle }}">{{ it.vehicle }}</span></td>
+                <td><span class="badge badge-{{ it.category }}">{{ it.category }}</span></td>
+                <td>{{ it.laps }}</td>
+                <td class="rank-num">{{ it.current_rank }}</td>
+                <td class="time">{{ format_time(it.current_time_cs) if it.current_time_cs else 'N/A' }}</td>
+                <td class="rank-num">{{ it.new_rank }}</td>
+                <td class="time">{{ format_time(it.opponent_time_cs) }}</td>
+                <td class="time">{{ format_time(it.time_delta_cs) if it.time_delta_cs else 'Submit any time' }}</td>
+                <td class="rank-num">+{{ it.positions_gained }}</td>
+                <td class="af-gain">-{{ "%.4f" | format(it.af_improvement) }}</td>
+                <td><a href="{{ it.leaderboard_url }}" target="_blank">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="section-desc" style="color: #ef5350;">
+        Not enough improvement available to overtake <strong>{{ plan.target_username }}</strong>.
+        The gap is {{ "%.4f" | format(plan.af_gap) }} AF ({{ plan.total_positions_needed }} positions needed)
+        but only {{ plan.total_positions_gained }} positions are achievable across all tracks.
+    </p>
+    {% endif %}
+    {% endmacro %}
+
+    {% if overtake_min_time %}
+    <h2>Overtake Plan: Beat {{ overtake_min_time.target_username }} (#{{ (current_rank - 1) }})</h2>
+    <p class="section-desc">
+        Target: lower your AF below
+        <strong>{{ overtake_min_time.target_username }}</strong> (AF {{ "%.4f" | format(overtake_min_time.target_af) }}).
+        Gap: {{ "%.4f" | format(overtake_min_time.af_gap) }} AF ({{ overtake_min_time.total_positions_needed }} positions needed).
+    </p>
+
+    {{ overtake_table(overtake_min_time, "Strategy A -- Minimum Time Investment (most tracks, least practice)") }}
+    {% if overtake_min_tracks %}
+    {{ overtake_table(overtake_min_tracks, "Strategy B -- Fewest Tracks (fewer tracks, more improvement each)") }}
+    {% endif %}
+    {% endif %}
+
     {% if na_opps %}
     <h2>HIGH PRIORITY -- Missing Times (N/A)</h2>
     <p class="section-desc">These tracks have no submitted time. Submitting ANY time gives a large AF boost since you move from last place.</p>

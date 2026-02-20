@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 from dkr_optimizer.models import (
     Opportunity,
     OpportunityTier,
+    OvertakePlan,
     PlayerProfile,
     format_time,
 )
@@ -21,6 +22,8 @@ def generate_reports(
     total_tracks: int,
     output_dir: str,
     template_dir: str = "templates",
+    overtake_min_time: OvertakePlan | None = None,
+    overtake_min_tracks: OvertakePlan | None = None,
 ):
     """Generate both HTML and JSON reports."""
     os.makedirs(output_dir, exist_ok=True)
@@ -34,6 +37,7 @@ def generate_reports(
     report_data = _build_report_data(
         profile, current_af, current_rank, opportunities,
         na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
+        overtake_min_time, overtake_min_tracks,
     )
 
     # JSON report
@@ -60,6 +64,8 @@ def generate_reports(
         timestamp=timestamp,
         format_time=format_time,
         float_inf=float("inf"),
+        overtake_min_time=overtake_min_time,
+        overtake_min_tracks=overtake_min_tracks,
     )
     html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w", encoding="utf-8") as f:
@@ -71,9 +77,10 @@ def generate_reports(
 def _build_report_data(
     profile, current_af, current_rank, opportunities,
     na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
+    overtake_min_time=None, overtake_min_tracks=None,
 ) -> dict:
     """Build JSON-serializable report data."""
-    return {
+    data = {
         "metadata": {
             "generated_at": timestamp,
             "total_tracks_in_scope": total_tracks,
@@ -92,6 +99,11 @@ def _build_report_data(
         },
         "opportunities": [_opportunity_to_dict(o) for o in opportunities],
     }
+    if overtake_min_time:
+        data["overtake_min_time"] = _overtake_plan_to_dict(overtake_min_time)
+    if overtake_min_tracks:
+        data["overtake_min_tracks"] = _overtake_plan_to_dict(overtake_min_tracks)
+    return data
 
 
 def _opportunity_to_dict(o: Opportunity) -> dict:
@@ -123,3 +135,40 @@ def _opportunity_to_dict(o: Opportunity) -> dict:
             "efficiency": tier.efficiency if tier.efficiency != float("inf") else "inf",
         })
     return result
+
+
+def _overtake_plan_to_dict(plan: OvertakePlan) -> dict:
+    return {
+        "target_username": plan.target_username,
+        "target_af": plan.target_af,
+        "current_af": plan.current_af,
+        "af_gap": round(plan.af_gap, 4),
+        "total_positions_needed": plan.total_positions_needed,
+        "total_positions_gained": plan.total_positions_gained,
+        "total_time_investment_cs": plan.total_time_investment_cs,
+        "total_time_investment": format_time(plan.total_time_investment_cs),
+        "new_af": round(plan.new_af, 4),
+        "feasible": plan.feasible,
+        "items": [
+            {
+                "track_slug": it.track_slug,
+                "track_name": it.track_name,
+                "vehicle": it.vehicle,
+                "category": it.category,
+                "laps": it.laps,
+                "is_na": it.is_na,
+                "current_rank": it.current_rank,
+                "current_time": format_time(it.current_time_cs) if it.current_time_cs else "N/A",
+                "new_rank": it.new_rank,
+                "target_time": format_time(it.target_time_cs),
+                "opponent_time": format_time(it.opponent_time_cs),
+                "positions_gained": it.positions_gained,
+                "af_improvement": round(it.af_improvement, 4),
+                "time_delta_cs": it.time_delta_cs,
+                "time_delta": format_time(it.time_delta_cs) if it.time_delta_cs else "N/A",
+                "efficiency": it.efficiency if it.efficiency != float("inf") else "inf",
+                "leaderboard_url": it.leaderboard_url,
+            }
+            for it in plan.items
+        ],
+    }

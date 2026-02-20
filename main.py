@@ -5,7 +5,11 @@ import sys
 import yaml
 
 from dkr_optimizer.models import format_time
-from dkr_optimizer.optimizer import compute_opportunities
+from dkr_optimizer.optimizer import (
+    compute_opportunities,
+    compute_overtake_plan,
+    compute_overtake_plan_min_tracks,
+)
 from dkr_optimizer.parser import (
     parse_combined_ranking,
     parse_leaderboard,
@@ -119,8 +123,38 @@ def main():
         player_username=username,
     )
 
-    # Step 6: Generate reports
-    print("Generating reports...")
+    # Step 6: Compute overtake plans
+    overtake_min_time = None
+    overtake_min_tracks = None
+    if current_rank > 1:
+        target_entry = next(
+            (r for r in ranking if r.rank == current_rank - 1),
+            None,
+        )
+        if target_entry:
+            print(f"\nComputing overtake plans to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
+            overtake_min_time = compute_overtake_plan(
+                opportunities=opportunities,
+                current_af=current_af,
+                target_af=target_entry.af,
+                total_tracks=valid_tracks,
+                target_username=target_entry.username,
+            )
+            overtake_min_tracks = compute_overtake_plan_min_tracks(
+                opportunities=opportunities,
+                current_af=current_af,
+                target_af=target_entry.af,
+                total_tracks=valid_tracks,
+                target_username=target_entry.username,
+            )
+            if overtake_min_time.feasible:
+                print(f"  Min time:   {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")
+                print(f"  Min tracks: {len(overtake_min_tracks.items)} tracks, {format_time(overtake_min_tracks.total_time_investment_cs)} total improvement")
+            else:
+                print("  Not enough improvement available to overtake.")
+
+    # Step 7: Generate reports
+    print("\nGenerating reports...")
     html_path, json_path = generate_reports(
         profile=profile,
         current_af=current_af,
@@ -128,6 +162,8 @@ def main():
         opportunities=opportunities,
         total_tracks=valid_tracks,
         output_dir=output_dir,
+        overtake_min_time=overtake_min_time,
+        overtake_min_tracks=overtake_min_tracks,
     )
 
     # Summary

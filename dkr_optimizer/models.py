@@ -88,3 +88,40 @@ class OpportunityTier:
     af_improvement: float
     time_delta_cs: int  # time improvement needed: your_time - target_time (includes surpass margin)
     efficiency: float  # af_improvement / time_delta_cs
+
+
+@dataclass
+class OvertakePlanItem:
+    track_slug: str
+    track_name: str
+    vehicle: str
+    category: str
+    laps: str
+    is_na: bool
+    current_rank: int
+    current_time_cs: int
+    new_rank: int
+    target_time_cs: int
+    opponent_time_cs: int
+    positions_gained: int
+    af_improvement: float
+    time_delta_cs: int
+    efficiency: float
+
+    @property
+    def leaderboard_url(self) -> str:
+        return f"https://www.dkr64.com/tracks/{self.track_slug}/{self.vehicle}/{self.category}/{self.laps}"
+
+
+@dataclass
+class OvertakePlan:
+    target_username: str
+    target_af: float
+    current_af: float
+    af_gap: float
+    total_positions_needed: int
+    total_positions_gained: int
+    total_time_investment_cs: int  # only ranked tracks (N/A tracks excluded)
+    new_af: float
+    items: list = field(default_factory=list)  # list[OvertakePlanItem]
+    feasible: bool = True
