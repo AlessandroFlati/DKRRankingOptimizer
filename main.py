@@ -4,7 +4,7 @@ import sys
 
 import yaml
 
-from dkr_optimizer.models import format_time
+from dkr_optimizer.models import LeaderboardEntry, format_time, parse_time
 from dkr_optimizer.optimizer import (
     compute_opportunities,
     compute_overtake_plan,
@@ -22,6 +22,90 @@ from dkr_optimizer.scraper import DKRScraper
 def load_config(path: str = "config.yaml") -> dict:
     with open(path, "r") as f:
         return yaml.safe_load(f)
+
+
+def _apply_time_overrides(player_times, leaderboards, overrides_raw, username):
+    """Apply user-supplied time overrides to player_times and leaderboards.
+
+    Returns the total AF delta (negative = improvement).
+    """
+    total_rank_delta = 0
+    tracks_affected = 0
+
+    for ovr in overrides_raw:
+        track = ovr["track"]
+        vehicle = ovr["vehicle"]
+        category = ovr.get("category", "standard")
+        laps = ovr["laps"]
+        new_time_cs = parse_time(ovr["time"])
+        lb_key = f"{track}/{vehicle}/{category}/{laps}"
+
+        # Find matching PlayerTrackTime
+        pt_match = None
+        for pt in player_times:
+            if (pt.track_slug == track and pt.vehicle == vehicle
+                    and pt.category == category and pt.laps == laps):
+                pt_match = pt
+                break
+
+        if pt_match is None:
+            print(f"  WARNING: Override for {lb_key} has no matching player track")
+            continue
+
+        entries = leaderboards.get(lb_key)
+        if not entries:
+            print(f"  WARNING: No leaderboard for {lb_key}")
+            continue
+
+        old_time = pt_match.time_cs
+
+        # Find or create player entry in leaderboard
+        player_entry = None
+        for e in entries:
+            if e.username.lower() == username.lower():
+                player_entry = e
+                break
+
+        old_rank = player_entry.rank if player_entry else pt_match.rank
+
+        if player_entry:
+            player_entry.time_cs = new_time_cs
+        else:
+            player_entry = LeaderboardEntry(
+                rank=0,
+                username=username,
+                display_name=username,
+                time_cs=new_time_cs,
+                is_default=False,
+            )
+            entries.append(player_entry)
+
+        # Re-sort: real entries by time, then defaults
+        entries.sort(key=lambda e: (e.is_default, e.time_cs))
+
+        # Re-assign ranks
+        rank = 1
+        for i, e in enumerate(entries):
+            if e.is_default:
+                e.rank = rank
+            else:
+                if i > 0 and not entries[i - 1].is_default and entries[i - 1].time_cs == e.time_cs:
+                    e.rank = entries[i - 1].rank
+                else:
+                    e.rank = rank
+                rank += 1
+
+        new_rank = player_entry.rank
+        pt_match.time_cs = new_time_cs
+        pt_match.rank = new_rank
+        pt_match.is_na = False
+
+        total_rank_delta += new_rank - old_rank
+        tracks_affected += 1
+        print(f"  {lb_key}: {format_time(old_time)} -> {format_time(new_time_cs)}, "
+              f"rank {old_rank} -> {new_rank}")
+
+    return total_rank_delta, tracks_affected
 
 
 def main():
@@ -113,6 +197,19 @@ def main():
     # Only count tracks that actually exist as leaderboards
     valid_tracks = len(leaderboards)
     print(f"  Track variants in scope: {valid_tracks}")
+
+    # Step 4b: Apply time overrides (new times not yet on dkr64.com)
+    overrides_raw = config.get("time_overrides", [])
+    if overrides_raw:
+        print(f"\nApplying {len(overrides_raw)} time overrides...")
+        rank_delta, n_affected = _apply_time_overrides(
+            player_times, leaderboards, overrides_raw, username
+        )
+        if n_affected > 0:
+            af_delta = rank_delta / valid_tracks
+            old_af = current_af
+            current_af = current_af + af_delta
+            print(f"  AF adjusted: {old_af} -> {current_af:.3f} (delta {af_delta:+.4f})")
 
     # Step 5: Compute opportunities
     print("\nComputing optimization opportunities...")
