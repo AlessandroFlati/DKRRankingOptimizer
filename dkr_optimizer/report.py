@@ -24,6 +24,8 @@ def generate_reports(
     template_dir: str = "templates",
     overtake_min_time: OvertakePlan | None = None,
     overtake_min_tracks: OvertakePlan | None = None,
+    overtake_min_time_plane: OvertakePlan | None = None,
+    overtake_min_tracks_plane: OvertakePlan | None = None,
 ):
     """Generate both HTML and JSON reports."""
     os.makedirs(output_dir, exist_ok=True)
@@ -38,6 +40,7 @@ def generate_reports(
         profile, current_af, current_rank, opportunities,
         na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
         overtake_min_time, overtake_min_tracks,
+        overtake_min_time_plane, overtake_min_tracks_plane,
     )
 
     # JSON report
@@ -66,6 +69,8 @@ def generate_reports(
         float_inf=float("inf"),
         overtake_min_time=overtake_min_time,
         overtake_min_tracks=overtake_min_tracks,
+        overtake_min_time_plane=overtake_min_time_plane,
+        overtake_min_tracks_plane=overtake_min_tracks_plane,
     )
     html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w", encoding="utf-8") as f:
@@ -78,6 +83,7 @@ def _build_report_data(
     profile, current_af, current_rank, opportunities,
     na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
     overtake_min_time=None, overtake_min_tracks=None,
+    overtake_min_time_plane=None, overtake_min_tracks_plane=None,
 ) -> dict:
     """Build JSON-serializable report data."""
     data = {
@@ -103,6 +109,10 @@ def _build_report_data(
         data["overtake_min_time"] = _overtake_plan_to_dict(overtake_min_time)
     if overtake_min_tracks:
         data["overtake_min_tracks"] = _overtake_plan_to_dict(overtake_min_tracks)
+    if overtake_min_time_plane:
+        data["overtake_min_time_plane"] = _overtake_plan_to_dict(overtake_min_time_plane)
+    if overtake_min_tracks_plane:
+        data["overtake_min_tracks_plane"] = _overtake_plan_to_dict(overtake_min_tracks_plane)
     return data
 
 

@@ -175,6 +175,12 @@
     {% if overtake_min_tracks %}
     {{ overtake_table(overtake_min_tracks, "Strategy B -- Fewest Tracks (fewer tracks, more improvement each)") }}
     {% endif %}
+    {% if overtake_min_time_plane %}
+    {{ overtake_table(overtake_min_time_plane, "Strategy A (Plane Only) -- Minimum Time Investment") }}
+    {% endif %}
+    {% if overtake_min_tracks_plane %}
+    {{ overtake_table(overtake_min_tracks_plane, "Strategy B (Plane Only) -- Fewest Tracks") }}
+    {% endif %}
     {% endif %}
 
     {% if na_opps %}

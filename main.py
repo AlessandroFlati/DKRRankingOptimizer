@@ -226,38 +226,36 @@ def main():
 
     overtake_min_time = None
     overtake_min_tracks = None
+    overtake_min_time_plane = None
+    overtake_min_tracks_plane = None
     if current_rank > 1:
         target_entry = next(
             (r for r in ranking if r.rank == current_rank - 1),
             None,
         )
         if target_entry:
+            plan_kwargs = dict(
+                player_times=player_times,
+                leaderboards=leaderboards,
+                current_af=current_af,
+                target_af=target_entry.af,
+                total_tracks=valid_tracks,
+                player_username=username,
+                target_username=target_entry.username,
+                exclude=exclude,
+            )
             print(f"\nComputing overtake plans to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
             if exclude:
                 print(f"  Excluding {len(exclude)} track/vehicle combos from plans")
-            overtake_min_time = compute_overtake_plan(
-                player_times=player_times,
-                leaderboards=leaderboards,
-                current_af=current_af,
-                target_af=target_entry.af,
-                total_tracks=valid_tracks,
-                player_username=username,
-                target_username=target_entry.username,
-                exclude=exclude,
-            )
-            overtake_min_tracks = compute_overtake_plan_min_tracks(
-                player_times=player_times,
-                leaderboards=leaderboards,
-                current_af=current_af,
-                target_af=target_entry.af,
-                total_tracks=valid_tracks,
-                player_username=username,
-                target_username=target_entry.username,
-                exclude=exclude,
-            )
+            overtake_min_time = compute_overtake_plan(**plan_kwargs)
+            overtake_min_tracks = compute_overtake_plan_min_tracks(**plan_kwargs)
+            overtake_min_time_plane = compute_overtake_plan(**plan_kwargs, vehicle_filter="plane")
+            overtake_min_tracks_plane = compute_overtake_plan_min_tracks(**plan_kwargs, vehicle_filter="plane")
             if overtake_min_time.feasible:
-                print(f"  Min time:   {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")
-                print(f"  Min tracks: {len(overtake_min_tracks.items)} tracks, {format_time(overtake_min_tracks.total_time_investment_cs)} total improvement")
+                print(f"  Min time:         {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")
+                print(f"  Min tracks:       {len(overtake_min_tracks.items)} tracks, {format_time(overtake_min_tracks.total_time_investment_cs)} total improvement")
+                print(f"  Min time (plane): {len(overtake_min_time_plane.items)} tracks, {format_time(overtake_min_time_plane.total_time_investment_cs)} total improvement")
+                print(f"  Min tracks (plane): {len(overtake_min_tracks_plane.items)} tracks, {format_time(overtake_min_tracks_plane.total_time_investment_cs)} total improvement")
             else:
                 print("  Not enough improvement available to overtake.")
 
@@ -272,6 +270,8 @@ def main():
         output_dir=output_dir,
         overtake_min_time=overtake_min_time,
         overtake_min_tracks=overtake_min_tracks,
+        overtake_min_time_plane=overtake_min_time_plane,
+        overtake_min_tracks_plane=overtake_min_tracks_plane,
     )
 
     # Summary

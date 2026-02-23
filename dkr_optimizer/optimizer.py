@@ -256,11 +256,13 @@ def _build_overtake_groups(
     total_tracks: int,
     player_username: str,
     exclude: list[tuple[str, str]] | None = None,
+    vehicle_filter: str | None = None,
 ) -> tuple[list[OvertakePlanItem], list[list[tuple]]]:
     """Build N/A items and ranked groups with ALL possible tiers for overtake plans.
 
     Args:
         exclude: List of (track_slug, vehicle) tuples to skip.
+        vehicle_filter: If set, only include tracks with this vehicle type.
 
     Returns (na_items, groups) where each group is a list of
     (positions_gained, time_delta_cs, plan_item) tuples.
@@ -271,6 +273,8 @@ def _build_overtake_groups(
 
     for pt in player_times:
         if (pt.track_slug, pt.vehicle) in exclude_set:
+            continue
+        if vehicle_filter and pt.vehicle != vehicle_filter:
             continue
         lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
         entries = leaderboards.get(lb_key, [])
@@ -354,6 +358,7 @@ def compute_overtake_plan(
     player_username: str,
     target_username: str,
     exclude: list[tuple[str, str]] | None = None,
+    vehicle_filter: str | None = None,
 ) -> OvertakePlan:
     """Find the minimum-cost set of improvements to overtake the target player.
 
@@ -380,7 +385,8 @@ def compute_overtake_plan(
     positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
 
     na_items, groups = _build_overtake_groups(
-        player_times, leaderboards, total_tracks, player_username, exclude
+        player_times, leaderboards, total_tracks, player_username, exclude,
+        vehicle_filter,
     )
     na_positions = sum(it.positions_gained for it in na_items)
 
@@ -498,6 +504,7 @@ def compute_overtake_plan_min_tracks(
     player_username: str,
     target_username: str,
     exclude: list[tuple[str, str]] | None = None,
+    vehicle_filter: str | None = None,
 ) -> OvertakePlan:
     """Find the fewest tracks to improve to overtake the target player.
 
@@ -523,7 +530,8 @@ def compute_overtake_plan_min_tracks(
     positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
 
     na_items, groups = _build_overtake_groups(
-        player_times, leaderboards, total_tracks, player_username, exclude
+        player_times, leaderboards, total_tracks, player_username, exclude,
+        vehicle_filter,
     )
 
     # For each ranked group, pick the tier with best positions/difficulty ratio
