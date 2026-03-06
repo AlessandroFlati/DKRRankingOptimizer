@@ -257,15 +257,21 @@ def _build_overtake_groups(
     player_username: str,
     exclude: list[tuple[str, str]] | None = None,
     vehicle_filter: str | None = None,
+    target_username: str | None = None,
 ) -> tuple[list[OvertakePlanItem], list[list[tuple]]]:
     """Build N/A items and ranked groups with ALL possible tiers for overtake plans.
 
     Args:
         exclude: List of (track_slug, vehicle) tuples to skip.
         vehicle_filter: If set, only include tracks with this vehicle type.
+        target_username: If set, each tier's effective positions_gained is
+            incremented by 1 whenever the player would overtake the target on
+            that leaderboard (compound effect: their AF worsens too).
 
     Returns (na_items, groups) where each group is a list of
-    (positions_gained, time_delta_cs, plan_item) tuples.
+    (effective_positions, time_delta_cs, plan_item) tuples.
+    effective_positions may be 1 higher than plan_item.positions_gained
+    when the compound effect applies.
     """
     exclude_set = set(exclude) if exclude else set()
     na_items = []
@@ -318,6 +324,14 @@ def _build_overtake_groups(
         if not above_entries or player_rank <= 1:
             continue
 
+        # Find where the target player sits in above_entries (if present).
+        target_above_idx = None
+        if target_username:
+            for idx, e in enumerate(above_entries):
+                if e.username.lower() == target_username.lower():
+                    target_above_idx = idx
+                    break
+
         # Compute ALL possible tiers: beat +1, +2, ..., +N
         all_targets = list(range(1, len(above_entries) + 1))
         tiers = _compute_tiers(above_entries, player_time_cs, total_tracks, all_targets)
@@ -343,7 +357,16 @@ def _build_overtake_groups(
                 time_delta_cs=tier.time_delta_cs,
                 efficiency=tier.efficiency,
             )
-            options.append((tier.positions_gained, tier.time_delta_cs, item))
+            # Compound effect: if this tier overtakes the target player on this
+            # track, their AF worsens by 1/total_tracks too — count +1 extra
+            # effective position toward closing the gap.
+            effective_positions = tier.positions_gained
+            if target_above_idx is not None:
+                overtaken_start_idx = len(above_entries) - tier.positions_gained
+                if target_above_idx >= overtaken_start_idx:
+                    effective_positions += 1
+
+            options.append((effective_positions, tier.time_delta_cs, item))
         groups.append(options)
 
     return na_items, groups
@@ -386,7 +409,7 @@ def compute_overtake_plan(
 
     na_items, groups = _build_overtake_groups(
         player_times, leaderboards, total_tracks, player_username, exclude,
-        vehicle_filter,
+        vehicle_filter, target_username,
     )
     na_positions = sum(it.positions_gained for it in na_items)
 
@@ -531,7 +554,7 @@ def compute_overtake_plan_min_tracks(
 
     na_items, groups = _build_overtake_groups(
         player_times, leaderboards, total_tracks, player_username, exclude,
-        vehicle_filter,
+        vehicle_filter, target_username,
     )
 
     # For each ranked group, pick the tier with best positions/difficulty ratio
