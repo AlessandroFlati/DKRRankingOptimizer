@@ -16,3 +16,12 @@ exclude_from_plans:
     vehicle: car
   - track: hot-top-volcano
     vehicle: hover
+
+# Override scraped times with actual new times (not yet on dkr64.com)
+# Format: MM:SS:CC (all colons). Category defaults to "standard".
+time_overrides:
+  - track: boulder-canyon
+    vehicle: hover
+    category: shortcut
+    laps: 1-lap
+    time: "00:21:70"
