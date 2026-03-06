@@ -229,10 +229,8 @@ def main():
     overtake_min_time_plane = None
     overtake_min_tracks_plane = None
     if current_rank > 1:
-        target_entry = next(
-            (r for r in ranking if r.rank == current_rank - 1),
-            None,
-        )
+        candidates = [r for r in ranking if r.rank < current_rank]
+        target_entry = max(candidates, key=lambda r: r.rank, default=None)
         if target_entry:
             plan_kwargs = dict(
                 player_times=player_times,
