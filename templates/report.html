@@ -66,6 +66,10 @@
         .legend .tier-example { margin-top: 14px; padding-top: 12px; border-top: 1px solid #2a2a4a; }
         .legend .tier-example p { color: #888; font-size: 0.85em; line-height: 1.5; }
         .legend .tier-example code { background: #0f3460; color: #90caf9; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+        .btn-print { background: #263238; color: #b0bec5; border: 1px solid #37474f; padding: 5px 14px; border-radius: 5px; cursor: pointer; font-size: 0.82em; font-weight: 600; margin-bottom: 8px; transition: all 0.15s; }
+        .btn-print:hover { background: #1a3a5c; border-color: #90caf9; color: #90caf9; }
+        @media print { .btn-print { display: none; } }
     </style>
 </head>
 <body>
@@ -116,6 +120,7 @@
             <div class="value good">{{ "%.4f" | format(plan.new_af) }}</div>
         </div>
     </div>
+    <button class="btn-print" onclick="printNextTable(this, '{{ label }}')">Print / Save PDF</button>
     <table>
         <thead>
             <tr>
@@ -170,6 +175,7 @@
         sorted by how little time you need to specifically beat them on each track.
         Focus on the top rows for the easiest individual wins.
     </p>
+    <button class="btn-print" onclick="printNextTable(this, 'Aggressive Target: Beat {{ overtake_min_time.target_username }} Track by Track')">Print / Save PDF</button>
     <table>
         <thead>
             <tr>
@@ -229,6 +235,7 @@
     {% if na_opps %}
     <h2>HIGH PRIORITY -- Missing Times (N/A)</h2>
     <p class="section-desc">These tracks have no submitted time. Submitting ANY time gives a large AF boost since you move from last place.</p>
+    <button class="btn-print" onclick="printNextTable(this, 'HIGH PRIORITY -- Missing Times (N/A)')">Print / Save PDF</button>
     <table>
         <thead>
             <tr>
@@ -287,6 +294,7 @@
     </div>
 
     <p class="section-desc">Select how many players above you to target. Click <strong>AF Gain</strong> or <strong>Efficiency</strong> to sort.</p>
+    <button class="btn-print" onclick="printNextTable(document.getElementById('opp-table'), 'Improvement Opportunities')">Print / Save PDF</button>
 
     <div class="tier-selector" id="tier-selector">
         <button class="tier-btn active" data-tier="0">Beat +1</button>
@@ -341,6 +349,7 @@
     {% if no_improvement %}
     <h2>Already at #1 ({{ no_improvement | length }} tracks)</h2>
     <p class="section-desc">No further improvement possible on these tracks.</p>
+    <button class="btn-print" onclick="printNextTable(this, 'Already at #1')">Print / Save PDF</button>
     <table>
         <thead>
             <tr>
@@ -455,6 +464,38 @@
     applyTier(0);
     sortTable('efficiency', true);
 })();
+
+function printNextTable(btnOrEl, title) {
+    var table;
+    if (btnOrEl && btnOrEl.tagName === 'TABLE') {
+        table = btnOrEl;
+    } else {
+        // Walk next siblings to find the table
+        var el = btnOrEl.nextElementSibling;
+        while (el && el.tagName !== 'TABLE') el = el.nextElementSibling;
+        table = el;
+    }
+    if (!table) return;
+
+    var css = '';
+    document.querySelectorAll('style').forEach(function(s) { css += s.innerHTML; });
+
+    var meta = document.querySelector('.meta') ? document.querySelector('.meta').textContent.trim() : '';
+    var tableHtml = table.outerHTML;
+
+    var win = window.open('', '_blank');
+    win.document.write(
+        '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title>' +
+        '<style>' + css + ' body { padding: 20px; } </style></head><body>' +
+        '<div class="container">' +
+        tableHtml +
+        '<p class="meta" style="margin-top:14px">' + title + ' &mdash; ' + meta + '</p>' +
+        '</div>' +
+        '<script>window.onload=function(){window.print();}<\/script>' +
+        '</body></html>'
+    );
+    win.document.close();
+}
 </script>
 </body>
 </html>
