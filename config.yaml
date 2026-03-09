@@ -20,8 +20,8 @@ exclude_from_plans:
 # Override scraped times with actual new times (not yet on dkr64.com)
 # Format: MM:SS:CC (all colons). Category defaults to "standard".
 time_overrides:
-  - track: boulder-canyon
-    vehicle: hover
-    category: shortcut
+  - track: windmill-plains
+    vehicle: car
+    category: standard
     laps: 1-lap
-    time: "00:21:70"
+    time: "00:31:73"

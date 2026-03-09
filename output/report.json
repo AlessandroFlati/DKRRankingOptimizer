@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "generated_at": "2026-03-09 14:53 UTC",
+    "generated_at": "2026-03-09 15:33 UTC",
     "total_tracks_in_scope": 132
   },
   "player": {
     "username": "ChasingGhosts",
     "country": "it",
     "combined_rank": 64,
-    "current_af": 72.114
+    "current_af": 72.10642424242425
   },
   "summary": {
     "tracks_with_times": 108,
@@ -2893,19 +2893,19 @@
       "vehicle": "car",
       "category": "standard",
       "laps": "1-lap",
-      "current_rank": 59,
-      "current_time": "00:31.85",
-      "current_time_cs": 3185,
+      "current_rank": 58,
+      "current_time": "00:31.73",
+      "current_time_cs": 3173,
       "is_na": false,
       "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap",
       "best_efficiency": 0.0025252525252525255,
       "tiers": [
         {
-          "target_rank": 58,
-          "opponent_time": "00:31.83",
-          "opponent_time_cs": 3183,
-          "target_time": "00:31.82",
-          "target_time_cs": 3182,
+          "target_rank": 56,
+          "opponent_time": "00:31.71",
+          "opponent_time_cs": 3171,
+          "target_time": "00:31.70",
+          "target_time_cs": 3170,
           "positions_gained": 1,
           "af_improvement": 0.0076,
           "time_delta_cs": 3,
@@ -2913,16 +2913,16 @@
           "efficiency": 0.0025252525252525255
         },
         {
-          "target_rank": 56,
-          "opponent_time": "00:31.71",
-          "opponent_time_cs": 3171,
-          "target_time": "00:31.70",
-          "target_time_cs": 3170,
+          "target_rank": 55,
+          "opponent_time": "00:31.63",
+          "opponent_time_cs": 3163,
+          "target_time": "00:31.62",
+          "target_time_cs": 3162,
           "positions_gained": 3,
           "af_improvement": 0.0227,
-          "time_delta_cs": 15,
-          "time_delta": "00:00.15",
-          "efficiency": 0.0015151515151515152
+          "time_delta_cs": 11,
+          "time_delta": "00:00.11",
+          "efficiency": 0.002066115702479339
         },
         {
           "target_rank": 53,
@@ -2932,57 +2932,57 @@
           "target_time_cs": 3155,
           "positions_gained": 5,
           "af_improvement": 0.0379,
-          "time_delta_cs": 30,
-          "time_delta": "00:00.30",
-          "efficiency": 0.0012626262626262627
+          "time_delta_cs": 18,
+          "time_delta": "00:00.18",
+          "efficiency": 0.0021043771043771043
         },
         {
-          "target_rank": 49,
-          "opponent_time": "00:31.45",
-          "opponent_time_cs": 3145,
-          "target_time": "00:31.44",
-          "target_time_cs": 3144,
+          "target_rank": 48,
+          "opponent_time": "00:31.41",
+          "opponent_time_cs": 3141,
+          "target_time": "00:31.40",
+          "target_time_cs": 3140,
           "positions_gained": 10,
           "af_improvement": 0.0758,
-          "time_delta_cs": 41,
-          "time_delta": "00:00.41",
-          "efficiency": 0.0018477457501847746
+          "time_delta_cs": 33,
+          "time_delta": "00:00.33",
+          "efficiency": 0.002295684113865932
         },
         {
-          "target_rank": 44,
-          "opponent_time": "00:31.16",
-          "opponent_time_cs": 3116,
-          "target_time": "00:31.15",
-          "target_time_cs": 3115,
+          "target_rank": 43,
+          "opponent_time": "00:31.06",
+          "opponent_time_cs": 3106,
+          "target_time": "00:31.05",
+          "target_time_cs": 3105,
           "positions_gained": 15,
           "af_improvement": 0.1136,
-          "time_delta_cs": 70,
-          "time_delta": "00:00.70",
-          "efficiency": 0.0016233766233766233
+          "time_delta_cs": 68,
+          "time_delta": "00:00.68",
+          "efficiency": 0.0016711229946524064
         },
         {
-          "target_rank": 39,
-          "opponent_time": "00:30.96",
-          "opponent_time_cs": 3096,
-          "target_time": "00:30.95",
-          "target_time_cs": 3095,
+          "target_rank": 38,
+          "opponent_time": "00:30.91",
+          "opponent_time_cs": 3091,
+          "target_time": "00:30.90",
+          "target_time_cs": 3090,
           "positions_gained": 20,
           "af_improvement": 0.1515,
-          "time_delta_cs": 90,
-          "time_delta": "00:00.90",
-          "efficiency": 0.0016835016835016836
+          "time_delta_cs": 83,
+          "time_delta": "00:00.83",
+          "efficiency": 0.0018254837531945967
         },
         {
-          "target_rank": 34,
-          "opponent_time": "00:30.66",
-          "opponent_time_cs": 3066,
-          "target_time": "00:30.65",
-          "target_time_cs": 3065,
+          "target_rank": 33,
+          "opponent_time": "00:30.53",
+          "opponent_time_cs": 3053,
+          "target_time": "00:30.52",
+          "target_time_cs": 3052,
           "positions_gained": 25,
           "af_improvement": 0.1894,
-          "time_delta_cs": 120,
-          "time_delta": "00:01.20",
-          "efficiency": 0.0015782828282828283
+          "time_delta_cs": 121,
+          "time_delta": "00:01.21",
+          "efficiency": 0.0015652391685449536
         }
       ]
     },
@@ -10676,13 +10676,13 @@
   "overtake_min_time": {
     "target_username": "dapsyd",
     "target_af": 68.318,
-    "current_af": 72.114,
-    "af_gap": 3.796,
-    "total_positions_needed": 502,
+    "current_af": 72.10642424242425,
+    "af_gap": 3.7884,
+    "total_positions_needed": 501,
     "total_positions_gained": 485,
-    "total_time_investment_cs": 3223,
-    "total_time_investment": "00:32.23",
-    "new_af": 68.4398,
+    "total_time_investment_cs": 3224,
+    "total_time_investment": "00:32.24",
+    "new_af": 68.4322,
     "feasible": true,
     "items": [
       {
@@ -10800,25 +10800,6 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/star-city/plane/standard/1-lap"
       },
       {
-        "track_slug": "windmill-plains",
-        "track_name": "Windmill Plains",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 59,
-        "current_time": "00:31.85",
-        "new_rank": 46,
-        "target_time": "00:31.34",
-        "opponent_time": "00:31.35",
-        "positions_gained": 13,
-        "af_improvement": 0.0985,
-        "time_delta_cs": 51,
-        "time_delta": "00:00.51",
-        "efficiency": 0.0019310754604872252,
-        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap"
-      },
-      {
         "track_slug": "greenwood-village",
         "track_name": "Greenwood Village",
         "vehicle": "car",
@@ -10836,6 +10817,25 @@
         "time_delta": "00:00.54",
         "efficiency": 0.001823793490460157,
         "leaderboard_url": "https://www.dkr64.com/tracks/greenwood-village/car/standard/1-lap"
+      },
+      {
+        "track_slug": "windmill-plains",
+        "track_name": "Windmill Plains",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 58,
+        "current_time": "00:31.73",
+        "new_rank": 46,
+        "target_time": "00:31.34",
+        "opponent_time": "00:31.35",
+        "positions_gained": 12,
+        "af_improvement": 0.0909,
+        "time_delta_cs": 39,
+        "time_delta": "00:00.39",
+        "efficiency": 0.002331002331002331,
+        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap"
       },
       {
         "track_slug": "snowball-valley",
@@ -10893,25 +10893,6 @@
         "time_delta": "00:00.67",
         "efficiency": 0.00135685210312076,
         "leaderboard_url": "https://www.dkr64.com/tracks/fossil-canyon/hover/standard/1-lap"
-      },
-      {
-        "track_slug": "crescent-island",
-        "track_name": "Crescent Island",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 78,
-        "current_time": "00:23.63",
-        "new_rank": 68,
-        "target_time": "00:22.92",
-        "opponent_time": "00:22.93",
-        "positions_gained": 11,
-        "af_improvement": 0.0833,
-        "time_delta_cs": 71,
-        "time_delta": "00:00.71",
-        "efficiency": 0.0011737089201877935,
-        "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/car/standard/1-lap"
       },
       {
         "track_slug": "pirate-lagoon",
@@ -10988,6 +10969,25 @@
         "time_delta": "00:01.00",
         "efficiency": 0.0007575757575757576,
         "leaderboard_url": "https://www.dkr64.com/tracks/treasure-caves/plane/standard/1-lap"
+      },
+      {
+        "track_slug": "crescent-island",
+        "track_name": "Crescent Island",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 78,
+        "current_time": "00:23.63",
+        "new_rank": 69,
+        "target_time": "00:22.99",
+        "opponent_time": "00:23.00",
+        "positions_gained": 10,
+        "af_improvement": 0.0758,
+        "time_delta_cs": 64,
+        "time_delta": "00:00.64",
+        "efficiency": 0.0011837121212121212,
+        "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/car/standard/1-lap"
       },
       {
         "track_slug": "spaceport-alpha",
@@ -11123,6 +11123,25 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/spacedust-alley/hover/standard/1-lap"
       },
       {
+        "track_slug": "spacedust-alley",
+        "track_name": "Spacedust Alley",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 72,
+        "current_time": "00:33.60",
+        "new_rank": 65,
+        "target_time": "00:32.97",
+        "opponent_time": "00:32.98",
+        "positions_gained": 8,
+        "af_improvement": 0.0606,
+        "time_delta_cs": 63,
+        "time_delta": "00:00.63",
+        "efficiency": 0.000962000962000962,
+        "leaderboard_url": "https://www.dkr64.com/tracks/spacedust-alley/car/standard/1-lap"
+      },
+      {
         "track_slug": "everfrost-peak",
         "track_name": "Everfrost Peak",
         "vehicle": "car",
@@ -11254,25 +11273,6 @@
         "time_delta": "00:00.58",
         "efficiency": 0.0009143155694879833,
         "leaderboard_url": "https://www.dkr64.com/tracks/jungle-falls/plane/standard/1-lap"
-      },
-      {
-        "track_slug": "spacedust-alley",
-        "track_name": "Spacedust Alley",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 72,
-        "current_time": "00:33.60",
-        "new_rank": 67,
-        "target_time": "00:33.17",
-        "opponent_time": "00:33.18",
-        "positions_gained": 6,
-        "af_improvement": 0.0455,
-        "time_delta_cs": 43,
-        "time_delta": "00:00.43",
-        "efficiency": 0.0010570824524312897,
-        "leaderboard_url": "https://www.dkr64.com/tracks/spacedust-alley/car/standard/1-lap"
       },
       {
         "track_slug": "windmill-plains",
@@ -12096,13 +12096,13 @@
   "overtake_min_tracks": {
     "target_username": "dapsyd",
     "target_af": 68.318,
-    "current_af": 72.114,
-    "af_gap": 3.796,
-    "total_positions_needed": 502,
-    "total_positions_gained": 517,
-    "total_time_investment_cs": 7727,
-    "total_time_investment": "01:17.27",
-    "new_af": 68.1973,
+    "current_af": 72.10642424242425,
+    "af_gap": 3.7884,
+    "total_positions_needed": 501,
+    "total_positions_gained": 501,
+    "total_time_investment_cs": 7632,
+    "total_time_investment": "01:16.32",
+    "new_af": 68.311,
     "feasible": true,
     "items": [
       {
@@ -12636,37 +12636,18 @@
         "time_delta": "00:06.05",
         "efficiency": 0.00020035061357375408,
         "leaderboard_url": "https://www.dkr64.com/tracks/star-city/hover/standard/3-laps"
-      },
-      {
-        "track_slug": "spaceport-alpha",
-        "track_name": "Spaceport Alpha",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 73,
-        "current_time": "00:34.40",
-        "new_rank": 57,
-        "target_time": "00:33.45",
-        "opponent_time": "00:33.46",
-        "positions_gained": 16,
-        "af_improvement": 0.1212,
-        "time_delta_cs": 95,
-        "time_delta": "00:00.95",
-        "efficiency": 0.0012759170653907496,
-        "leaderboard_url": "https://www.dkr64.com/tracks/spaceport-alpha/car/standard/1-lap"
       }
     ]
   },
   "overtake_min_time_plane": {
     "target_username": "dapsyd",
     "target_af": 68.318,
-    "current_af": 72.114,
-    "af_gap": 3.796,
-    "total_positions_needed": 502,
-    "total_positions_gained": 492,
-    "total_time_investment_cs": 9041,
-    "total_time_investment": "01:30.41",
+    "current_af": 72.10642424242425,
+    "af_gap": 3.7884,
+    "total_positions_needed": 501,
+    "total_positions_gained": 491,
+    "total_time_investment_cs": 9014,
+    "total_time_investment": "01:30.14",
     "new_af": 68.3867,
     "feasible": true,
     "items": [
@@ -13021,14 +13002,14 @@
         "is_na": false,
         "current_rank": 62,
         "current_time": "01:44.35",
-        "new_rank": 46,
-        "target_time": "01:38.37",
-        "opponent_time": "01:38.38",
-        "positions_gained": 17,
-        "af_improvement": 0.1288,
-        "time_delta_cs": 598,
-        "time_delta": "00:05.98",
-        "efficiency": 0.0002153643457991284,
+        "new_rank": 47,
+        "target_time": "01:38.64",
+        "opponent_time": "01:38.65",
+        "positions_gained": 16,
+        "af_improvement": 0.1212,
+        "time_delta_cs": 571,
+        "time_delta": "00:05.71",
+        "efficiency": 0.00021228042243804065,
         "leaderboard_url": "https://www.dkr64.com/tracks/star-city/plane/standard/3-laps"
       },
       {
@@ -13093,13 +13074,13 @@
   "overtake_min_tracks_plane": {
     "target_username": "dapsyd",
     "target_af": 68.318,
-    "current_af": 72.114,
-    "af_gap": 3.796,
-    "total_positions_needed": 502,
+    "current_af": 72.10642424242425,
+    "af_gap": 3.7884,
+    "total_positions_needed": 501,
     "total_positions_gained": 319,
     "total_time_investment_cs": 9247,
     "total_time_investment": "01:32.47",
-    "new_af": 69.6973,
+    "new_af": 69.6898,
     "feasible": false,
     "items": [
       {
@@ -13561,20 +13542,6 @@
     ]
   },
   "target_track_table": [
-    {
-      "track_slug": "windmill-plains",
-      "track_name": "Windmill Plains",
-      "vehicle": "car",
-      "category": "standard",
-      "laps": "1-lap",
-      "player_rank": 59,
-      "player_time": "00:31.85",
-      "target_rank": 58,
-      "target_time": "00:31.83",
-      "time_needed_cs": 3,
-      "time_needed": "00:00.03",
-      "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap"
-    },
     {
       "track_slug": "snowball-valley",
       "track_name": "Snowball Valley",
