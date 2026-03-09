@@ -163,6 +163,49 @@
     {% endif %}
     {% endmacro %}
 
+    {% if target_track_table %}
+    <h2>Aggressive Target: Beat {{ overtake_min_time.target_username }} Track by Track</h2>
+    <p class="section-desc">
+        Tracks where <strong>{{ overtake_min_time.target_username }}</strong> is currently ranked better than you,
+        sorted by how little time you need to specifically beat them on each track.
+        Focus on the top rows for the easiest individual wins.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Your Rank</th>
+                <th>Your Time</th>
+                <th>Their Rank</th>
+                <th>Their Time</th>
+                <th>Time to Save</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for it in target_track_table %}
+            <tr class="priority-high">
+                <td>{{ loop.index }}</td>
+                <td>{{ it.track_name }}</td>
+                <td><span class="badge badge-{{ it.vehicle }}">{{ it.vehicle }}</span></td>
+                <td><span class="badge badge-{{ it.category }}">{{ it.category }}</span></td>
+                <td>{{ it.laps }}</td>
+                <td class="rank-num">{{ it.player_rank }}</td>
+                <td class="time">{{ it.player_time_cs | format_time }}</td>
+                <td class="rank-num">{{ it.target_rank }}</td>
+                <td class="time">{{ it.target_time_cs | format_time }}</td>
+                <td class="time">{{ it.time_needed_cs | format_time }}</td>
+                <td><a href="{{ it.leaderboard_url }}" target="_blank">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
     {% if overtake_min_time %}
     <h2>Overtake Plan: Beat {{ overtake_min_time.target_username }} (#{{ (current_rank - 1) }})</h2>
     <p class="section-desc">

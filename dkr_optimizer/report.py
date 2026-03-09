@@ -26,6 +26,7 @@ def generate_reports(
     overtake_min_tracks: OvertakePlan | None = None,
     overtake_min_time_plane: OvertakePlan | None = None,
     overtake_min_tracks_plane: OvertakePlan | None = None,
+    target_track_table: list | None = None,
 ):
     """Generate both HTML and JSON reports."""
     os.makedirs(output_dir, exist_ok=True)
@@ -41,6 +42,7 @@ def generate_reports(
         na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
         overtake_min_time, overtake_min_tracks,
         overtake_min_time_plane, overtake_min_tracks_plane,
+        target_track_table,
     )
 
     # JSON report
@@ -71,6 +73,7 @@ def generate_reports(
         overtake_min_tracks=overtake_min_tracks,
         overtake_min_time_plane=overtake_min_time_plane,
         overtake_min_tracks_plane=overtake_min_tracks_plane,
+        target_track_table=target_track_table,
     )
     html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w", encoding="utf-8") as f:
@@ -84,6 +87,7 @@ def _build_report_data(
     na_opps, ranked_opps, no_improvement, total_tracks, timestamp,
     overtake_min_time=None, overtake_min_tracks=None,
     overtake_min_time_plane=None, overtake_min_tracks_plane=None,
+    target_track_table=None,
 ) -> dict:
     """Build JSON-serializable report data."""
     data = {
@@ -113,6 +117,24 @@ def _build_report_data(
         data["overtake_min_time_plane"] = _overtake_plan_to_dict(overtake_min_time_plane)
     if overtake_min_tracks_plane:
         data["overtake_min_tracks_plane"] = _overtake_plan_to_dict(overtake_min_tracks_plane)
+    if target_track_table:
+        data["target_track_table"] = [
+            {
+                "track_slug": it.track_slug,
+                "track_name": it.track_name,
+                "vehicle": it.vehicle,
+                "category": it.category,
+                "laps": it.laps,
+                "player_rank": it.player_rank,
+                "player_time": format_time(it.player_time_cs),
+                "target_rank": it.target_rank,
+                "target_time": format_time(it.target_time_cs),
+                "time_needed_cs": it.time_needed_cs,
+                "time_needed": format_time(it.time_needed_cs),
+                "leaderboard_url": it.leaderboard_url,
+            }
+            for it in target_track_table
+        ]
     return data
 
 

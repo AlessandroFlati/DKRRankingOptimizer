@@ -114,6 +114,46 @@ class OvertakePlanItem:
 
 
 @dataclass
+class VulnerabilityItem:
+    """A track where the player is currently ahead of the target, showing how
+    much time the target needs to save to overtake the player."""
+    track_slug: str
+    track_name: str
+    vehicle: str
+    category: str
+    laps: str
+    player_rank: int
+    player_time_cs: int
+    target_rank: int
+    target_time_cs: int
+    time_needed_cs: int  # time target must save to beat the player
+
+    @property
+    def leaderboard_url(self) -> str:
+        return f"https://www.dkr64.com/tracks/{self.track_slug}/{self.vehicle}/{self.category}/{self.laps}"
+
+
+@dataclass
+class TargetTrackItem:
+    """A track where the target player is ranked better than the user,
+    showing how much time the user needs to save to specifically beat the target."""
+    track_slug: str
+    track_name: str
+    vehicle: str
+    category: str
+    laps: str
+    player_rank: int
+    player_time_cs: int
+    target_rank: int
+    target_time_cs: int
+    time_needed_cs: int  # time user must save to beat the target on this track
+
+    @property
+    def leaderboard_url(self) -> str:
+        return f"https://www.dkr64.com/tracks/{self.track_slug}/{self.vehicle}/{self.category}/{self.laps}"
+
+
+@dataclass
 class OvertakePlan:
     target_username: str
     target_af: float

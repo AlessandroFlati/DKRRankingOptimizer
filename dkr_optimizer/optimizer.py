@@ -7,6 +7,7 @@ from dkr_optimizer.models import (
     OvertakePlan,
     OvertakePlanItem,
     PlayerTrackTime,
+    TargetTrackItem,
     format_time,
 )
 
@@ -598,3 +599,60 @@ def compute_overtake_plan_min_tracks(
         items=items,
         feasible=feasible,
     )
+
+
+def compute_target_track_table(
+    player_times: list[PlayerTrackTime],
+    leaderboards: dict[str, list[LeaderboardEntry]],
+    player_username: str,
+    target_username: str,
+) -> list[TargetTrackItem]:
+    """For each track where the target is ranked better than the player,
+    compute how much time the player needs to save to specifically beat
+    the target on that track. Sorted ascending by time needed."""
+    items = []
+
+    for pt in player_times:
+        if pt.is_na:
+            continue
+        lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
+        entries = leaderboards.get(lb_key, [])
+        if not entries:
+            continue
+
+        real_entries = [e for e in entries if not e.is_default]
+
+        player_rank, player_time_cs, _ = _find_player_position(
+            pt, real_entries, player_username
+        )
+
+        target_entry = None
+        for e in real_entries:
+            if e.username.lower() == target_username.lower():
+                target_entry = e
+                break
+
+        if target_entry is None:
+            continue
+        if target_entry.rank >= player_rank:
+            continue  # target is not ahead of player on this track
+
+        time_needed_cs = player_time_cs - (target_entry.time_cs - 1)
+        if time_needed_cs <= 0:
+            continue
+
+        items.append(TargetTrackItem(
+            track_slug=pt.track_slug,
+            track_name=pt.track_name,
+            vehicle=pt.vehicle,
+            category=pt.category,
+            laps=pt.laps,
+            player_rank=player_rank,
+            player_time_cs=player_time_cs,
+            target_rank=target_entry.rank,
+            target_time_cs=target_entry.time_cs,
+            time_needed_cs=time_needed_cs,
+        ))
+
+    items.sort(key=lambda x: x.time_needed_cs)
+    return items
