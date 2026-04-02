@@ -8,8 +8,6 @@ from dkr_optimizer.models import LeaderboardEntry, format_time, parse_time
 from dkr_optimizer.optimizer import (
     compute_opportunities,
     compute_overtake_plan,
-    compute_overtake_plan_min_tracks,
-    compute_target_track_table,
 )
 from dkr_optimizer.parser import (
     parse_combined_ranking,
@@ -226,15 +224,14 @@ def main():
     exclude = [(e["track"], e["vehicle"]) for e in exclude_raw] if exclude_raw else None
 
     overtake_min_time = None
-    overtake_min_tracks = None
-    overtake_min_time_plane = None
-    overtake_min_tracks_plane = None
-    target_track_table = None
     if current_rank > 1:
         candidates = [r for r in ranking if r.rank < current_rank]
         target_entry = max(candidates, key=lambda r: r.rank, default=None)
         if target_entry:
-            plan_kwargs = dict(
+            print(f"\nComputing overtake plan to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
+            if exclude:
+                print(f"  Excluding {len(exclude)} track/vehicle combos from plans")
+            overtake_min_time = compute_overtake_plan(
                 player_times=player_times,
                 leaderboards=leaderboards,
                 current_af=current_af,
@@ -244,25 +241,8 @@ def main():
                 target_username=target_entry.username,
                 exclude=exclude,
             )
-            print(f"\nComputing overtake plans to beat #{target_entry.rank} {target_entry.username} (AF {target_entry.af})...")
-            if exclude:
-                print(f"  Excluding {len(exclude)} track/vehicle combos from plans")
-            overtake_min_time = compute_overtake_plan(**plan_kwargs)
-            overtake_min_tracks = compute_overtake_plan_min_tracks(**plan_kwargs)
-            overtake_min_time_plane = compute_overtake_plan(**plan_kwargs, vehicle_filter="plane")
-            overtake_min_tracks_plane = compute_overtake_plan_min_tracks(**plan_kwargs, vehicle_filter="plane")
-            target_track_table = compute_target_track_table(
-                player_times=player_times,
-                leaderboards=leaderboards,
-                player_username=username,
-                target_username=target_entry.username,
-            )
-            print(f"  Target track table: {len(target_track_table)} tracks where {target_entry.username} is ahead")
             if overtake_min_time.feasible:
-                print(f"  Min time:         {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")
-                print(f"  Min tracks:       {len(overtake_min_tracks.items)} tracks, {format_time(overtake_min_tracks.total_time_investment_cs)} total improvement")
-                print(f"  Min time (plane): {len(overtake_min_time_plane.items)} tracks, {format_time(overtake_min_time_plane.total_time_investment_cs)} total improvement")
-                print(f"  Min tracks (plane): {len(overtake_min_tracks_plane.items)} tracks, {format_time(overtake_min_tracks_plane.total_time_investment_cs)} total improvement")
+                print(f"  {len(overtake_min_time.items)} tracks, {format_time(overtake_min_time.total_time_investment_cs)} total improvement")
             else:
                 print("  Not enough improvement available to overtake.")
 
@@ -276,10 +256,6 @@ def main():
         total_tracks=valid_tracks,
         output_dir=output_dir,
         overtake_min_time=overtake_min_time,
-        overtake_min_tracks=overtake_min_tracks,
-        overtake_min_time_plane=overtake_min_time_plane,
-        overtake_min_tracks_plane=overtake_min_tracks_plane,
-        target_track_table=target_track_table,
     )
 
     # Summary

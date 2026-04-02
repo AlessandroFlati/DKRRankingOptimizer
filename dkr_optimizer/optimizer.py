@@ -7,8 +7,6 @@ from dkr_optimizer.models import (
     OvertakePlan,
     OvertakePlanItem,
     PlayerTrackTime,
-    TargetTrackItem,
-    format_time,
 )
 
 # Number of positions above the player to analyze for each tier
@@ -257,14 +255,12 @@ def _build_overtake_groups(
     total_tracks: int,
     player_username: str,
     exclude: list[tuple[str, str]] | None = None,
-    vehicle_filter: str | None = None,
     target_username: str | None = None,
 ) -> tuple[list[OvertakePlanItem], list[list[tuple]]]:
     """Build N/A items and ranked groups with ALL possible tiers for overtake plans.
 
     Args:
         exclude: List of (track_slug, vehicle) tuples to skip.
-        vehicle_filter: If set, only include tracks with this vehicle type.
         target_username: If set, each tier's effective positions_gained is
             incremented by 1 whenever the player would overtake the target on
             that leaderboard (compound effect: their AF worsens too).
@@ -280,8 +276,6 @@ def _build_overtake_groups(
 
     for pt in player_times:
         if (pt.track_slug, pt.vehicle) in exclude_set:
-            continue
-        if vehicle_filter and pt.vehicle != vehicle_filter:
             continue
         lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
         entries = leaderboards.get(lb_key, [])
@@ -339,6 +333,16 @@ def _build_overtake_groups(
         if not tiers:
             continue
 
+        # Extra targets for +2..+5 positions (same for all tiers of this track)
+        extra_targets = []
+        for k in range(2, 6):
+            if k > len(above_entries):
+                extra_targets.append(None)
+            else:
+                entry_k = above_entries[len(above_entries) - k]
+                delta_k = player_time_cs - (entry_k.time_cs - 1)
+                extra_targets.append((entry_k.rank, max(0, delta_k)))
+
         options = []
         for tier in tiers:
             item = OvertakePlanItem(
@@ -357,6 +361,7 @@ def _build_overtake_groups(
                 af_improvement=tier.af_improvement,
                 time_delta_cs=tier.time_delta_cs,
                 efficiency=tier.efficiency,
+                extra_targets=extra_targets,
             )
             # Compound effect: if this tier overtakes the target player on this
             # track, their AF worsens by 1/total_tracks too — count +1 extra
@@ -382,7 +387,6 @@ def compute_overtake_plan(
     player_username: str,
     target_username: str,
     exclude: list[tuple[str, str]] | None = None,
-    vehicle_filter: str | None = None,
 ) -> OvertakePlan:
     """Find the minimum-cost set of improvements to overtake the target player.
 
@@ -410,7 +414,7 @@ def compute_overtake_plan(
 
     na_items, groups = _build_overtake_groups(
         player_times, leaderboards, total_tracks, player_username, exclude,
-        vehicle_filter, target_username,
+        target_username,
     )
     na_positions = sum(it.positions_gained for it in na_items)
 
@@ -501,7 +505,7 @@ def compute_overtake_plan(
         current_p = prev_p
 
     all_items = na_items + ranked_items
-    all_items.sort(key=lambda x: x.af_improvement, reverse=True)
+    all_items.sort(key=lambda x: x.time_delta_cs)
     total_gained = na_positions + sum(it.positions_gained for it in ranked_items)
     total_time = sum(it.time_delta_cs for it in ranked_items)
 
@@ -519,140 +523,3 @@ def compute_overtake_plan(
     )
 
 
-def compute_overtake_plan_min_tracks(
-    player_times: list[PlayerTrackTime],
-    leaderboards: dict[str, list[LeaderboardEntry]],
-    current_af: float,
-    target_af: float,
-    total_tracks: int,
-    player_username: str,
-    target_username: str,
-    exclude: list[tuple[str, str]] | None = None,
-    vehicle_filter: str | None = None,
-) -> OvertakePlan:
-    """Find the fewest tracks to improve to overtake the target player.
-
-    For each track, picks the tier with the best difficulty-adjusted value
-    (positions / exponential_weight) rather than raw max positions.  This
-    avoids selecting unrealistically large leaderboard climbs.
-    Greedy: sort by selected positions descending, take until gap is closed.
-    """
-    af_gap = current_af - target_af
-    if af_gap <= 0:
-        return OvertakePlan(
-            target_username=target_username,
-            target_af=target_af,
-            current_af=current_af,
-            af_gap=0.0,
-            total_positions_needed=0,
-            total_positions_gained=0,
-            total_time_investment_cs=0,
-            new_af=current_af,
-            feasible=True,
-        )
-
-    positions_needed = math.ceil(af_gap * total_tracks + 1e-9)
-
-    na_items, groups = _build_overtake_groups(
-        player_times, leaderboards, total_tracks, player_username, exclude,
-        vehicle_filter, target_username,
-    )
-
-    # For each ranked group, pick the tier with best positions/difficulty ratio
-    candidates = []
-    for group in groups:
-        best = max(
-            group,
-            key=lambda x: x[0] / _difficulty_weight(x[2].current_rank, x[2].new_rank),
-        )
-        candidates.append(best[2])
-    for item in na_items:
-        candidates.append(item)
-
-    # Sort by positions_gained descending
-    candidates.sort(key=lambda x: x.positions_gained, reverse=True)
-
-    items = []
-    total_positions = 0
-    total_time = 0
-
-    for item in candidates:
-        if total_positions >= positions_needed:
-            break
-        items.append(item)
-        total_positions += item.positions_gained
-        total_time += item.time_delta_cs
-
-    feasible = total_positions >= positions_needed
-
-    items.sort(key=lambda x: x.af_improvement, reverse=True)
-
-    return OvertakePlan(
-        target_username=target_username,
-        target_af=target_af,
-        current_af=current_af,
-        af_gap=af_gap,
-        total_positions_needed=positions_needed,
-        total_positions_gained=total_positions,
-        total_time_investment_cs=total_time,
-        new_af=current_af - total_positions / total_tracks,
-        items=items,
-        feasible=feasible,
-    )
-
-
-def compute_target_track_table(
-    player_times: list[PlayerTrackTime],
-    leaderboards: dict[str, list[LeaderboardEntry]],
-    player_username: str,
-    target_username: str,
-) -> list[TargetTrackItem]:
-    """For each track where the target is ranked better than the player,
-    compute how much time the player needs to save to specifically beat
-    the target on that track. Sorted ascending by time needed."""
-    items = []
-
-    for pt in player_times:
-        if pt.is_na:
-            continue
-        lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
-        entries = leaderboards.get(lb_key, [])
-        if not entries:
-            continue
-
-        real_entries = [e for e in entries if not e.is_default]
-
-        player_rank, player_time_cs, _ = _find_player_position(
-            pt, real_entries, player_username
-        )
-
-        target_entry = None
-        for e in real_entries:
-            if e.username.lower() == target_username.lower():
-                target_entry = e
-                break
-
-        if target_entry is None:
-            continue
-        if target_entry.rank >= player_rank:
-            continue  # target is not ahead of player on this track
-
-        time_needed_cs = player_time_cs - (target_entry.time_cs - 1)
-        if time_needed_cs <= 0:
-            continue
-
-        items.append(TargetTrackItem(
-            track_slug=pt.track_slug,
-            track_name=pt.track_name,
-            vehicle=pt.vehicle,
-            category=pt.category,
-            laps=pt.laps,
-            player_rank=player_rank,
-            player_time_cs=player_time_cs,
-            target_rank=target_entry.rank,
-            target_time_cs=target_entry.time_cs,
-            time_needed_cs=time_needed_cs,
-        ))
-
-    items.sort(key=lambda x: x.time_needed_cs)
-    return items

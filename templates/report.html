@@ -99,9 +99,8 @@
         </div>
     </div>
 
-    {% macro overtake_table(plan, label) %}
+    {% macro overtake_table(plan) %}
     {% if plan.feasible %}
-    <h3 style="color:#b0bec5; margin:20px 0 10px; font-size:1.1em;">{{ label }}</h3>
     <div class="summary-grid">
         <div class="summary-card">
             <div class="label">Tracks to Improve</div>
@@ -120,7 +119,7 @@
             <div class="value good">{{ "%.4f" | format(plan.new_af) }}</div>
         </div>
     </div>
-    <button class="btn-print" onclick="printNextTable(this, '{{ label }}')">Print / Save PDF</button>
+    <button class="btn-print" onclick="printNextTable(this, 'Overtake Plan: Beat {{ plan.target_username }}')">Print / Save PDF</button>
     <table>
         <thead>
             <tr>
@@ -135,7 +134,10 @@
                 <th>Opponent Time</th>
                 <th>Time to Save</th>
                 <th>Positions</th>
-                <th>AF Gain</th>
+                <th>Save (+2)</th>
+                <th>Save (+3)</th>
+                <th>Save (+4)</th>
+                <th>Save (+5)</th>
                 <th>Link</th>
             </tr>
         </thead>
@@ -153,7 +155,17 @@
                 <td class="time">{{ format_time(it.opponent_time_cs) }}</td>
                 <td class="time">{{ format_time(it.time_delta_cs) if it.time_delta_cs else 'Submit any time' }}</td>
                 <td class="rank-num">+{{ it.positions_gained }}</td>
-                <td class="af-gain">-{{ "%.4f" | format(it.af_improvement) }}</td>
+                {% for et in it.extra_targets %}
+                <td class="time">
+                    {%- if et is none -%}
+                    &mdash;
+                    {%- elif et[1] == 0 -%}
+                    already <span style="color:#888;font-size:0.8em">#{{ et[0] }}</span>
+                    {%- else -%}
+                    {{ format_time(et[1]) }} <span style="color:#888;font-size:0.8em">#{{ et[0] }}</span>
+                    {%- endif -%}
+                </td>
+                {% endfor %}
                 <td><a href="{{ it.leaderboard_url }}" target="_blank">View</a></td>
             </tr>
             {% endfor %}
@@ -168,68 +180,15 @@
     {% endif %}
     {% endmacro %}
 
-    {% if target_track_table %}
-    <h2>Aggressive Target: Beat {{ overtake_min_time.target_username }} Track by Track</h2>
-    <p class="section-desc">
-        Tracks where <strong>{{ overtake_min_time.target_username }}</strong> is currently ranked better than you,
-        sorted by how little time you need to specifically beat them on each track.
-        Focus on the top rows for the easiest individual wins.
-    </p>
-    <button class="btn-print" onclick="printNextTable(this, 'Aggressive Target: Beat {{ overtake_min_time.target_username }} Track by Track')">Print / Save PDF</button>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Track</th>
-                <th>Vehicle</th>
-                <th>Category</th>
-                <th>Laps</th>
-                <th>Your Rank</th>
-                <th>Your Time</th>
-                <th>Their Rank</th>
-                <th>Their Time</th>
-                <th>Time to Save</th>
-                <th>Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for it in target_track_table %}
-            <tr class="priority-high">
-                <td>{{ loop.index }}</td>
-                <td>{{ it.track_name }}</td>
-                <td><span class="badge badge-{{ it.vehicle }}">{{ it.vehicle }}</span></td>
-                <td><span class="badge badge-{{ it.category }}">{{ it.category }}</span></td>
-                <td>{{ it.laps }}</td>
-                <td class="rank-num">{{ it.player_rank }}</td>
-                <td class="time">{{ it.player_time_cs | format_time }}</td>
-                <td class="rank-num">{{ it.target_rank }}</td>
-                <td class="time">{{ it.target_time_cs | format_time }}</td>
-                <td class="time">{{ it.time_needed_cs | format_time }}</td>
-                <td><a href="{{ it.leaderboard_url }}" target="_blank">View</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
-
     {% if overtake_min_time %}
     <h2>Overtake Plan: Beat {{ overtake_min_time.target_username }} (#{{ (current_rank - 1) }})</h2>
     <p class="section-desc">
         Target: lower your AF below
         <strong>{{ overtake_min_time.target_username }}</strong> (AF {{ "%.4f" | format(overtake_min_time.target_af) }}).
         Gap: {{ "%.4f" | format(overtake_min_time.af_gap) }} AF ({{ overtake_min_time.total_positions_needed }} positions needed).
+        Sorted by time to save ascending. Extra columns show time needed to reach additional positions on the same track.
     </p>
-
-    {{ overtake_table(overtake_min_time, "Strategy A -- Minimum Time Investment (most tracks, least practice)") }}
-    {% if overtake_min_tracks %}
-    {{ overtake_table(overtake_min_tracks, "Strategy B -- Fewest Tracks (fewer tracks, more improvement each)") }}
-    {% endif %}
-    {% if overtake_min_time_plane %}
-    {{ overtake_table(overtake_min_time_plane, "Strategy A (Plane Only) -- Minimum Time Investment") }}
-    {% endif %}
-    {% if overtake_min_tracks_plane %}
-    {{ overtake_table(overtake_min_tracks_plane, "Strategy B (Plane Only) -- Fewest Tracks") }}
-    {% endif %}
+    {{ overtake_table(overtake_min_time) }}
     {% endif %}
 
     {% if na_opps %}
