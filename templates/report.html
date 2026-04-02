@@ -115,7 +115,7 @@
                 <th>Your Time</th>
                 <th>New Rank</th>
                 <th>Opponent Time</th>
-                <th class="sortable sort-asc" data-col="0">Time to Save</th>
+                <th class="sortable sort-asc" data-col="0">Target Time</th>
                 <th class="sortable" data-col="1">Positions</th>
                 <th class="sortable" data-col="2">Save (+2)</th>
                 <th class="sortable" data-col="3">Save (+3)</th>
@@ -137,7 +137,7 @@
                 <td class="time">{{ format_time(it.current_time_cs) if it.current_time_cs else 'N/A' }}</td>
                 <td class="rank-num">{{ it.new_rank }}</td>
                 <td class="time">{{ format_time(it.opponent_time_cs) }}</td>
-                <td class="time">{{ format_time(it.time_delta_cs) if it.time_delta_cs else 'Submit any time' }}</td>
+                <td class="time">{{ format_time(it.target_time_cs) if it.target_time_cs else 'Submit any time' }}</td>
                 <td class="rank-num">+{{ it.positions_gained }}</td>
                 {% for et in it.extra_targets %}
                 <td class="time">
@@ -146,7 +146,7 @@
                     {%- elif et[1] == 0 -%}
                     already <span style="color:#888;font-size:0.8em">#{{ et[0] }}</span>
                     {%- else -%}
-                    {{ format_time(et[1]) }} <span style="color:#888;font-size:0.8em">#{{ et[0] }}</span>
+                    {{ format_time(it.current_time_cs - et[1]) }} <span style="color:#888;font-size:0.8em">#{{ et[0] }}</span>
                     {%- endif -%}
                 </td>
                 {% endfor %}
