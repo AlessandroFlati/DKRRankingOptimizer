@@ -5,10 +5,7 @@ import sys
 import yaml
 
 from dkr_optimizer.models import LeaderboardEntry, format_time, parse_time
-from dkr_optimizer.optimizer import (
-    compute_opportunities,
-    compute_overtake_plan,
-)
+from dkr_optimizer.optimizer import compute_opportunities, compute_overtake_plan
 from dkr_optimizer.parser import (
     parse_combined_ranking,
     parse_leaderboard,
@@ -210,14 +207,15 @@ def main():
             current_af = current_af + af_delta
             print(f"  AF adjusted: {old_af} -> {current_af:.3f} (delta {af_delta:+.4f})")
 
-    # Step 5: Compute opportunities
-    print("\nComputing optimization opportunities...")
+    # Step 5: Compute opportunities (for N/A and #1 sections)
     opportunities = compute_opportunities(
         player_times=player_times,
         leaderboards=leaderboards,
         total_tracks=valid_tracks,
         player_username=username,
     )
+    na_opps = [o for o in opportunities if o.is_na]
+    no_improvement = [o for o in opportunities if not o.is_na and not o.tiers]
 
     # Step 6: Compute overtake plans
     exclude_raw = config.get("exclude_from_plans", [])
@@ -252,39 +250,18 @@ def main():
         profile=profile,
         current_af=current_af,
         current_rank=current_rank,
-        opportunities=opportunities,
+        na_opps=na_opps,
+        no_improvement=no_improvement,
         total_tracks=valid_tracks,
         output_dir=output_dir,
         overtake_min_time=overtake_min_time,
     )
 
-    # Summary
-    na_opps = [o for o in opportunities if o.is_na]
-    ranked_opps = [o for o in opportunities if not o.is_na and o.tiers]
-
     print(f"\n{'='*60}")
     print(f"  Player:         {username}")
     print(f"  Combined Rank:  #{current_rank}")
     print(f"  Average Finish: {current_af}")
-    print(f"  N/A tracks:     {len(na_opps)} (submit any time for big AF boost)")
-    print(f"  Improvable:     {len(ranked_opps)} tracks")
     print(f"{'='*60}")
-
-    if na_opps:
-        print(f"\n  Top priority - submit times for:")
-        for o in na_opps[:5]:
-            print(f"    - {o.track_name} ({o.vehicle}/{o.category}/{o.laps})")
-
-    if ranked_opps:
-        print(f"\n  Best efficiency improvements:")
-        for o in ranked_opps[:5]:
-            t = o.tiers[0]
-            print(
-                f"    - {o.track_name} ({o.vehicle}/{o.category}/{o.laps}): "
-                f"rank {o.current_rank} -> {t.target_rank}, "
-                f"need {format_time(t.time_delta_cs)} faster, "
-                f"AF -{t.af_improvement:.4f}"
-            )
 
     print(f"\n  HTML report: {os.path.abspath(html_path)}")
     print(f"  JSON report: {os.path.abspath(json_path)}")
