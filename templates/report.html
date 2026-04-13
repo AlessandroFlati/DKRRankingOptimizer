@@ -46,6 +46,10 @@
         .af-gain { color: #66bb6a; font-weight: bold; }
         .efficiency { font-family: 'Courier New', monospace; }
 
+        tr.row-done td { opacity: 0.4; text-decoration: line-through; }
+        tr.row-done td:last-child { text-decoration: none; }
+        .done-cb { width: 18px; height: 18px; cursor: pointer; accent-color: #66bb6a; }
+
         .section-desc { color: #888; font-size: 0.9em; margin-bottom: 15px; }
 
 
@@ -122,12 +126,14 @@
                 <th class="sortable" data-col="4">Save (+4)</th>
                 <th class="sortable" data-col="5">Save (+5)</th>
                 <th>Link</th>
+                <th>Done</th>
             </tr>
         </thead>
         <tbody>
             {% for it in plan.items %}
             <tr class="{{ 'priority-na' if it.is_na else 'priority-high' }}"
-                data-sort='[{{ it.time_delta_cs }},{{ it.positions_gained }},{{ it.extra_targets[0][1] if it.extra_targets[0] is not none else 999999 }},{{ it.extra_targets[1][1] if it.extra_targets[1] is not none else 999999 }},{{ it.extra_targets[2][1] if it.extra_targets[2] is not none else 999999 }},{{ it.extra_targets[3][1] if it.extra_targets[3] is not none else 999999 }}]'>
+                data-sort='[{{ it.time_delta_cs }},{{ it.positions_gained }},{{ it.extra_targets[0][1] if it.extra_targets[0] is not none else 999999 }},{{ it.extra_targets[1][1] if it.extra_targets[1] is not none else 999999 }},{{ it.extra_targets[2][1] if it.extra_targets[2] is not none else 999999 }},{{ it.extra_targets[3][1] if it.extra_targets[3] is not none else 999999 }}]'
+                data-row-key="overtake:{{ it.track_name }}:{{ it.vehicle }}:{{ it.category }}:{{ it.laps }}">
                 <td class="row-num">{{ loop.index }}</td>
                 <td>{{ it.track_name }}</td>
                 <td><span class="badge badge-{{ it.vehicle }}">{{ it.vehicle }}</span></td>
@@ -151,6 +157,7 @@
                 </td>
                 {% endfor %}
                 <td><a href="{{ it.leaderboard_url }}" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -190,11 +197,13 @@
                 <th>Est. AF Improvement</th>
                 <th>Worst Submitted Time</th>
                 <th>Link</th>
+                <th>Done</th>
             </tr>
         </thead>
         <tbody>
             {% for o in na_opps %}
-            <tr class="priority-na">
+            <tr class="priority-na"
+                data-row-key="na:{{ o.track_name }}:{{ o.vehicle }}:{{ o.category }}:{{ o.laps }}">
                 <td>{{ o.track_name }}</td>
                 <td><span class="badge badge-{{ o.vehicle }}">{{ o.vehicle }}</span></td>
                 <td><span class="badge badge-{{ o.category }}">{{ o.category }}</span></td>
@@ -209,6 +218,7 @@
                 <td>--</td>
                 {% endif %}
                 <td><a href="{{ o.leaderboard_url }}" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -314,6 +324,44 @@ function printNextTable(btnOrEl, title) {
     );
     win.document.close();
 }
+
+(function() {
+    var STORAGE_KEY = 'dkr-done-rows';
+
+    function loadDone() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+        catch(e) { return {}; }
+    }
+
+    function saveDone(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    var state = loadDone();
+
+    document.querySelectorAll('tr[data-row-key]').forEach(function(row) {
+        var key = row.getAttribute('data-row-key');
+        var cb = row.querySelector('.done-cb');
+        if (!cb) return;
+
+        if (state[key]) {
+            cb.checked = true;
+            row.classList.add('row-done');
+        }
+
+        cb.addEventListener('change', function() {
+            var s = loadDone();
+            if (cb.checked) {
+                row.classList.add('row-done');
+                s[key] = true;
+            } else {
+                row.classList.remove('row-done');
+                delete s[key];
+            }
+            saveDone(s);
+        });
+    });
+})();
 </script>
 </body>
 </html>
