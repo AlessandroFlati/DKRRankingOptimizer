@@ -46,6 +46,10 @@
         .af-gain { color: #66bb6a; font-weight: bold; }
         .efficiency { font-family: 'Courier New', monospace; }
 
+        tr.row-done td { opacity: 0.4; text-decoration: line-through; }
+        tr.row-done td:last-child { text-decoration: none; }
+        .done-cb { width: 18px; height: 18px; cursor: pointer; accent-color: #66bb6a; }
+
         .section-desc { color: #888; font-size: 0.9em; margin-bottom: 15px; }
 
 
@@ -64,7 +68,7 @@
     <h1>DKR Ranking Optimizer</h1>
     <div class="meta">
         Player: <strong>ChasingGhosts</strong> (IT)
-        &middot; Generated: 2026-04-11 17:15 UTC
+        &middot; Generated: 2026-04-13 05:54 UTC
     </div>
 
     <div class="summary-grid">
@@ -74,7 +78,7 @@
         </div>
         <div class="summary-card">
             <div class="label">Average Finish</div>
-            <div class="value af">62.841</div>
+            <div class="value af">61.970</div>
         </div>
         <div class="summary-card">
             <div class="label">Missing Times (N/A)</div>
@@ -88,8 +92,8 @@
     <h2>Overtake Plan: Beat TheBruteDream (#56)</h2>
     <p class="section-desc">
         Target: lower your AF below
-        <strong>TheBruteDream</strong> (AF 61.6360).
-        Gap: 1.2049 AF (160 positions needed).
+        <strong>TheBruteDream</strong> (AF 61.6670).
+        Gap: 0.3029 AF (40 positions needed).
         Sorted by time to save ascending. Extra columns show time needed to reach additional positions on the same track.
     </p>
     
@@ -97,19 +101,19 @@
     <div class="summary-grid">
         <div class="summary-card">
             <div class="label">Tracks to Improve</div>
-            <div class="value good">42</div>
+            <div class="value good">16</div>
         </div>
         <div class="summary-card">
             <div class="label">Positions Gained</div>
-            <div class="value rank">150</div>
+            <div class="value rank">38</div>
         </div>
         <div class="summary-card">
             <div class="label">Total Time to Save</div>
-            <div class="value af">00:05.87</div>
+            <div class="value af">00:00.68</div>
         </div>
         <div class="summary-card">
             <div class="label">Resulting AF</div>
-            <div class="value good">61.7046</div>
+            <div class="value good">61.6821</div>
         </div>
     </div>
     <button class="btn-print" onclick="printNextTable(this, 'Overtake Plan: Beat TheBruteDream')">Print / Save PDF</button>
@@ -132,88 +136,177 @@
                 <th class="sortable" data-col="4">Save (+4)</th>
                 <th class="sortable" data-col="5">Save (+5)</th>
                 <th>Link</th>
+                <th>Done</th>
             </tr>
         </thead>
         <tbody>
             
             <tr class="priority-high"
-                data-sort='[1,1,49,51,134,198]'>
+                data-sort='[1,3,1,1,6,14]'
+                data-row-key="overtake:Spaceport Alpha:car:standard:1-lap:3425">
                 <td class="row-num">1</td>
-                <td>Star City</td>
-                <td><span class="badge badge-plane">plane</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">52</td>
-                <td class="time">01:40.63</td>
-                <td class="rank-num">52</td>
-                <td class="time">01:40.63</td>
-                <td class="time">01:40.62</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">01:40.14 <span style="color:#888;font-size:0.8em">#51</span></td>
-                
-                <td class="time">01:40.12 <span style="color:#888;font-size:0.8em">#50</span></td>
-                
-                <td class="time">01:39.29 <span style="color:#888;font-size:0.8em">#49</span></td>
-                
-                <td class="time">01:38.65 <span style="color:#888;font-size:0.8em">#48</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/star-city/plane/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[1,1,18,26,29,31]'>
-                <td class="row-num">2</td>
-                <td>Crescent Island</td>
+                <td>Spaceport Alpha</td>
                 <td><span class="badge badge-car">car</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
                 <td>1-lap</td>
-                <td class="rank-num">79</td>
-                <td class="time">00:23.63</td>
-                <td class="rank-num">79</td>
-                <td class="time">00:23.63</td>
-                <td class="time">00:23.62</td>
-                <td class="rank-num">+1</td>
+                <td class="rank-num">66</td>
+                <td class="time">00:34.26</td>
+                <td class="rank-num">66</td>
+                <td class="time">00:34.26</td>
+                <td class="time">00:34.25</td>
+                <td class="rank-num">+3</td>
                 
-                <td class="time">00:23.45 <span style="color:#888;font-size:0.8em">#78</span></td>
+                <td class="time">00:34.25 <span style="color:#888;font-size:0.8em">#66</span></td>
                 
-                <td class="time">00:23.37 <span style="color:#888;font-size:0.8em">#77</span></td>
+                <td class="time">00:34.25 <span style="color:#888;font-size:0.8em">#66</span></td>
                 
-                <td class="time">00:23.34 <span style="color:#888;font-size:0.8em">#76</span></td>
+                <td class="time">00:34.20 <span style="color:#888;font-size:0.8em">#65</span></td>
                 
-                <td class="time">00:23.32 <span style="color:#888;font-size:0.8em">#75</span></td>
+                <td class="time">00:34.12 <span style="color:#888;font-size:0.8em">#64</span></td>
                 
-                <td><a href="https://www.dkr64.com/tracks/crescent-island/car/standard/1-lap" target="_blank">View</a></td>
+                <td><a href="https://www.dkr64.com/tracks/spaceport-alpha/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[1,1,17,19,41,57]'>
+                data-sort='[1,1,6,15,35,35]'
+                data-row-key="overtake:Spacedust Alley:car:standard:1-lap:3359">
+                <td class="row-num">2</td>
+                <td>Spacedust Alley</td>
+                <td><span class="badge badge-car">car</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">72</td>
+                <td class="time">00:33.60</td>
+                <td class="rank-num">72</td>
+                <td class="time">00:33.60</td>
+                <td class="time">00:33.59</td>
+                <td class="rank-num">+1</td>
+                
+                <td class="time">00:33.54 <span style="color:#888;font-size:0.8em">#71</span></td>
+                
+                <td class="time">00:33.45 <span style="color:#888;font-size:0.8em">#70</span></td>
+                
+                <td class="time">00:33.25 <span style="color:#888;font-size:0.8em">#68</span></td>
+                
+                <td class="time">00:33.25 <span style="color:#888;font-size:0.8em">#68</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/spacedust-alley/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[1,1,8,11,20,35]'
+                data-row-key="overtake:Windmill Plains:hover:standard:1-lap:3594">
                 <td class="row-num">3</td>
-                <td>Pirate Lagoon</td>
+                <td>Windmill Plains</td>
                 <td><span class="badge badge-hover">hover</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">74</td>
-                <td class="time">01:07.86</td>
-                <td class="rank-num">74</td>
-                <td class="time">01:07.86</td>
-                <td class="time">01:07.85</td>
+                <td>1-lap</td>
+                <td class="rank-num">59</td>
+                <td class="time">00:35.95</td>
+                <td class="rank-num">59</td>
+                <td class="time">00:35.95</td>
+                <td class="time">00:35.94</td>
                 <td class="rank-num">+1</td>
                 
-                <td class="time">01:07.69 <span style="color:#888;font-size:0.8em">#73</span></td>
+                <td class="time">00:35.87 <span style="color:#888;font-size:0.8em">#58</span></td>
                 
-                <td class="time">01:07.67 <span style="color:#888;font-size:0.8em">#72</span></td>
+                <td class="time">00:35.84 <span style="color:#888;font-size:0.8em">#57</span></td>
                 
-                <td class="time">01:07.45 <span style="color:#888;font-size:0.8em">#71</span></td>
+                <td class="time">00:35.75 <span style="color:#888;font-size:0.8em">#56</span></td>
                 
-                <td class="time">01:07.29 <span style="color:#888;font-size:0.8em">#70</span></td>
+                <td class="time">00:35.60 <span style="color:#888;font-size:0.8em">#55</span></td>
                 
-                <td><a href="https://www.dkr64.com/tracks/pirate-lagoon/hover/standard/3-laps" target="_blank">View</a></td>
+                <td><a href="https://www.dkr64.com/tracks/windmill-plains/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[1,1,23,23,28,66]'>
+                data-sort='[1,1,8,13,30,51]'
+                data-row-key="overtake:Greenwood Village:hover:standard:1-lap:2804">
                 <td class="row-num">4</td>
+                <td>Greenwood Village</td>
+                <td><span class="badge badge-hover">hover</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">60</td>
+                <td class="time">00:28.05</td>
+                <td class="rank-num">60</td>
+                <td class="time">00:28.05</td>
+                <td class="time">00:28.04</td>
+                <td class="rank-num">+1</td>
+                
+                <td class="time">00:27.97 <span style="color:#888;font-size:0.8em">#59</span></td>
+                
+                <td class="time">00:27.92 <span style="color:#888;font-size:0.8em">#58</span></td>
+                
+                <td class="time">00:27.75 <span style="color:#888;font-size:0.8em">#57</span></td>
+                
+                <td class="time">00:27.54 <span style="color:#888;font-size:0.8em">#56</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/greenwood-village/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[1,1,9,36,42,59]'
+                data-row-key="overtake:Frosty Village:plane:standard:1-lap:3175">
+                <td class="row-num">5</td>
+                <td>Frosty Village</td>
+                <td><span class="badge badge-plane">plane</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">58</td>
+                <td class="time">00:31.76</td>
+                <td class="rank-num">58</td>
+                <td class="time">00:31.76</td>
+                <td class="time">00:31.75</td>
+                <td class="rank-num">+1</td>
+                
+                <td class="time">00:31.67 <span style="color:#888;font-size:0.8em">#57</span></td>
+                
+                <td class="time">00:31.40 <span style="color:#888;font-size:0.8em">#56</span></td>
+                
+                <td class="time">00:31.34 <span style="color:#888;font-size:0.8em">#55</span></td>
+                
+                <td class="time">00:31.17 <span style="color:#888;font-size:0.8em">#54</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/frosty-village/plane/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[1,3,1,1,10,11]'
+                data-row-key="overtake:Treasure Caves:car:standard:1-lap:1374">
+                <td class="row-num">6</td>
+                <td>Treasure Caves</td>
+                <td><span class="badge badge-car">car</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">44</td>
+                <td class="time">00:13.75</td>
+                <td class="rank-num">44</td>
+                <td class="time">00:13.75</td>
+                <td class="time">00:13.74</td>
+                <td class="rank-num">+3</td>
+                
+                <td class="time">00:13.74 <span style="color:#888;font-size:0.8em">#44</span></td>
+                
+                <td class="time">00:13.74 <span style="color:#888;font-size:0.8em">#44</span></td>
+                
+                <td class="time">00:13.65 <span style="color:#888;font-size:0.8em">#43</span></td>
+                
+                <td class="time">00:13.64 <span style="color:#888;font-size:0.8em">#42</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/treasure-caves/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[1,1,23,23,28,66]'
+                data-row-key="overtake:Jungle Falls:plane:standard:1-lap:1619">
+                <td class="row-num">7</td>
                 <td>Jungle Falls</td>
                 <td><span class="badge badge-plane">plane</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
@@ -234,36 +327,40 @@
                 <td class="time">00:15.54 <span style="color:#888;font-size:0.8em">#36</span></td>
                 
                 <td><a href="https://www.dkr64.com/tracks/jungle-falls/plane/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[3,1,16,25,26,36]'>
-                <td class="row-num">5</td>
-                <td>Darkmoon Caverns</td>
+                data-sort='[3,2,3,11,18,18]'
+                data-row-key="overtake:Windmill Plains:car:standard:1-lap:3170">
+                <td class="row-num">8</td>
+                <td>Windmill Plains</td>
                 <td><span class="badge badge-car">car</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
                 <td>1-lap</td>
-                <td class="rank-num">95</td>
-                <td class="time">00:37.35</td>
-                <td class="rank-num">94</td>
-                <td class="time">00:37.33</td>
-                <td class="time">00:37.32</td>
-                <td class="rank-num">+1</td>
+                <td class="rank-num">58</td>
+                <td class="time">00:31.73</td>
+                <td class="rank-num">56</td>
+                <td class="time">00:31.71</td>
+                <td class="time">00:31.70</td>
+                <td class="rank-num">+2</td>
                 
-                <td class="time">00:37.19 <span style="color:#888;font-size:0.8em">#93</span></td>
+                <td class="time">00:31.70 <span style="color:#888;font-size:0.8em">#56</span></td>
                 
-                <td class="time">00:37.10 <span style="color:#888;font-size:0.8em">#92</span></td>
+                <td class="time">00:31.62 <span style="color:#888;font-size:0.8em">#55</span></td>
                 
-                <td class="time">00:37.09 <span style="color:#888;font-size:0.8em">#91</span></td>
+                <td class="time">00:31.55 <span style="color:#888;font-size:0.8em">#53</span></td>
                 
-                <td class="time">00:36.99 <span style="color:#888;font-size:0.8em">#90</span></td>
+                <td class="time">00:31.55 <span style="color:#888;font-size:0.8em">#53</span></td>
                 
-                <td><a href="https://www.dkr64.com/tracks/darkmoon-caverns/car/standard/1-lap" target="_blank">View</a></td>
+                <td><a href="https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[4,2,4,22,34,42]'>
-                <td class="row-num">6</td>
+                data-sort='[4,2,4,22,34,42]'
+                data-row-key="overtake:Treasure Caves:plane:standard:1-lap:1632">
+                <td class="row-num">9</td>
                 <td>Treasure Caves</td>
                 <td><span class="badge badge-plane">plane</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
@@ -284,161 +381,67 @@
                 <td class="time">00:15.94 <span style="color:#888;font-size:0.8em">#29</span></td>
                 
                 <td><a href="https://www.dkr64.com/tracks/treasure-caves/plane/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[5,1,23,38,46,60]'>
-                <td class="row-num">7</td>
-                <td>Fossil Canyon</td>
-                <td><span class="badge badge-plane">plane</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">56</td>
-                <td class="time">00:24.50</td>
-                <td class="rank-num">55</td>
-                <td class="time">00:24.46</td>
-                <td class="time">00:24.45</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">00:24.27 <span style="color:#888;font-size:0.8em">#54</span></td>
-                
-                <td class="time">00:24.12 <span style="color:#888;font-size:0.8em">#53</span></td>
-                
-                <td class="time">00:24.04 <span style="color:#888;font-size:0.8em">#52</span></td>
-                
-                <td class="time">00:23.90 <span style="color:#888;font-size:0.8em">#51</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/fossil-canyon/plane/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[6,4,1,1,6,14]'>
-                <td class="row-num">8</td>
-                <td>Spaceport Alpha</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">66</td>
-                <td class="time">00:34.26</td>
-                <td class="rank-num">65</td>
-                <td class="time">00:34.21</td>
-                <td class="time">00:34.20</td>
-                <td class="rank-num">+4</td>
-                
-                <td class="time">00:34.25 <span style="color:#888;font-size:0.8em">#66</span></td>
-                
-                <td class="time">00:34.25 <span style="color:#888;font-size:0.8em">#66</span></td>
-                
-                <td class="time">00:34.20 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:34.12 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/spaceport-alpha/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[6,2,6,15,35,35]'>
-                <td class="row-num">9</td>
-                <td>Spacedust Alley</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">72</td>
-                <td class="time">00:33.60</td>
-                <td class="rank-num">71</td>
-                <td class="time">00:33.55</td>
-                <td class="time">00:33.54</td>
-                <td class="rank-num">+2</td>
-                
-                <td class="time">00:33.54 <span style="color:#888;font-size:0.8em">#71</span></td>
-                
-                <td class="time">00:33.45 <span style="color:#888;font-size:0.8em">#70</span></td>
-                
-                <td class="time">00:33.25 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td class="time">00:33.25 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/spacedust-alley/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[6,1,41,90,103,138]'>
+                data-sort='[4,2,4,16,26,27]'
+                data-row-key="overtake:Crescent Island:car:standard:1-lap:2267">
                 <td class="row-num">10</td>
-                <td>Boulder Canyon</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-shortcut">shortcut</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">45</td>
-                <td class="time">00:21.70</td>
-                <td class="rank-num">44</td>
-                <td class="time">00:21.65</td>
-                <td class="time">00:21.64</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">00:21.29 <span style="color:#888;font-size:0.8em">#43</span></td>
-                
-                <td class="time">00:20.80 <span style="color:#888;font-size:0.8em">#42</span></td>
-                
-                <td class="time">00:20.67 <span style="color:#888;font-size:0.8em">#41</span></td>
-                
-                <td class="time">00:20.32 <span style="color:#888;font-size:0.8em">#40</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/boulder-canyon/hover/shortcut/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[6,2,6,15,23,31]'>
-                <td class="row-num">11</td>
-                <td>Treasure Caves</td>
+                <td>Crescent Island</td>
                 <td><span class="badge badge-car">car</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">87</td>
-                <td class="time">00:46.40</td>
-                <td class="rank-num">86</td>
-                <td class="time">00:46.35</td>
-                <td class="time">00:46.34</td>
+                <td>1-lap</td>
+                <td class="rank-num">68</td>
+                <td class="time">00:22.71</td>
+                <td class="rank-num">66</td>
+                <td class="time">00:22.68</td>
+                <td class="time">00:22.67</td>
                 <td class="rank-num">+2</td>
                 
-                <td class="time">00:46.34 <span style="color:#888;font-size:0.8em">#86</span></td>
+                <td class="time">00:22.67 <span style="color:#888;font-size:0.8em">#66</span></td>
                 
-                <td class="time">00:46.25 <span style="color:#888;font-size:0.8em">#85</span></td>
+                <td class="time">00:22.55 <span style="color:#888;font-size:0.8em">#65</span></td>
                 
-                <td class="time">00:46.17 <span style="color:#888;font-size:0.8em">#84</span></td>
+                <td class="time">00:22.45 <span style="color:#888;font-size:0.8em">#64</span></td>
                 
-                <td class="time">00:46.09 <span style="color:#888;font-size:0.8em">#83</span></td>
+                <td class="time">00:22.44 <span style="color:#888;font-size:0.8em">#63</span></td>
                 
-                <td><a href="https://www.dkr64.com/tracks/treasure-caves/car/standard/3-laps" target="_blank">View</a></td>
+                <td><a href="https://www.dkr64.com/tracks/crescent-island/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[6,2,6,16,31,36]'>
-                <td class="row-num">12</td>
-                <td>Hot Top Volcano</td>
-                <td><span class="badge badge-plane">plane</span></td>
+                data-sort='[4,2,4,7,34,42]'
+                data-row-key="overtake:Fossil Canyon:hover:standard:1-lap:2502">
+                <td class="row-num">11</td>
+                <td>Fossil Canyon</td>
+                <td><span class="badge badge-hover">hover</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
                 <td>1-lap</td>
-                <td class="rank-num">74</td>
-                <td class="time">00:24.45</td>
-                <td class="rank-num">72</td>
-                <td class="time">00:24.40</td>
-                <td class="time">00:24.39</td>
+                <td class="rank-num">58</td>
+                <td class="time">00:25.06</td>
+                <td class="rank-num">57</td>
+                <td class="time">00:25.03</td>
+                <td class="time">00:25.02</td>
                 <td class="rank-num">+2</td>
                 
-                <td class="time">00:24.39 <span style="color:#888;font-size:0.8em">#72</span></td>
+                <td class="time">00:25.02 <span style="color:#888;font-size:0.8em">#57</span></td>
                 
-                <td class="time">00:24.29 <span style="color:#888;font-size:0.8em">#71</span></td>
+                <td class="time">00:24.99 <span style="color:#888;font-size:0.8em">#56</span></td>
                 
-                <td class="time">00:24.14 <span style="color:#888;font-size:0.8em">#70</span></td>
+                <td class="time">00:24.72 <span style="color:#888;font-size:0.8em">#55</span></td>
                 
-                <td class="time">00:24.09 <span style="color:#888;font-size:0.8em">#69</span></td>
+                <td class="time">00:24.64 <span style="color:#888;font-size:0.8em">#54</span></td>
                 
-                <td><a href="https://www.dkr64.com/tracks/hot-top-volcano/plane/standard/1-lap" target="_blank">View</a></td>
+                <td><a href="https://www.dkr64.com/tracks/fossil-canyon/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[7,3,6,7,19,29]'>
-                <td class="row-num">13</td>
+                data-sort='[7,3,6,7,19,29]'
+                data-row-key="overtake:Greenwood Village:car:standard:1-lap:2459">
+                <td class="row-num">12</td>
                 <td>Greenwood Village</td>
                 <td><span class="badge badge-car">car</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
@@ -459,11 +462,13 @@
                 <td class="time">00:24.37 <span style="color:#888;font-size:0.8em">#72</span></td>
                 
                 <td><a href="https://www.dkr64.com/tracks/greenwood-village/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[7,2,7,22,26,34]'>
-                <td class="row-num">14</td>
+                data-sort='[7,2,7,22,26,34]'
+                data-row-key="overtake:Treasure Caves:hover:standard:1-lap:1859">
+                <td class="row-num">13</td>
                 <td>Treasure Caves</td>
                 <td><span class="badge badge-hover">hover</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
@@ -484,696 +489,23 @@
                 <td class="time">00:18.32 <span style="color:#888;font-size:0.8em">#57</span></td>
                 
                 <td><a href="https://www.dkr64.com/tracks/treasure-caves/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
             <tr class="priority-high"
-                data-sort='[7,3,4,7,34,42]'>
-                <td class="row-num">15</td>
-                <td>Fossil Canyon</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:25.06</td>
-                <td class="rank-num">56</td>
-                <td class="time">00:25.00</td>
-                <td class="time">00:24.99</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:25.02 <span style="color:#888;font-size:0.8em">#57</span></td>
-                
-                <td class="time">00:24.99 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td class="time">00:24.72 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td class="time">00:24.64 <span style="color:#888;font-size:0.8em">#54</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/fossil-canyon/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[7,1,27,54,101,134]'>
-                <td class="row-num">16</td>
-                <td>Ancient Lake</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-shortcut">shortcut</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">50</td>
-                <td class="time">00:13.81</td>
-                <td class="rank-num">49</td>
-                <td class="time">00:13.75</td>
-                <td class="time">00:13.74</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">00:13.54 <span style="color:#888;font-size:0.8em">#47</span></td>
-                
-                <td class="time">00:13.27 <span style="color:#888;font-size:0.8em">#46</span></td>
-                
-                <td class="time">00:12.80 <span style="color:#888;font-size:0.8em">#45</span></td>
-                
-                <td class="time">00:12.47 <span style="color:#888;font-size:0.8em">#44</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/ancient-lake/hover/shortcut/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[8,1,56,73,73,75]'>
-                <td class="row-num">17</td>
-                <td>Greenwood Village</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">72</td>
-                <td class="time">01:16.45</td>
-                <td class="rank-num">71</td>
-                <td class="time">01:16.38</td>
-                <td class="time">01:16.37</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">01:15.89 <span style="color:#888;font-size:0.8em">#70</span></td>
-                
-                <td class="time">01:15.72 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td class="time">01:15.72 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td class="time">01:15.70 <span style="color:#888;font-size:0.8em">#67</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/greenwood-village/car/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[8,1,24,38,44,68]'>
-                <td class="row-num">18</td>
-                <td>Whale Bay</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">67</td>
-                <td class="time">00:56.23</td>
-                <td class="rank-num">66</td>
-                <td class="time">00:56.16</td>
-                <td class="time">00:56.15</td>
-                <td class="rank-num">+1</td>
-                
-                <td class="time">00:55.99 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:55.85 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td class="time">00:55.79 <span style="color:#888;font-size:0.8em">#63</span></td>
-                
-                <td class="time">00:55.55 <span style="color:#888;font-size:0.8em">#62</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/whale-bay/hover/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[9,2,9,36,42,59]'>
-                <td class="row-num">19</td>
-                <td>Frosty Village</td>
-                <td><span class="badge badge-plane">plane</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:31.76</td>
-                <td class="rank-num">57</td>
-                <td class="time">00:31.68</td>
-                <td class="time">00:31.67</td>
-                <td class="rank-num">+2</td>
-                
-                <td class="time">00:31.67 <span style="color:#888;font-size:0.8em">#57</span></td>
-                
-                <td class="time">00:31.40 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td class="time">00:31.34 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td class="time">00:31.17 <span style="color:#888;font-size:0.8em">#54</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/frosty-village/plane/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[11,3,8,11,20,35]'>
-                <td class="row-num">20</td>
-                <td>Windmill Plains</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">59</td>
-                <td class="time">00:35.95</td>
-                <td class="rank-num">57</td>
-                <td class="time">00:35.85</td>
-                <td class="time">00:35.84</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:35.87 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:35.84 <span style="color:#888;font-size:0.8em">#57</span></td>
-                
-                <td class="time">00:35.75 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td class="time">00:35.60 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/windmill-plains/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[11,3,9,11,22,27]'>
-                <td class="row-num">21</td>
-                <td>Snowball Valley</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">56</td>
-                <td class="time">00:15.36</td>
-                <td class="rank-num">53</td>
-                <td class="time">00:15.26</td>
-                <td class="time">00:15.25</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:15.27 <span style="color:#888;font-size:0.8em">#54</span></td>
-                
-                <td class="time">00:15.25 <span style="color:#888;font-size:0.8em">#53</span></td>
-                
-                <td class="time">00:15.14 <span style="color:#888;font-size:0.8em">#52</span></td>
-                
-                <td class="time">00:15.09 <span style="color:#888;font-size:0.8em">#51</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/snowball-valley/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[11,2,11,17,27,29]'>
-                <td class="row-num">22</td>
-                <td>Whale Bay</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">52</td>
-                <td class="time">00:16.31</td>
-                <td class="rank-num">50</td>
-                <td class="time">00:16.21</td>
-                <td class="time">00:16.20</td>
-                <td class="rank-num">+2</td>
-                
-                <td class="time">00:16.20 <span style="color:#888;font-size:0.8em">#50</span></td>
-                
-                <td class="time">00:16.14 <span style="color:#888;font-size:0.8em">#49</span></td>
-                
-                <td class="time">00:16.04 <span style="color:#888;font-size:0.8em">#48</span></td>
-                
-                <td class="time">00:16.02 <span style="color:#888;font-size:0.8em">#47</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/whale-bay/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[13,3,8,13,30,51]'>
-                <td class="row-num">23</td>
-                <td>Greenwood Village</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">60</td>
-                <td class="time">00:28.05</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:27.93</td>
-                <td class="time">00:27.92</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:27.97 <span style="color:#888;font-size:0.8em">#59</span></td>
-                
-                <td class="time">00:27.92 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:27.75 <span style="color:#888;font-size:0.8em">#57</span></td>
-                
-                <td class="time">00:27.54 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/greenwood-village/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[14,2,14,28,56,78]'>
-                <td class="row-num">24</td>
-                <td>Frosty Village</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-shortcut">shortcut</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">40</td>
-                <td class="time">00:14.73</td>
-                <td class="rank-num">38</td>
-                <td class="time">00:14.60</td>
-                <td class="time">00:14.59</td>
-                <td class="rank-num">+2</td>
-                
-                <td class="time">00:14.59 <span style="color:#888;font-size:0.8em">#38</span></td>
-                
-                <td class="time">00:14.45 <span style="color:#888;font-size:0.8em">#37</span></td>
-                
-                <td class="time">00:14.17 <span style="color:#888;font-size:0.8em">#36</span></td>
-                
-                <td class="time">00:13.95 <span style="color:#888;font-size:0.8em">#35</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/frosty-village/car/shortcut/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[17,3,16,17,27,42]'>
-                <td class="row-num">25</td>
-                <td>Ancient Lake</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">81</td>
-                <td class="time">00:51.66</td>
-                <td class="rank-num">78</td>
-                <td class="time">00:51.50</td>
-                <td class="time">00:51.49</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:51.50 <span style="color:#888;font-size:0.8em">#79</span></td>
-                
-                <td class="time">00:51.49 <span style="color:#888;font-size:0.8em">#78</span></td>
-                
-                <td class="time">00:51.39 <span style="color:#888;font-size:0.8em">#77</span></td>
-                
-                <td class="time">00:51.24 <span style="color:#888;font-size:0.8em">#76</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/ancient-lake/hover/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[18,2,18,31,38,55]'>
-                <td class="row-num">26</td>
-                <td>Spaceport Alpha</td>
-                <td><span class="badge badge-plane">plane</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">69</td>
-                <td class="time">00:34.30</td>
-                <td class="rank-num">67</td>
-                <td class="time">00:34.13</td>
-                <td class="time">00:34.12</td>
-                <td class="rank-num">+2</td>
-                
-                <td class="time">00:34.12 <span style="color:#888;font-size:0.8em">#67</span></td>
-                
-                <td class="time">00:33.99 <span style="color:#888;font-size:0.8em">#66</span></td>
-                
-                <td class="time">00:33.92 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:33.75 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/spaceport-alpha/plane/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[18,6,10,15,16,18]'>
-                <td class="row-num">27</td>
-                <td>Spaceport Alpha</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">48</td>
-                <td class="time">00:34.40</td>
-                <td class="rank-num">42</td>
-                <td class="time">00:34.23</td>
-                <td class="time">00:34.22</td>
-                <td class="rank-num">+6</td>
-                
-                <td class="time">00:34.30 <span style="color:#888;font-size:0.8em">#46</span></td>
-                
-                <td class="time">00:34.25 <span style="color:#888;font-size:0.8em">#45</span></td>
-                
-                <td class="time">00:34.24 <span style="color:#888;font-size:0.8em">#44</span></td>
-                
-                <td class="time">00:34.22 <span style="color:#888;font-size:0.8em">#42</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/spaceport-alpha/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[19,3,17,19,51,56]'>
-                <td class="row-num">28</td>
-                <td>Greenwood Village</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">63</td>
-                <td class="time">01:28.91</td>
-                <td class="rank-num">60</td>
-                <td class="time">01:28.73</td>
-                <td class="time">01:28.72</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">01:28.74 <span style="color:#888;font-size:0.8em">#61</span></td>
-                
-                <td class="time">01:28.72 <span style="color:#888;font-size:0.8em">#60</span></td>
-                
-                <td class="time">01:28.40 <span style="color:#888;font-size:0.8em">#59</span></td>
-                
-                <td class="time">01:28.35 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/greenwood-village/hover/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[21,3,21,21,30,35]'>
-                <td class="row-num">29</td>
-                <td>Haunted Woods</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:18.70</td>
-                <td class="rank-num">55</td>
-                <td class="time">00:18.50</td>
-                <td class="time">00:18.49</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:18.49 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td class="time">00:18.49 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td class="time">00:18.40 <span style="color:#888;font-size:0.8em">#54</span></td>
-                
-                <td class="time">00:18.35 <span style="color:#888;font-size:0.8em">#53</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/haunted-woods/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[21,10,3,5,8,10]'>
-                <td class="row-num">30</td>
-                <td>Haunted Woods</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">80</td>
-                <td class="time">00:15.85</td>
-                <td class="rank-num">71</td>
-                <td class="time">00:15.65</td>
-                <td class="time">00:15.64</td>
-                <td class="rank-num">+10</td>
-                
-                <td class="time">00:15.82 <span style="color:#888;font-size:0.8em">#79</span></td>
-                
-                <td class="time">00:15.80 <span style="color:#888;font-size:0.8em">#78</span></td>
-                
-                <td class="time">00:15.77 <span style="color:#888;font-size:0.8em">#77</span></td>
-                
-                <td class="time">00:15.75 <span style="color:#888;font-size:0.8em">#76</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/haunted-woods/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[21,10,1,1,10,11]'>
-                <td class="row-num">31</td>
-                <td>Treasure Caves</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">44</td>
-                <td class="time">00:13.75</td>
-                <td class="rank-num">37</td>
-                <td class="time">00:13.55</td>
-                <td class="time">00:13.54</td>
-                <td class="rank-num">+10</td>
-                
-                <td class="time">00:13.74 <span style="color:#888;font-size:0.8em">#44</span></td>
-                
-                <td class="time">00:13.74 <span style="color:#888;font-size:0.8em">#44</span></td>
-                
-                <td class="time">00:13.65 <span style="color:#888;font-size:0.8em">#43</span></td>
-                
-                <td class="time">00:13.64 <span style="color:#888;font-size:0.8em">#42</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/treasure-caves/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[21,4,17,17,21,32]'>
-                <td class="row-num">32</td>
-                <td>Crescent Island</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">68</td>
-                <td class="time">00:27.16</td>
-                <td class="rank-num">64</td>
-                <td class="time">00:26.96</td>
-                <td class="time">00:26.95</td>
-                <td class="rank-num">+4</td>
-                
-                <td class="time">00:26.99 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:26.99 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:26.95 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td class="time">00:26.84 <span style="color:#888;font-size:0.8em">#63</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/crescent-island/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[21,4,13,21,21,31]'>
-                <td class="row-num">33</td>
-                <td>Jungle Falls</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">66</td>
-                <td class="time">00:18.93</td>
-                <td class="rank-num">62</td>
-                <td class="time">00:18.73</td>
-                <td class="time">00:18.72</td>
-                <td class="rank-num">+4</td>
-                
-                <td class="time">00:18.80 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td class="time">00:18.72 <span style="color:#888;font-size:0.8em">#62</span></td>
-                
-                <td class="time">00:18.72 <span style="color:#888;font-size:0.8em">#62</span></td>
-                
-                <td class="time">00:18.62 <span style="color:#888;font-size:0.8em">#61</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/jungle-falls/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[22,3,17,22,44,54]'>
-                <td class="row-num">34</td>
-                <td>Haunted Woods</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">103</td>
-                <td class="time">00:53.61</td>
-                <td class="rank-num">100</td>
-                <td class="time">00:53.40</td>
-                <td class="time">00:53.39</td>
-                <td class="rank-num">+3</td>
-                
-                <td class="time">00:53.44 <span style="color:#888;font-size:0.8em">#101</span></td>
-                
-                <td class="time">00:53.39 <span style="color:#888;font-size:0.8em">#100</span></td>
-                
-                <td class="time">00:53.17 <span style="color:#888;font-size:0.8em">#99</span></td>
-                
-                <td class="time">00:53.07 <span style="color:#888;font-size:0.8em">#98</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/haunted-woods/car/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[23,8,3,11,18,18]'>
-                <td class="row-num">35</td>
-                <td>Windmill Plains</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:31.73</td>
-                <td class="rank-num">50</td>
-                <td class="time">00:31.51</td>
-                <td class="time">00:31.50</td>
-                <td class="rank-num">+8</td>
-                
-                <td class="time">00:31.70 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td class="time">00:31.62 <span style="color:#888;font-size:0.8em">#55</span></td>
-                
-                <td class="time">00:31.55 <span style="color:#888;font-size:0.8em">#53</span></td>
-                
-                <td class="time">00:31.55 <span style="color:#888;font-size:0.8em">#53</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[23,4,19,19,23,28]'>
-                <td class="row-num">36</td>
-                <td>Boulder Canyon</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">61</td>
-                <td class="time">00:28.03</td>
-                <td class="rank-num">57</td>
-                <td class="time">00:27.81</td>
-                <td class="time">00:27.80</td>
-                <td class="rank-num">+4</td>
-                
-                <td class="time">00:27.84 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:27.84 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:27.80 <span style="color:#888;font-size:0.8em">#57</span></td>
-                
-                <td class="time">00:27.75 <span style="color:#888;font-size:0.8em">#56</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/boulder-canyon/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[26,4,18,26,26,45]'>
-                <td class="row-num">37</td>
-                <td>Darkmoon Caverns</td>
-                <td><span class="badge badge-hover">hover</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">69</td>
-                <td class="time">00:39.80</td>
-                <td class="rank-num">65</td>
-                <td class="time">00:39.55</td>
-                <td class="time">00:39.54</td>
-                <td class="rank-num">+4</td>
-                
-                <td class="time">00:39.62 <span style="color:#888;font-size:0.8em">#67</span></td>
-                
-                <td class="time">00:39.54 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:39.54 <span style="color:#888;font-size:0.8em">#65</span></td>
-                
-                <td class="time">00:39.35 <span style="color:#888;font-size:0.8em">#64</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/darkmoon-caverns/hover/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[26,5,20,21,23,26]'>
-                <td class="row-num">38</td>
-                <td>Snowball Valley</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>3-laps</td>
-                <td class="rank-num">71</td>
-                <td class="time">00:49.60</td>
-                <td class="rank-num">66</td>
-                <td class="time">00:49.35</td>
-                <td class="time">00:49.34</td>
-                <td class="rank-num">+5</td>
-                
-                <td class="time">00:49.40 <span style="color:#888;font-size:0.8em">#69</span></td>
-                
-                <td class="time">00:49.39 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td class="time">00:49.37 <span style="color:#888;font-size:0.8em">#67</span></td>
-                
-                <td class="time">00:49.34 <span style="color:#888;font-size:0.8em">#66</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/snowball-valley/car/standard/3-laps" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[28,5,24,28,28,28]'>
-                <td class="row-num">39</td>
-                <td>Everfrost Peak</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">63</td>
-                <td class="time">00:25.13</td>
-                <td class="rank-num">58</td>
-                <td class="time">00:24.86</td>
-                <td class="time">00:24.85</td>
-                <td class="rank-num">+5</td>
-                
-                <td class="time">00:24.89 <span style="color:#888;font-size:0.8em">#61</span></td>
-                
-                <td class="time">00:24.85 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:24.85 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td class="time">00:24.85 <span style="color:#888;font-size:0.8em">#58</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/everfrost-peak/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[31,10,9,14,16,19]'>
-                <td class="row-num">40</td>
-                <td>Star City</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">73</td>
-                <td class="time">00:27.11</td>
-                <td class="rank-num">63</td>
-                <td class="time">00:26.81</td>
-                <td class="time">00:26.80</td>
-                <td class="rank-num">+10</td>
-                
-                <td class="time">00:27.02 <span style="color:#888;font-size:0.8em">#71</span></td>
-                
-                <td class="time">00:26.97 <span style="color:#888;font-size:0.8em">#70</span></td>
-                
-                <td class="time">00:26.95 <span style="color:#888;font-size:0.8em">#69</span></td>
-                
-                <td class="time">00:26.92 <span style="color:#888;font-size:0.8em">#68</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/star-city/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[36,11,14,14,21,21]'>
-                <td class="row-num">41</td>
-                <td>Walrus Cove</td>
-                <td><span class="badge badge-car">car</span></td>
-                <td><span class="badge badge-standard">standard</span></td>
-                <td>1-lap</td>
-                <td class="rank-num">64</td>
-                <td class="time">00:29.86</td>
-                <td class="rank-num">53</td>
-                <td class="time">00:29.51</td>
-                <td class="time">00:29.50</td>
-                <td class="rank-num">+11</td>
-                
-                <td class="time">00:29.72 <span style="color:#888;font-size:0.8em">#61</span></td>
-                
-                <td class="time">00:29.72 <span style="color:#888;font-size:0.8em">#61</span></td>
-                
-                <td class="time">00:29.65 <span style="color:#888;font-size:0.8em">#59</span></td>
-                
-                <td class="time">00:29.65 <span style="color:#888;font-size:0.8em">#59</span></td>
-                
-                <td><a href="https://www.dkr64.com/tracks/walrus-cove/car/standard/1-lap" target="_blank">View</a></td>
-            </tr>
-            
-            <tr class="priority-high"
-                data-sort='[36,10,7,7,14,16]'>
-                <td class="row-num">42</td>
+                data-sort='[7,3,7,7,14,16]'
+                data-row-key="overtake:Ancient Lake:hover:standard:1-lap:1599">
+                <td class="row-num">14</td>
                 <td>Ancient Lake</td>
                 <td><span class="badge badge-hover">hover</span></td>
                 <td><span class="badge badge-standard">standard</span></td>
                 <td>1-lap</td>
                 <td class="rank-num">74</td>
                 <td class="time">00:16.06</td>
-                <td class="rank-num">65</td>
-                <td class="time">00:15.71</td>
-                <td class="time">00:15.70</td>
-                <td class="rank-num">+10</td>
+                <td class="rank-num">72</td>
+                <td class="time">00:16.00</td>
+                <td class="time">00:15.99</td>
+                <td class="rank-num">+3</td>
                 
                 <td class="time">00:15.99 <span style="color:#888;font-size:0.8em">#72</span></td>
                 
@@ -1184,6 +516,61 @@
                 <td class="time">00:15.90 <span style="color:#888;font-size:0.8em">#70</span></td>
                 
                 <td><a href="https://www.dkr64.com/tracks/ancient-lake/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[9,3,9,9,16,19]'
+                data-row-key="overtake:Pirate Lagoon:hover:standard:1-lap:1994">
+                <td class="row-num">15</td>
+                <td>Pirate Lagoon</td>
+                <td><span class="badge badge-hover">hover</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">59</td>
+                <td class="time">00:20.03</td>
+                <td class="rank-num">56</td>
+                <td class="time">00:19.95</td>
+                <td class="time">00:19.94</td>
+                <td class="rank-num">+3</td>
+                
+                <td class="time">00:19.94 <span style="color:#888;font-size:0.8em">#56</span></td>
+                
+                <td class="time">00:19.94 <span style="color:#888;font-size:0.8em">#56</span></td>
+                
+                <td class="time">00:19.87 <span style="color:#888;font-size:0.8em">#55</span></td>
+                
+                <td class="time">00:19.84 <span style="color:#888;font-size:0.8em">#54</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/pirate-lagoon/hover/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            
+            <tr class="priority-high"
+                data-sort='[16,8,3,5,8,10]'
+                data-row-key="overtake:Haunted Woods:car:standard:1-lap:1569">
+                <td class="row-num">16</td>
+                <td>Haunted Woods</td>
+                <td><span class="badge badge-car">car</span></td>
+                <td><span class="badge badge-standard">standard</span></td>
+                <td>1-lap</td>
+                <td class="rank-num">80</td>
+                <td class="time">00:15.85</td>
+                <td class="rank-num">73</td>
+                <td class="time">00:15.70</td>
+                <td class="time">00:15.69</td>
+                <td class="rank-num">+8</td>
+                
+                <td class="time">00:15.82 <span style="color:#888;font-size:0.8em">#79</span></td>
+                
+                <td class="time">00:15.80 <span style="color:#888;font-size:0.8em">#78</span></td>
+                
+                <td class="time">00:15.77 <span style="color:#888;font-size:0.8em">#77</span></td>
+                
+                <td class="time">00:15.75 <span style="color:#888;font-size:0.8em">#76</span></td>
+                
+                <td><a href="https://www.dkr64.com/tracks/haunted-woods/car/standard/1-lap" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
             </tr>
             
         </tbody>
@@ -1265,6 +652,44 @@ function printNextTable(btnOrEl, title) {
     );
     win.document.close();
 }
+
+(function() {
+    var STORAGE_KEY = 'dkr-done-rows';
+
+    function loadDone() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+        catch(e) { return {}; }
+    }
+
+    function saveDone(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    var state = loadDone();
+
+    document.querySelectorAll('tr[data-row-key]').forEach(function(row) {
+        var key = row.getAttribute('data-row-key');
+        var cb = row.querySelector('.done-cb');
+        if (!cb) return;
+
+        if (state[key]) {
+            cb.checked = true;
+            row.classList.add('row-done');
+        }
+
+        cb.addEventListener('change', function() {
+            var s = loadDone();
+            if (cb.checked) {
+                row.classList.add('row-done');
+                s[key] = true;
+            } else {
+                row.classList.remove('row-done');
+                delete s[key];
+            }
+            saveDone(s);
+        });
+    });
+})();
 </script>
 </body>
 </html>
