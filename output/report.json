@@ -1,149 +1,26 @@
 {
   "metadata": {
-    "generated_at": "2026-04-13 05:54 UTC",
+    "generated_at": "2026-04-15 06:54 UTC",
     "total_tracks_in_scope": 132
   },
   "player": {
     "username": "ChasingGhosts",
     "country": "it",
-    "combined_rank": 57,
-    "current_af": 61.96993939393939
+    "combined_rank": 54,
+    "current_af": 61.03793939393939
   },
   "overtake_min_time": {
-    "target_username": "TheBruteDream",
-    "target_af": 61.667,
-    "current_af": 61.96993939393939,
-    "af_gap": 0.3029,
-    "total_positions_needed": 40,
-    "total_positions_gained": 38,
-    "total_time_investment_cs": 68,
-    "total_time_investment": "00:00.68",
-    "new_af": 61.6821,
+    "target_username": "NoComment",
+    "target_af": 60.182,
+    "current_af": 61.03793939393939,
+    "af_gap": 0.8559,
+    "total_positions_needed": 113,
+    "total_positions_gained": 109,
+    "total_time_investment_cs": 385,
+    "total_time_investment": "00:03.85",
+    "new_af": 60.2122,
     "feasible": true,
     "items": [
-      {
-        "track_slug": "spaceport-alpha",
-        "track_name": "Spaceport Alpha",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 66,
-        "current_time": "00:34.26",
-        "new_rank": 66,
-        "target_time": "00:34.25",
-        "opponent_time": "00:34.26",
-        "positions_gained": 3,
-        "af_improvement": 0.0227,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.022727272727272728,
-        "extra_targets": [
-          {
-            "rank": 66,
-            "time_delta_cs": 1,
-            "time_delta": "00:00.01"
-          },
-          {
-            "rank": 66,
-            "time_delta_cs": 1,
-            "time_delta": "00:00.01"
-          },
-          {
-            "rank": 65,
-            "time_delta_cs": 6,
-            "time_delta": "00:00.06"
-          },
-          {
-            "rank": 64,
-            "time_delta_cs": 14,
-            "time_delta": "00:00.14"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/spaceport-alpha/car/standard/1-lap"
-      },
-      {
-        "track_slug": "spacedust-alley",
-        "track_name": "Spacedust Alley",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 72,
-        "current_time": "00:33.60",
-        "new_rank": 72,
-        "target_time": "00:33.59",
-        "opponent_time": "00:33.60",
-        "positions_gained": 1,
-        "af_improvement": 0.0076,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
-        "extra_targets": [
-          {
-            "rank": 71,
-            "time_delta_cs": 6,
-            "time_delta": "00:00.06"
-          },
-          {
-            "rank": 70,
-            "time_delta_cs": 15,
-            "time_delta": "00:00.15"
-          },
-          {
-            "rank": 68,
-            "time_delta_cs": 35,
-            "time_delta": "00:00.35"
-          },
-          {
-            "rank": 68,
-            "time_delta_cs": 35,
-            "time_delta": "00:00.35"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/spacedust-alley/car/standard/1-lap"
-      },
-      {
-        "track_slug": "windmill-plains",
-        "track_name": "Windmill Plains",
-        "vehicle": "hover",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 59,
-        "current_time": "00:35.95",
-        "new_rank": 59,
-        "target_time": "00:35.94",
-        "opponent_time": "00:35.95",
-        "positions_gained": 1,
-        "af_improvement": 0.0076,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
-        "extra_targets": [
-          {
-            "rank": 58,
-            "time_delta_cs": 8,
-            "time_delta": "00:00.08"
-          },
-          {
-            "rank": 57,
-            "time_delta_cs": 11,
-            "time_delta": "00:00.11"
-          },
-          {
-            "rank": 56,
-            "time_delta_cs": 20,
-            "time_delta": "00:00.20"
-          },
-          {
-            "rank": 55,
-            "time_delta_cs": 35,
-            "time_delta": "00:00.35"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/hover/standard/1-lap"
-      },
       {
         "track_slug": "greenwood-village",
         "track_name": "Greenwood Village",
@@ -151,121 +28,80 @@
         "category": "standard",
         "laps": "1-lap",
         "is_na": false,
-        "current_rank": 60,
-        "current_time": "00:28.05",
-        "new_rank": 60,
-        "target_time": "00:28.04",
-        "opponent_time": "00:28.05",
+        "current_rank": 51,
+        "current_time": "00:27.06",
+        "new_rank": 50,
+        "target_time": "00:27.04",
+        "opponent_time": "00:27.05",
         "positions_gained": 1,
         "af_improvement": 0.0076,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
+        "time_delta_cs": 2,
+        "time_delta": "00:00.02",
+        "efficiency": 0.003787878787878788,
         "extra_targets": [
           {
-            "rank": 59,
-            "time_delta_cs": 8,
-            "time_delta": "00:00.08"
+            "rank": 49,
+            "time_delta_cs": 11,
+            "time_delta": "00:00.11"
           },
           {
-            "rank": 58,
-            "time_delta_cs": 13,
-            "time_delta": "00:00.13"
+            "rank": 48,
+            "time_delta_cs": 39,
+            "time_delta": "00:00.39"
           },
           {
-            "rank": 57,
-            "time_delta_cs": 30,
-            "time_delta": "00:00.30"
+            "rank": 47,
+            "time_delta_cs": 41,
+            "time_delta": "00:00.41"
           },
           {
-            "rank": 56,
-            "time_delta_cs": 51,
-            "time_delta": "00:00.51"
+            "rank": 46,
+            "time_delta_cs": 42,
+            "time_delta": "00:00.42"
           }
         ],
         "leaderboard_url": "https://www.dkr64.com/tracks/greenwood-village/hover/standard/1-lap"
-      },
-      {
-        "track_slug": "frosty-village",
-        "track_name": "Frosty Village",
-        "vehicle": "plane",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 58,
-        "current_time": "00:31.76",
-        "new_rank": 58,
-        "target_time": "00:31.75",
-        "opponent_time": "00:31.76",
-        "positions_gained": 1,
-        "af_improvement": 0.0076,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
-        "extra_targets": [
-          {
-            "rank": 57,
-            "time_delta_cs": 9,
-            "time_delta": "00:00.09"
-          },
-          {
-            "rank": 56,
-            "time_delta_cs": 36,
-            "time_delta": "00:00.36"
-          },
-          {
-            "rank": 55,
-            "time_delta_cs": 42,
-            "time_delta": "00:00.42"
-          },
-          {
-            "rank": 54,
-            "time_delta_cs": 59,
-            "time_delta": "00:00.59"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/frosty-village/plane/standard/1-lap"
       },
       {
         "track_slug": "treasure-caves",
         "track_name": "Treasure Caves",
         "vehicle": "car",
         "category": "standard",
-        "laps": "1-lap",
+        "laps": "3-laps",
         "is_na": false,
-        "current_rank": 44,
-        "current_time": "00:13.75",
-        "new_rank": 44,
-        "target_time": "00:13.74",
-        "opponent_time": "00:13.75",
-        "positions_gained": 3,
-        "af_improvement": 0.0227,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.022727272727272728,
+        "current_rank": 78,
+        "current_time": "00:45.70",
+        "new_rank": 77,
+        "target_time": "00:45.67",
+        "opponent_time": "00:45.68",
+        "positions_gained": 1,
+        "af_improvement": 0.0076,
+        "time_delta_cs": 3,
+        "time_delta": "00:00.03",
+        "efficiency": 0.0025252525252525255,
         "extra_targets": [
           {
-            "rank": 44,
-            "time_delta_cs": 1,
-            "time_delta": "00:00.01"
+            "rank": 76,
+            "time_delta_cs": 20,
+            "time_delta": "00:00.20"
           },
           {
-            "rank": 44,
-            "time_delta_cs": 1,
-            "time_delta": "00:00.01"
+            "rank": 75,
+            "time_delta_cs": 30,
+            "time_delta": "00:00.30"
           },
           {
-            "rank": 43,
-            "time_delta_cs": 10,
-            "time_delta": "00:00.10"
+            "rank": 74,
+            "time_delta_cs": 35,
+            "time_delta": "00:00.35"
           },
           {
-            "rank": 42,
-            "time_delta_cs": 11,
-            "time_delta": "00:00.11"
+            "rank": 72,
+            "time_delta_cs": 40,
+            "time_delta": "00:00.40"
           }
         ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/treasure-caves/car/standard/1-lap"
+        "leaderboard_url": "https://www.dkr64.com/tracks/treasure-caves/car/standard/3-laps"
       },
       {
         "track_slug": "jungle-falls",
@@ -274,52 +110,11 @@
         "category": "standard",
         "laps": "1-lap",
         "is_na": false,
-        "current_rank": 40,
-        "current_time": "00:16.20",
-        "new_rank": 40,
-        "target_time": "00:16.19",
-        "opponent_time": "00:16.20",
-        "positions_gained": 1,
-        "af_improvement": 0.0076,
-        "time_delta_cs": 1,
-        "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
-        "extra_targets": [
-          {
-            "rank": 38,
-            "time_delta_cs": 23,
-            "time_delta": "00:00.23"
-          },
-          {
-            "rank": 38,
-            "time_delta_cs": 23,
-            "time_delta": "00:00.23"
-          },
-          {
-            "rank": 37,
-            "time_delta_cs": 28,
-            "time_delta": "00:00.28"
-          },
-          {
-            "rank": 36,
-            "time_delta_cs": 66,
-            "time_delta": "00:00.66"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/jungle-falls/plane/standard/1-lap"
-      },
-      {
-        "track_slug": "windmill-plains",
-        "track_name": "Windmill Plains",
-        "vehicle": "car",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 58,
-        "current_time": "00:31.73",
-        "new_rank": 56,
-        "target_time": "00:31.70",
-        "opponent_time": "00:31.71",
+        "current_rank": 36,
+        "current_time": "00:15.55",
+        "new_rank": 35,
+        "target_time": "00:15.52",
+        "opponent_time": "00:15.53",
         "positions_gained": 2,
         "af_improvement": 0.0152,
         "time_delta_cs": 3,
@@ -327,27 +122,27 @@
         "efficiency": 0.005050505050505051,
         "extra_targets": [
           {
-            "rank": 56,
+            "rank": 35,
             "time_delta_cs": 3,
             "time_delta": "00:00.03"
           },
           {
-            "rank": 55,
-            "time_delta_cs": 11,
-            "time_delta": "00:00.11"
+            "rank": 34,
+            "time_delta_cs": 38,
+            "time_delta": "00:00.38"
           },
           {
-            "rank": 53,
-            "time_delta_cs": 18,
-            "time_delta": "00:00.18"
+            "rank": 33,
+            "time_delta_cs": 40,
+            "time_delta": "00:00.40"
           },
           {
-            "rank": 53,
-            "time_delta_cs": 18,
-            "time_delta": "00:00.18"
+            "rank": 32,
+            "time_delta_cs": 41,
+            "time_delta": "00:00.41"
           }
         ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap"
+        "leaderboard_url": "https://www.dkr64.com/tracks/jungle-falls/plane/standard/1-lap"
       },
       {
         "track_slug": "treasure-caves",
@@ -432,45 +227,127 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/car/standard/1-lap"
       },
       {
-        "track_slug": "fossil-canyon",
-        "track_name": "Fossil Canyon",
+        "track_slug": "pirate-lagoon",
+        "track_name": "Pirate Lagoon",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "3-laps",
+        "is_na": false,
+        "current_rank": 60,
+        "current_time": "01:04.21",
+        "new_rank": 59,
+        "target_time": "01:04.17",
+        "opponent_time": "01:04.18",
+        "positions_gained": 1,
+        "af_improvement": 0.0076,
+        "time_delta_cs": 4,
+        "time_delta": "00:00.04",
+        "efficiency": 0.001893939393939394,
+        "extra_targets": [
+          {
+            "rank": 57,
+            "time_delta_cs": 22,
+            "time_delta": "00:00.22"
+          },
+          {
+            "rank": 57,
+            "time_delta_cs": 22,
+            "time_delta": "00:00.22"
+          },
+          {
+            "rank": 56,
+            "time_delta_cs": 29,
+            "time_delta": "00:00.29"
+          },
+          {
+            "rank": 55,
+            "time_delta_cs": 41,
+            "time_delta": "00:00.41"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/pirate-lagoon/hover/standard/3-laps"
+      },
+      {
+        "track_slug": "hot-top-volcano",
+        "track_name": "Hot Top Volcano",
+        "vehicle": "plane",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 44,
+        "current_time": "00:22.30",
+        "new_rank": 43,
+        "target_time": "00:22.25",
+        "opponent_time": "00:22.26",
+        "positions_gained": 1,
+        "af_improvement": 0.0076,
+        "time_delta_cs": 5,
+        "time_delta": "00:00.05",
+        "efficiency": 0.0015151515151515152,
+        "extra_targets": [
+          {
+            "rank": 42,
+            "time_delta_cs": 31,
+            "time_delta": "00:00.31"
+          },
+          {
+            "rank": 41,
+            "time_delta_cs": 60,
+            "time_delta": "00:00.60"
+          },
+          {
+            "rank": 40,
+            "time_delta_cs": 71,
+            "time_delta": "00:00.71"
+          },
+          {
+            "rank": 39,
+            "time_delta_cs": 113,
+            "time_delta": "00:01.13"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/hot-top-volcano/plane/standard/1-lap"
+      },
+      {
+        "track_slug": "windmill-plains",
+        "track_name": "Windmill Plains",
         "vehicle": "hover",
         "category": "standard",
         "laps": "1-lap",
         "is_na": false,
-        "current_rank": 58,
-        "current_time": "00:25.06",
-        "new_rank": 57,
-        "target_time": "00:25.02",
-        "opponent_time": "00:25.03",
-        "positions_gained": 2,
-        "af_improvement": 0.0152,
-        "time_delta_cs": 4,
-        "time_delta": "00:00.04",
-        "efficiency": 0.003787878787878788,
+        "current_rank": 56,
+        "current_time": "00:35.66",
+        "new_rank": 55,
+        "target_time": "00:35.60",
+        "opponent_time": "00:35.61",
+        "positions_gained": 1,
+        "af_improvement": 0.0076,
+        "time_delta_cs": 6,
+        "time_delta": "00:00.06",
+        "efficiency": 0.0012626262626262627,
         "extra_targets": [
           {
-            "rank": 57,
-            "time_delta_cs": 4,
-            "time_delta": "00:00.04"
-          },
-          {
-            "rank": 56,
-            "time_delta_cs": 7,
-            "time_delta": "00:00.07"
-          },
-          {
-            "rank": 55,
-            "time_delta_cs": 34,
-            "time_delta": "00:00.34"
-          },
-          {
             "rank": 54,
-            "time_delta_cs": 42,
-            "time_delta": "00:00.42"
+            "time_delta_cs": 26,
+            "time_delta": "00:00.26"
+          },
+          {
+            "rank": 53,
+            "time_delta_cs": 37,
+            "time_delta": "00:00.37"
+          },
+          {
+            "rank": 52,
+            "time_delta_cs": 41,
+            "time_delta": "00:00.41"
+          },
+          {
+            "rank": 51,
+            "time_delta_cs": 62,
+            "time_delta": "00:00.62"
           }
         ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/fossil-canyon/hover/standard/1-lap"
+        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/hover/standard/1-lap"
       },
       {
         "track_slug": "greenwood-village",
@@ -555,17 +432,17 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/treasure-caves/hover/standard/1-lap"
       },
       {
-        "track_slug": "ancient-lake",
-        "track_name": "Ancient Lake",
+        "track_slug": "fossil-canyon",
+        "track_name": "Fossil Canyon",
         "vehicle": "hover",
         "category": "standard",
         "laps": "1-lap",
         "is_na": false,
-        "current_rank": 74,
-        "current_time": "00:16.06",
-        "new_rank": 72,
-        "target_time": "00:15.99",
-        "opponent_time": "00:16.00",
+        "current_rank": 58,
+        "current_time": "00:25.06",
+        "new_rank": 56,
+        "target_time": "00:24.99",
+        "opponent_time": "00:25.00",
         "positions_gained": 3,
         "af_improvement": 0.0227,
         "time_delta_cs": 7,
@@ -573,27 +450,27 @@
         "efficiency": 0.003246753246753247,
         "extra_targets": [
           {
-            "rank": 72,
+            "rank": 57,
+            "time_delta_cs": 4,
+            "time_delta": "00:00.04"
+          },
+          {
+            "rank": 56,
             "time_delta_cs": 7,
             "time_delta": "00:00.07"
           },
           {
-            "rank": 72,
-            "time_delta_cs": 7,
-            "time_delta": "00:00.07"
+            "rank": 55,
+            "time_delta_cs": 34,
+            "time_delta": "00:00.34"
           },
           {
-            "rank": 71,
-            "time_delta_cs": 14,
-            "time_delta": "00:00.14"
-          },
-          {
-            "rank": 70,
-            "time_delta_cs": 16,
-            "time_delta": "00:00.16"
+            "rank": 54,
+            "time_delta_cs": 42,
+            "time_delta": "00:00.42"
           }
         ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/ancient-lake/hover/standard/1-lap"
+        "leaderboard_url": "https://www.dkr64.com/tracks/fossil-canyon/hover/standard/1-lap"
       },
       {
         "track_slug": "pirate-lagoon",
@@ -637,6 +514,293 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/pirate-lagoon/hover/standard/1-lap"
       },
       {
+        "track_slug": "snowball-valley",
+        "track_name": "Snowball Valley",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 57,
+        "current_time": "00:15.36",
+        "new_rank": 54,
+        "target_time": "00:15.25",
+        "opponent_time": "00:15.26",
+        "positions_gained": 3,
+        "af_improvement": 0.0227,
+        "time_delta_cs": 11,
+        "time_delta": "00:00.11",
+        "efficiency": 0.002066115702479339,
+        "extra_targets": [
+          {
+            "rank": 55,
+            "time_delta_cs": 9,
+            "time_delta": "00:00.09"
+          },
+          {
+            "rank": 54,
+            "time_delta_cs": 11,
+            "time_delta": "00:00.11"
+          },
+          {
+            "rank": 53,
+            "time_delta_cs": 22,
+            "time_delta": "00:00.22"
+          },
+          {
+            "rank": 52,
+            "time_delta_cs": 27,
+            "time_delta": "00:00.27"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/snowball-valley/car/standard/1-lap"
+      },
+      {
+        "track_slug": "whale-bay",
+        "track_name": "Whale Bay",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 52,
+        "current_time": "00:16.31",
+        "new_rank": 50,
+        "target_time": "00:16.20",
+        "opponent_time": "00:16.21",
+        "positions_gained": 2,
+        "af_improvement": 0.0152,
+        "time_delta_cs": 11,
+        "time_delta": "00:00.11",
+        "efficiency": 0.0013774104683195593,
+        "extra_targets": [
+          {
+            "rank": 50,
+            "time_delta_cs": 11,
+            "time_delta": "00:00.11"
+          },
+          {
+            "rank": 49,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 48,
+            "time_delta_cs": 27,
+            "time_delta": "00:00.27"
+          },
+          {
+            "rank": 47,
+            "time_delta_cs": 29,
+            "time_delta": "00:00.29"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/whale-bay/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "ancient-lake",
+        "track_name": "Ancient Lake",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 74,
+        "current_time": "00:16.06",
+        "new_rank": 70,
+        "target_time": "00:15.90",
+        "opponent_time": "00:15.91",
+        "positions_gained": 5,
+        "af_improvement": 0.0379,
+        "time_delta_cs": 16,
+        "time_delta": "00:00.16",
+        "efficiency": 0.0023674242424242425,
+        "extra_targets": [
+          {
+            "rank": 72,
+            "time_delta_cs": 7,
+            "time_delta": "00:00.07"
+          },
+          {
+            "rank": 72,
+            "time_delta_cs": 7,
+            "time_delta": "00:00.07"
+          },
+          {
+            "rank": 71,
+            "time_delta_cs": 14,
+            "time_delta": "00:00.14"
+          },
+          {
+            "rank": 70,
+            "time_delta_cs": 16,
+            "time_delta": "00:00.16"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/ancient-lake/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "ancient-lake",
+        "track_name": "Ancient Lake",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "3-laps",
+        "is_na": false,
+        "current_rank": 81,
+        "current_time": "00:51.66",
+        "new_rank": 78,
+        "target_time": "00:51.49",
+        "opponent_time": "00:51.50",
+        "positions_gained": 3,
+        "af_improvement": 0.0227,
+        "time_delta_cs": 17,
+        "time_delta": "00:00.17",
+        "efficiency": 0.0013368983957219253,
+        "extra_targets": [
+          {
+            "rank": 79,
+            "time_delta_cs": 16,
+            "time_delta": "00:00.16"
+          },
+          {
+            "rank": 78,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 77,
+            "time_delta_cs": 27,
+            "time_delta": "00:00.27"
+          },
+          {
+            "rank": 76,
+            "time_delta_cs": 42,
+            "time_delta": "00:00.42"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/ancient-lake/hover/standard/3-laps"
+      },
+      {
+        "track_slug": "spaceport-alpha",
+        "track_name": "Spaceport Alpha",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 48,
+        "current_time": "00:34.40",
+        "new_rank": 42,
+        "target_time": "00:34.22",
+        "opponent_time": "00:34.23",
+        "positions_gained": 6,
+        "af_improvement": 0.0455,
+        "time_delta_cs": 18,
+        "time_delta": "00:00.18",
+        "efficiency": 0.0025252525252525255,
+        "extra_targets": [
+          {
+            "rank": 46,
+            "time_delta_cs": 10,
+            "time_delta": "00:00.10"
+          },
+          {
+            "rank": 45,
+            "time_delta_cs": 15,
+            "time_delta": "00:00.15"
+          },
+          {
+            "rank": 44,
+            "time_delta_cs": 16,
+            "time_delta": "00:00.16"
+          },
+          {
+            "rank": 42,
+            "time_delta_cs": 18,
+            "time_delta": "00:00.18"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/spaceport-alpha/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "boulder-canyon",
+        "track_name": "Boulder Canyon",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 61,
+        "current_time": "00:28.03",
+        "new_rank": 58,
+        "target_time": "00:27.84",
+        "opponent_time": "00:27.85",
+        "positions_gained": 3,
+        "af_improvement": 0.0227,
+        "time_delta_cs": 19,
+        "time_delta": "00:00.19",
+        "efficiency": 0.0011961722488038277,
+        "extra_targets": [
+          {
+            "rank": 58,
+            "time_delta_cs": 19,
+            "time_delta": "00:00.19"
+          },
+          {
+            "rank": 58,
+            "time_delta_cs": 19,
+            "time_delta": "00:00.19"
+          },
+          {
+            "rank": 57,
+            "time_delta_cs": 23,
+            "time_delta": "00:00.23"
+          },
+          {
+            "rank": 56,
+            "time_delta_cs": 28,
+            "time_delta": "00:00.28"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/boulder-canyon/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "haunted-woods",
+        "track_name": "Haunted Woods",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 58,
+        "current_time": "00:18.70",
+        "new_rank": 55,
+        "target_time": "00:18.49",
+        "opponent_time": "00:18.50",
+        "positions_gained": 3,
+        "af_improvement": 0.0227,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.0010822510822510823,
+        "extra_targets": [
+          {
+            "rank": 55,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 55,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 54,
+            "time_delta_cs": 30,
+            "time_delta": "00:00.30"
+          },
+          {
+            "rank": 53,
+            "time_delta_cs": 35,
+            "time_delta": "00:00.35"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/haunted-woods/hover/standard/1-lap"
+      },
+      {
         "track_slug": "haunted-woods",
         "track_name": "Haunted Woods",
         "vehicle": "car",
@@ -645,14 +809,14 @@
         "is_na": false,
         "current_rank": 80,
         "current_time": "00:15.85",
-        "new_rank": 73,
-        "target_time": "00:15.69",
-        "opponent_time": "00:15.70",
-        "positions_gained": 8,
-        "af_improvement": 0.0606,
-        "time_delta_cs": 16,
-        "time_delta": "00:00.16",
-        "efficiency": 0.003787878787878788,
+        "new_rank": 71,
+        "target_time": "00:15.64",
+        "opponent_time": "00:15.65",
+        "positions_gained": 10,
+        "af_improvement": 0.0758,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.0036075036075036075,
         "extra_targets": [
           {
             "rank": 79,
@@ -676,6 +840,334 @@
           }
         ],
         "leaderboard_url": "https://www.dkr64.com/tracks/haunted-woods/car/standard/1-lap"
+      },
+      {
+        "track_slug": "boulder-canyon",
+        "track_name": "Boulder Canyon",
+        "vehicle": "hover",
+        "category": "shortcut",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 41,
+        "current_time": "00:20.46",
+        "new_rank": 38,
+        "target_time": "00:20.25",
+        "opponent_time": "00:20.26",
+        "positions_gained": 3,
+        "af_improvement": 0.0227,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.0010822510822510823,
+        "extra_targets": [
+          {
+            "rank": 39,
+            "time_delta_cs": 16,
+            "time_delta": "00:00.16"
+          },
+          {
+            "rank": 38,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 37,
+            "time_delta_cs": 61,
+            "time_delta": "00:00.61"
+          },
+          {
+            "rank": 36,
+            "time_delta_cs": 77,
+            "time_delta": "00:00.77"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/boulder-canyon/hover/shortcut/1-lap"
+      },
+      {
+        "track_slug": "treasure-caves",
+        "track_name": "Treasure Caves",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 44,
+        "current_time": "00:13.75",
+        "new_rank": 37,
+        "target_time": "00:13.54",
+        "opponent_time": "00:13.55",
+        "positions_gained": 10,
+        "af_improvement": 0.0758,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.0036075036075036075,
+        "extra_targets": [
+          {
+            "rank": 44,
+            "time_delta_cs": 1,
+            "time_delta": "00:00.01"
+          },
+          {
+            "rank": 44,
+            "time_delta_cs": 1,
+            "time_delta": "00:00.01"
+          },
+          {
+            "rank": 43,
+            "time_delta_cs": 10,
+            "time_delta": "00:00.10"
+          },
+          {
+            "rank": 42,
+            "time_delta_cs": 11,
+            "time_delta": "00:00.11"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/treasure-caves/car/standard/1-lap"
+      },
+      {
+        "track_slug": "crescent-island",
+        "track_name": "Crescent Island",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 68,
+        "current_time": "00:27.16",
+        "new_rank": 64,
+        "target_time": "00:26.95",
+        "opponent_time": "00:26.96",
+        "positions_gained": 4,
+        "af_improvement": 0.0303,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.001443001443001443,
+        "extra_targets": [
+          {
+            "rank": 65,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 65,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 64,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 63,
+            "time_delta_cs": 32,
+            "time_delta": "00:00.32"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "jungle-falls",
+        "track_name": "Jungle Falls",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 66,
+        "current_time": "00:18.93",
+        "new_rank": 62,
+        "target_time": "00:18.72",
+        "opponent_time": "00:18.73",
+        "positions_gained": 4,
+        "af_improvement": 0.0303,
+        "time_delta_cs": 21,
+        "time_delta": "00:00.21",
+        "efficiency": 0.001443001443001443,
+        "extra_targets": [
+          {
+            "rank": 64,
+            "time_delta_cs": 13,
+            "time_delta": "00:00.13"
+          },
+          {
+            "rank": 62,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 62,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 61,
+            "time_delta_cs": 31,
+            "time_delta": "00:00.31"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/jungle-falls/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "windmill-plains",
+        "track_name": "Windmill Plains",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 58,
+        "current_time": "00:31.73",
+        "new_rank": 50,
+        "target_time": "00:31.50",
+        "opponent_time": "00:31.51",
+        "positions_gained": 8,
+        "af_improvement": 0.0606,
+        "time_delta_cs": 23,
+        "time_delta": "00:00.23",
+        "efficiency": 0.002635046113306983,
+        "extra_targets": [
+          {
+            "rank": 56,
+            "time_delta_cs": 3,
+            "time_delta": "00:00.03"
+          },
+          {
+            "rank": 55,
+            "time_delta_cs": 11,
+            "time_delta": "00:00.11"
+          },
+          {
+            "rank": 53,
+            "time_delta_cs": 18,
+            "time_delta": "00:00.18"
+          },
+          {
+            "rank": 53,
+            "time_delta_cs": 18,
+            "time_delta": "00:00.18"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/windmill-plains/car/standard/1-lap"
+      },
+      {
+        "track_slug": "snowball-valley",
+        "track_name": "Snowball Valley",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "3-laps",
+        "is_na": false,
+        "current_rank": 72,
+        "current_time": "00:49.60",
+        "new_rank": 67,
+        "target_time": "00:49.34",
+        "opponent_time": "00:49.35",
+        "positions_gained": 5,
+        "af_improvement": 0.0379,
+        "time_delta_cs": 26,
+        "time_delta": "00:00.26",
+        "efficiency": 0.001456876456876457,
+        "extra_targets": [
+          {
+            "rank": 70,
+            "time_delta_cs": 20,
+            "time_delta": "00:00.20"
+          },
+          {
+            "rank": 69,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 68,
+            "time_delta_cs": 23,
+            "time_delta": "00:00.23"
+          },
+          {
+            "rank": 67,
+            "time_delta_cs": 26,
+            "time_delta": "00:00.26"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/snowball-valley/car/standard/3-laps"
+      },
+      {
+        "track_slug": "walrus-cove",
+        "track_name": "Walrus Cove",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 64,
+        "current_time": "00:29.86",
+        "new_rank": 56,
+        "target_time": "00:29.60",
+        "opponent_time": "00:29.61",
+        "positions_gained": 8,
+        "af_improvement": 0.0606,
+        "time_delta_cs": 26,
+        "time_delta": "00:00.26",
+        "efficiency": 0.002331002331002331,
+        "extra_targets": [
+          {
+            "rank": 61,
+            "time_delta_cs": 14,
+            "time_delta": "00:00.14"
+          },
+          {
+            "rank": 61,
+            "time_delta_cs": 14,
+            "time_delta": "00:00.14"
+          },
+          {
+            "rank": 59,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 59,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/walrus-cove/car/standard/1-lap"
+      },
+      {
+        "track_slug": "star-city",
+        "track_name": "Star City",
+        "vehicle": "car",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 73,
+        "current_time": "00:27.11",
+        "new_rank": 63,
+        "target_time": "00:26.80",
+        "opponent_time": "00:26.81",
+        "positions_gained": 10,
+        "af_improvement": 0.0758,
+        "time_delta_cs": 31,
+        "time_delta": "00:00.31",
+        "efficiency": 0.0024437927663734115,
+        "extra_targets": [
+          {
+            "rank": 71,
+            "time_delta_cs": 9,
+            "time_delta": "00:00.09"
+          },
+          {
+            "rank": 70,
+            "time_delta_cs": 14,
+            "time_delta": "00:00.14"
+          },
+          {
+            "rank": 69,
+            "time_delta_cs": 16,
+            "time_delta": "00:00.16"
+          },
+          {
+            "rank": 68,
+            "time_delta_cs": 19,
+            "time_delta": "00:00.19"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/star-city/car/standard/1-lap"
       }
     ]
   }
