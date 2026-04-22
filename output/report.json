@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated_at": "2026-04-22 21:31 UTC",
-    "total_tracks_in_scope": 132
+    "generated_at": "2026-04-22 21:36 UTC",
+    "total_tracks_in_scope": 131
   },
   "player": {
     "username": "ChasingGhosts",
     "country": "it",
     "combined_rank": 53,
-    "current_af": 59.93193939393939
+    "current_af": 59.933038167938925
   },
   "overtake_min_time": {
     "target_username": "hellool",
     "target_af": 59.394,
-    "current_af": 59.93193939393939,
-    "af_gap": 0.5379,
-    "total_positions_needed": 72,
-    "total_positions_gained": 71,
-    "total_time_investment_cs": 228,
-    "total_time_investment": "00:02.28",
-    "new_af": 59.3941,
+    "current_af": 59.933038167938925,
+    "af_gap": 0.539,
+    "total_positions_needed": 71,
+    "total_positions_gained": 70,
+    "total_time_investment_cs": 224,
+    "total_time_investment": "00:02.24",
+    "new_af": 59.3987,
     "feasible": true,
     "items": [
       {
@@ -37,7 +37,7 @@
         "af_improvement": 0.0076,
         "time_delta_cs": 1,
         "time_delta": "00:00.01",
-        "efficiency": 0.007575757575757576,
+        "efficiency": 0.007633587786259542,
         "extra_targets": [
           {
             "rank": 36,
@@ -78,7 +78,7 @@
         "af_improvement": 0.0076,
         "time_delta_cs": 3,
         "time_delta": "00:00.03",
-        "efficiency": 0.0025252525252525255,
+        "efficiency": 0.0025445292620865138,
         "extra_targets": [
           {
             "rank": 54,
@@ -116,10 +116,10 @@
         "target_time": "00:31.70",
         "opponent_time": "00:31.71",
         "positions_gained": 2,
-        "af_improvement": 0.0152,
+        "af_improvement": 0.0153,
         "time_delta_cs": 3,
         "time_delta": "00:00.03",
-        "efficiency": 0.005050505050505051,
+        "efficiency": 0.0050890585241730275,
         "extra_targets": [
           {
             "rank": 56,
@@ -157,10 +157,10 @@
         "target_time": "00:15.37",
         "opponent_time": "00:15.38",
         "positions_gained": 2,
-        "af_improvement": 0.0152,
+        "af_improvement": 0.0153,
         "time_delta_cs": 4,
         "time_delta": "00:00.04",
-        "efficiency": 0.003787878787878788,
+        "efficiency": 0.003816793893129771,
         "extra_targets": [
           {
             "rank": 57,
@@ -198,10 +198,10 @@
         "target_time": "00:27.80",
         "opponent_time": "00:27.81",
         "positions_gained": 3,
-        "af_improvement": 0.0227,
+        "af_improvement": 0.0229,
         "time_delta_cs": 6,
         "time_delta": "00:00.06",
-        "efficiency": 0.003787878787878788,
+        "efficiency": 0.003816793893129771,
         "extra_targets": [
           {
             "rank": 58,
@@ -242,7 +242,7 @@
         "af_improvement": 0.0076,
         "time_delta_cs": 6,
         "time_delta": "00:00.06",
-        "efficiency": 0.0012626262626262627,
+        "efficiency": 0.0012722646310432569,
         "extra_targets": [
           {
             "rank": 59,
@@ -280,10 +280,10 @@
         "target_time": "00:18.59",
         "opponent_time": "00:18.60",
         "positions_gained": 2,
-        "af_improvement": 0.0152,
+        "af_improvement": 0.0153,
         "time_delta_cs": 7,
         "time_delta": "00:00.07",
-        "efficiency": 0.0021645021645021645,
+        "efficiency": 0.0021810250817884407,
         "extra_targets": [
           {
             "rank": 60,
@@ -321,10 +321,10 @@
         "target_time": "00:15.25",
         "opponent_time": "00:15.26",
         "positions_gained": 3,
-        "af_improvement": 0.0227,
+        "af_improvement": 0.0229,
         "time_delta_cs": 10,
         "time_delta": "00:00.10",
-        "efficiency": 0.0022727272727272726,
+        "efficiency": 0.0022900763358778627,
         "extra_targets": [
           {
             "rank": 55,
@@ -362,10 +362,10 @@
         "target_time": "00:19.65",
         "opponent_time": "00:19.66",
         "positions_gained": 4,
-        "af_improvement": 0.0303,
+        "af_improvement": 0.0305,
         "time_delta_cs": 10,
         "time_delta": "00:00.10",
-        "efficiency": 0.0030303030303030303,
+        "efficiency": 0.0030534351145038168,
         "extra_targets": [
           {
             "rank": 50,
@@ -403,10 +403,10 @@
         "target_time": "00:49.79",
         "opponent_time": "00:49.80",
         "positions_gained": 2,
-        "af_improvement": 0.0152,
+        "af_improvement": 0.0153,
         "time_delta_cs": 11,
         "time_delta": "00:00.11",
-        "efficiency": 0.0013774104683195593,
+        "efficiency": 0.0013879250520471894,
         "extra_targets": [
           {
             "rank": 66,
@@ -444,10 +444,10 @@
         "target_time": "00:24.34",
         "opponent_time": "00:24.35",
         "positions_gained": 3,
-        "af_improvement": 0.0227,
+        "af_improvement": 0.0229,
         "time_delta_cs": 12,
         "time_delta": "00:00.12",
-        "efficiency": 0.001893939393939394,
+        "efficiency": 0.0019083969465648854,
         "extra_targets": [
           {
             "rank": 72,
@@ -485,10 +485,10 @@
         "target_time": "00:15.99",
         "opponent_time": "00:16.00",
         "positions_gained": 5,
-        "af_improvement": 0.0379,
+        "af_improvement": 0.0382,
         "time_delta_cs": 12,
         "time_delta": "00:00.12",
-        "efficiency": 0.0031565656565656565,
+        "efficiency": 0.0031806615776081427,
         "extra_targets": [
           {
             "rank": 47,
@@ -516,6 +516,47 @@
       {
         "track_slug": "crescent-island",
         "track_name": "Crescent Island",
+        "vehicle": "hover",
+        "category": "standard",
+        "laps": "1-lap",
+        "is_na": false,
+        "current_rank": 68,
+        "current_time": "00:27.16",
+        "new_rank": 65,
+        "target_time": "00:26.99",
+        "opponent_time": "00:27.00",
+        "positions_gained": 3,
+        "af_improvement": 0.0229,
+        "time_delta_cs": 17,
+        "time_delta": "00:00.17",
+        "efficiency": 0.001347103726986978,
+        "extra_targets": [
+          {
+            "rank": 65,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 65,
+            "time_delta_cs": 17,
+            "time_delta": "00:00.17"
+          },
+          {
+            "rank": 64,
+            "time_delta_cs": 21,
+            "time_delta": "00:00.21"
+          },
+          {
+            "rank": 63,
+            "time_delta_cs": 32,
+            "time_delta": "00:00.32"
+          }
+        ],
+        "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/hover/standard/1-lap"
+      },
+      {
+        "track_slug": "crescent-island",
+        "track_name": "Crescent Island",
         "vehicle": "car",
         "category": "standard",
         "laps": "1-lap",
@@ -526,10 +567,10 @@
         "target_time": "00:22.35",
         "opponent_time": "00:22.36",
         "positions_gained": 6,
-        "af_improvement": 0.0455,
+        "af_improvement": 0.0458,
         "time_delta_cs": 20,
         "time_delta": "00:00.20",
-        "efficiency": 0.0022727272727272726,
+        "efficiency": 0.0022900763358778627,
         "extra_targets": [
           {
             "rank": 63,
@@ -567,10 +608,10 @@
         "target_time": "00:15.64",
         "opponent_time": "00:15.65",
         "positions_gained": 10,
-        "af_improvement": 0.0758,
+        "af_improvement": 0.0763,
         "time_delta_cs": 21,
         "time_delta": "00:00.21",
-        "efficiency": 0.0036075036075036075,
+        "efficiency": 0.0036350418029807343,
         "extra_targets": [
           {
             "rank": 80,
@@ -596,47 +637,6 @@
         "leaderboard_url": "https://www.dkr64.com/tracks/haunted-woods/car/standard/1-lap"
       },
       {
-        "track_slug": "crescent-island",
-        "track_name": "Crescent Island",
-        "vehicle": "hover",
-        "category": "standard",
-        "laps": "1-lap",
-        "is_na": false,
-        "current_rank": 68,
-        "current_time": "00:27.16",
-        "new_rank": 64,
-        "target_time": "00:26.95",
-        "opponent_time": "00:26.96",
-        "positions_gained": 4,
-        "af_improvement": 0.0303,
-        "time_delta_cs": 21,
-        "time_delta": "00:00.21",
-        "efficiency": 0.001443001443001443,
-        "extra_targets": [
-          {
-            "rank": 65,
-            "time_delta_cs": 17,
-            "time_delta": "00:00.17"
-          },
-          {
-            "rank": 65,
-            "time_delta_cs": 17,
-            "time_delta": "00:00.17"
-          },
-          {
-            "rank": 64,
-            "time_delta_cs": 21,
-            "time_delta": "00:00.21"
-          },
-          {
-            "rank": 63,
-            "time_delta_cs": 32,
-            "time_delta": "00:00.32"
-          }
-        ],
-        "leaderboard_url": "https://www.dkr64.com/tracks/crescent-island/hover/standard/1-lap"
-      },
-      {
         "track_slug": "walrus-cove",
         "track_name": "Walrus Cove",
         "vehicle": "car",
@@ -649,10 +649,10 @@
         "target_time": "00:29.62",
         "opponent_time": "00:29.63",
         "positions_gained": 7,
-        "af_improvement": 0.053,
+        "af_improvement": 0.0534,
         "time_delta_cs": 24,
         "time_delta": "00:00.24",
-        "efficiency": 0.0022095959595959595,
+        "efficiency": 0.0022264631043256997,
         "extra_targets": [
           {
             "rank": 61,
@@ -690,10 +690,10 @@
         "target_time": "00:49.34",
         "opponent_time": "00:49.35",
         "positions_gained": 5,
-        "af_improvement": 0.0379,
+        "af_improvement": 0.0382,
         "time_delta_cs": 26,
         "time_delta": "00:00.26",
-        "efficiency": 0.001456876456876457,
+        "efficiency": 0.0014679976512037582,
         "extra_targets": [
           {
             "rank": 70,
@@ -731,10 +731,10 @@
         "target_time": "00:26.80",
         "opponent_time": "00:26.81",
         "positions_gained": 10,
-        "af_improvement": 0.0758,
+        "af_improvement": 0.0763,
         "time_delta_cs": 31,
         "time_delta": "00:00.31",
-        "efficiency": 0.0024437927663734115,
+        "efficiency": 0.002462447672986949,
         "extra_targets": [
           {
             "rank": 72,
