@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated_at": "2026-04-22 20:41 UTC",
-    "total_tracks_in_scope": 130
+    "generated_at": "2026-04-22 20:46 UTC",
+    "total_tracks_in_scope": 131
   },
   "player": {
     "username": "ChasingGhosts",
     "country": "it",
     "combined_rank": 53,
-    "current_af": 59.93415384615384
+    "current_af": 59.933038167938925
   },
   "overtake_min_time": {
     "target_username": "hellool",
     "target_af": 59.394,
-    "current_af": 59.93415384615384,
-    "af_gap": 0.5402,
+    "current_af": 59.933038167938925,
+    "af_gap": 0.539,
     "total_positions_needed": 71,
     "total_positions_gained": 70,
     "total_time_investment_cs": 224,
     "total_time_investment": "00:02.24",
-    "new_af": 59.3957,
+    "new_af": 59.3987,
     "feasible": true,
     "items": [
       {
@@ -34,10 +34,10 @@
         "target_time": "00:13.54",
         "opponent_time": "00:13.55",
         "positions_gained": 1,
-        "af_improvement": 0.0077,
+        "af_improvement": 0.0076,
         "time_delta_cs": 1,
         "time_delta": "00:00.01",
-        "efficiency": 0.007692307692307693,
+        "efficiency": 0.007633587786259542,
         "extra_targets": [
           {
             "rank": 36,
@@ -75,10 +75,10 @@
         "target_time": "00:35.60",
         "opponent_time": "00:35.61",
         "positions_gained": 1,
-        "af_improvement": 0.0077,
+        "af_improvement": 0.0076,
         "time_delta_cs": 3,
         "time_delta": "00:00.03",
-        "efficiency": 0.002564102564102564,
+        "efficiency": 0.0025445292620865138,
         "extra_targets": [
           {
             "rank": 54,
@@ -116,10 +116,10 @@
         "target_time": "00:31.70",
         "opponent_time": "00:31.71",
         "positions_gained": 2,
-        "af_improvement": 0.0154,
+        "af_improvement": 0.0153,
         "time_delta_cs": 3,
         "time_delta": "00:00.03",
-        "efficiency": 0.005128205128205128,
+        "efficiency": 0.0050890585241730275,
         "extra_targets": [
           {
             "rank": 56,
@@ -157,10 +157,10 @@
         "target_time": "00:15.37",
         "opponent_time": "00:15.38",
         "positions_gained": 2,
-        "af_improvement": 0.0154,
+        "af_improvement": 0.0153,
         "time_delta_cs": 4,
         "time_delta": "00:00.04",
-        "efficiency": 0.0038461538461538464,
+        "efficiency": 0.003816793893129771,
         "extra_targets": [
           {
             "rank": 57,
@@ -198,10 +198,10 @@
         "target_time": "00:27.80",
         "opponent_time": "00:27.81",
         "positions_gained": 3,
-        "af_improvement": 0.0231,
+        "af_improvement": 0.0229,
         "time_delta_cs": 6,
         "time_delta": "00:00.06",
-        "efficiency": 0.0038461538461538464,
+        "efficiency": 0.003816793893129771,
         "extra_targets": [
           {
             "rank": 58,
@@ -239,10 +239,10 @@
         "target_time": "01:27.99",
         "opponent_time": "01:28.00",
         "positions_gained": 1,
-        "af_improvement": 0.0077,
+        "af_improvement": 0.0076,
         "time_delta_cs": 6,
         "time_delta": "00:00.06",
-        "efficiency": 0.001282051282051282,
+        "efficiency": 0.0012722646310432569,
         "extra_targets": [
           {
             "rank": 59,
@@ -280,10 +280,10 @@
         "target_time": "00:18.59",
         "opponent_time": "00:18.60",
         "positions_gained": 2,
-        "af_improvement": 0.0154,
+        "af_improvement": 0.0153,
         "time_delta_cs": 7,
         "time_delta": "00:00.07",
-        "efficiency": 0.002197802197802198,
+        "efficiency": 0.0021810250817884407,
         "extra_targets": [
           {
             "rank": 60,
@@ -321,10 +321,10 @@
         "target_time": "00:15.25",
         "opponent_time": "00:15.26",
         "positions_gained": 3,
-        "af_improvement": 0.0231,
+        "af_improvement": 0.0229,
         "time_delta_cs": 10,
         "time_delta": "00:00.10",
-        "efficiency": 0.002307692307692308,
+        "efficiency": 0.0022900763358778627,
         "extra_targets": [
           {
             "rank": 55,
@@ -362,10 +362,10 @@
         "target_time": "00:19.65",
         "opponent_time": "00:19.66",
         "positions_gained": 4,
-        "af_improvement": 0.0308,
+        "af_improvement": 0.0305,
         "time_delta_cs": 10,
         "time_delta": "00:00.10",
-        "efficiency": 0.003076923076923077,
+        "efficiency": 0.0030534351145038168,
         "extra_targets": [
           {
             "rank": 50,
@@ -403,10 +403,10 @@
         "target_time": "00:49.79",
         "opponent_time": "00:49.80",
         "positions_gained": 2,
-        "af_improvement": 0.0154,
+        "af_improvement": 0.0153,
         "time_delta_cs": 11,
         "time_delta": "00:00.11",
-        "efficiency": 0.0013986013986013986,
+        "efficiency": 0.0013879250520471894,
         "extra_targets": [
           {
             "rank": 66,
@@ -444,10 +444,10 @@
         "target_time": "00:24.34",
         "opponent_time": "00:24.35",
         "positions_gained": 3,
-        "af_improvement": 0.0231,
+        "af_improvement": 0.0229,
         "time_delta_cs": 12,
         "time_delta": "00:00.12",
-        "efficiency": 0.0019230769230769232,
+        "efficiency": 0.0019083969465648854,
         "extra_targets": [
           {
             "rank": 72,
@@ -485,10 +485,10 @@
         "target_time": "00:15.99",
         "opponent_time": "00:16.00",
         "positions_gained": 5,
-        "af_improvement": 0.0385,
+        "af_improvement": 0.0382,
         "time_delta_cs": 12,
         "time_delta": "00:00.12",
-        "efficiency": 0.0032051282051282055,
+        "efficiency": 0.0031806615776081427,
         "extra_targets": [
           {
             "rank": 47,
@@ -526,10 +526,10 @@
         "target_time": "00:26.99",
         "opponent_time": "00:27.00",
         "positions_gained": 3,
-        "af_improvement": 0.0231,
+        "af_improvement": 0.0229,
         "time_delta_cs": 17,
         "time_delta": "00:00.17",
-        "efficiency": 0.0013574660633484165,
+        "efficiency": 0.001347103726986978,
         "extra_targets": [
           {
             "rank": 65,
@@ -567,10 +567,10 @@
         "target_time": "00:22.35",
         "opponent_time": "00:22.36",
         "positions_gained": 6,
-        "af_improvement": 0.0462,
+        "af_improvement": 0.0458,
         "time_delta_cs": 20,
         "time_delta": "00:00.20",
-        "efficiency": 0.002307692307692308,
+        "efficiency": 0.0022900763358778627,
         "extra_targets": [
           {
             "rank": 63,
@@ -608,10 +608,10 @@
         "target_time": "00:15.64",
         "opponent_time": "00:15.65",
         "positions_gained": 10,
-        "af_improvement": 0.0769,
+        "af_improvement": 0.0763,
         "time_delta_cs": 21,
         "time_delta": "00:00.21",
-        "efficiency": 0.003663003663003663,
+        "efficiency": 0.0036350418029807343,
         "extra_targets": [
           {
             "rank": 80,
@@ -649,10 +649,10 @@
         "target_time": "00:29.62",
         "opponent_time": "00:29.63",
         "positions_gained": 7,
-        "af_improvement": 0.0538,
+        "af_improvement": 0.0534,
         "time_delta_cs": 24,
         "time_delta": "00:00.24",
-        "efficiency": 0.002243589743589744,
+        "efficiency": 0.0022264631043256997,
         "extra_targets": [
           {
             "rank": 61,
@@ -690,10 +690,10 @@
         "target_time": "00:49.34",
         "opponent_time": "00:49.35",
         "positions_gained": 5,
-        "af_improvement": 0.0385,
+        "af_improvement": 0.0382,
         "time_delta_cs": 26,
         "time_delta": "00:00.26",
-        "efficiency": 0.0014792899408284025,
+        "efficiency": 0.0014679976512037582,
         "extra_targets": [
           {
             "rank": 70,
@@ -731,10 +731,10 @@
         "target_time": "00:26.80",
         "opponent_time": "00:26.81",
         "positions_gained": 10,
-        "af_improvement": 0.0769,
+        "af_improvement": 0.0763,
         "time_delta_cs": 31,
         "time_delta": "00:00.31",
-        "efficiency": 0.0024813895781637717,
+        "efficiency": 0.002462447672986949,
         "extra_targets": [
           {
             "rank": 72,
