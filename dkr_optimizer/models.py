@@ -128,3 +128,21 @@ class OvertakePlan:
     new_af: float
     items: list = field(default_factory=list)  # list[OvertakePlanItem]
     feasible: bool = True
+
+
+@dataclass
+class EffortRow:
+    track_slug: str
+    track_name: str
+    vehicle: str
+    category: str
+    laps: str
+    current_rank: int
+    current_time_cs: int
+    above_count: int  # opponents above the player on this leaderboard
+    next_gap_cs: int  # gap (cs) to the closest opponent above
+    gains: list = field(default_factory=list)  # positions gained at each effort level
+
+    @property
+    def leaderboard_url(self) -> str:
+        return f"https://www.dkr64.com/tracks/{self.track_slug}/{self.vehicle}/{self.category}/{self.laps}"

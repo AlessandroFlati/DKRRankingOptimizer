@@ -107,7 +107,7 @@
         </div>
     </div>
     <button class="btn-print" onclick="printNextTable(this, 'Overtake Plan: Beat {{ plan.target_username }}')">Print / Save PDF</button>
-    <table class="overtake-plan-table">
+    <table class="overtake-plan-table sortable-table">
         <thead>
             <tr>
                 <th>#</th>
@@ -180,6 +180,58 @@
         Sorted by time to save ascending. Extra columns show time needed to reach additional positions on the same track.
     </p>
     {{ overtake_table(overtake_min_time) }}
+    {% endif %}
+
+    {% if effort_rows %}
+    <h2>By Effort -- Positions Gained per Fixed Improvement</h2>
+    <p class="section-desc">
+        For each track, see how many positions you climb at fixed effort levels.
+        Click a column header to sort: tracks with more gains for the same time saved
+        are where the effort pays off most. Default sort is by <strong>+0.50s</strong>
+        descending. <em>Next Gap</em> is the time delta to the closest opponent above you.
+    </p>
+    <button class="btn-print" onclick="printNextTable(this, 'By Effort')">Print / Save PDF</button>
+    <table class="effort-table sortable-table">
+        <thead>
+            <tr>
+                <th>Track</th>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Laps</th>
+                <th>Rank</th>
+                <th>Your Time</th>
+                <th class="sortable" data-col="next">Next Gap</th>
+                {% for label in effort_labels %}
+                <th class="sortable{% if loop.index0 == 2 %} sort-desc{% endif %}" data-col="{{ loop.index0 }}">{{ label }}</th>
+                {% endfor %}
+                <th>Above</th>
+                <th>Link</th>
+                <th>Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in effort_rows %}
+            <tr class="priority-low"
+                data-sort='[{{ r.gains | join(",") }}]'
+                data-next-gap="{{ r.next_gap_cs }}"
+                data-row-key="effort:{{ r.track_name }}:{{ r.vehicle }}:{{ r.category }}:{{ r.laps }}:{{ r.current_time_cs }}">
+                <td>{{ r.track_name }}</td>
+                <td><span class="badge badge-{{ r.vehicle }}">{{ r.vehicle }}</span></td>
+                <td><span class="badge badge-{{ r.category }}">{{ r.category }}</span></td>
+                <td>{{ r.laps }}</td>
+                <td class="rank-num">{{ r.current_rank }}</td>
+                <td class="time">{{ format_time(r.current_time_cs) }}</td>
+                <td class="time">{{ "%.2f" | format(r.next_gap_cs / 100) }}s</td>
+                {% for g in r.gains %}
+                <td class="rank-num">{% if g > 0 %}+{{ g }}{% else %}<span style="color:#555">--</span>{% endif %}</td>
+                {% endfor %}
+                <td class="rank-num" style="color:#888">{{ r.above_count }}</td>
+                <td><a href="{{ r.leaderboard_url }}" target="_blank">View</a></td>
+                <td><input type="checkbox" class="done-cb"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% endif %}
 
     {% if na_opps %}
@@ -257,31 +309,38 @@
 </div>
 <script>
 (function() {
-    document.querySelectorAll('.overtake-plan-table').forEach(function(table) {
-        var currentCol = 0;
-        var currentAsc = true;
+    function rowValue(row, col) {
+        if (col === 'next') {
+            var ng = row.getAttribute('data-next-gap');
+            return ng !== null ? parseFloat(ng) : Infinity;
+        }
+        var ds = row.getAttribute('data-sort');
+        if (!ds) return Infinity;
+        var arr = JSON.parse(ds);
+        var v = arr[col];
+        return v !== undefined ? v : Infinity;
+    }
 
+    document.querySelectorAll('.sortable-table').forEach(function(table) {
         function sortBy(col, asc) {
-            currentCol = col;
-            currentAsc = asc;
             var tbody = table.querySelector('tbody');
             var rows = Array.from(tbody.querySelectorAll('tr'));
             rows.sort(function(a, b) {
-                var da = JSON.parse(a.getAttribute('data-sort'));
-                var db = JSON.parse(b.getAttribute('data-sort'));
-                var va = da[col] !== undefined ? da[col] : 999999;
-                var vb = db[col] !== undefined ? db[col] : 999999;
+                var va = rowValue(a, col);
+                var vb = rowValue(b, col);
                 return asc ? va - vb : vb - va;
             });
             rows.forEach(function(row, idx) {
-                row.querySelector('.row-num').textContent = idx + 1;
+                var rn = row.querySelector('.row-num');
+                if (rn) rn.textContent = idx + 1;
                 tbody.appendChild(row);
             });
         }
 
         table.querySelectorAll('th.sortable').forEach(function(th) {
             th.addEventListener('click', function() {
-                var col = parseInt(th.getAttribute('data-col'));
+                var raw = th.getAttribute('data-col');
+                var col = (raw === 'next') ? 'next' : parseInt(raw);
                 var asc = th.classList.contains('sort-asc') ? false : true;
                 table.querySelectorAll('th.sortable').forEach(function(h) {
                     h.classList.remove('sort-asc', 'sort-desc');

@@ -1,6 +1,7 @@
 import math
 
 from dkr_optimizer.models import (
+    EffortRow,
     LeaderboardEntry,
     Opportunity,
     OpportunityTier,
@@ -11,6 +12,9 @@ from dkr_optimizer.models import (
 
 # Number of positions above the player to analyze for each tier
 TIER_TARGETS = [1, 3, 5, 10, 15, 20, 25]
+
+# Fixed effort levels (centiseconds) for the by-effort comparison table.
+EFFORT_LEVELS_CS = [10, 25, 50, 100, 200, 500]
 
 # Exponential difficulty factor for overtake plans.
 # weighted_cost = time_delta * exp(DIFFICULTY_K * (1 - target_rank / current_rank))
@@ -247,6 +251,61 @@ def _compute_existing_time_opportunity(
         best_efficiency=best_efficiency,
         best_tier_idx=best_tier_idx,
     )
+
+
+def compute_effort_table(
+    player_times: list[PlayerTrackTime],
+    leaderboards: dict[str, list[LeaderboardEntry]],
+    player_username: str,
+) -> list[EffortRow]:
+    """For each (track, vehicle, category, laps) where the player has a time
+    and is not already #1, compute how many positions would be gained at each
+    effort level in EFFORT_LEVELS_CS.
+
+    Tracks where the player is #1 or N/A are excluded — the former because no
+    improvement is possible, the latter because effort is qualitative
+    (submitting any time) and is shown in the dedicated N/A table.
+    """
+    rows = []
+    for pt in player_times:
+        if pt.is_na:
+            continue
+        lb_key = f"{pt.track_slug}/{pt.vehicle}/{pt.category}/{pt.laps}"
+        entries = leaderboards.get(lb_key, [])
+        if not entries:
+            continue
+        real_entries = [e for e in entries if not e.is_default]
+
+        player_rank, player_time_cs, above_entries = _find_player_position(
+            pt, real_entries, player_username
+        )
+        if not above_entries or player_rank <= 1:
+            continue
+
+        # Gaps in cs from player to each opponent above (always positive).
+        gaps = sorted(player_time_cs - e.time_cs for e in above_entries)
+        # Positions gained at improvement Δ: number of opponents whose time
+        # gap is strictly less than Δ (so new_time < opponent_time).
+        gains = [sum(1 for g in gaps if g < delta) for delta in EFFORT_LEVELS_CS]
+
+        rows.append(EffortRow(
+            track_slug=pt.track_slug,
+            track_name=pt.track_name,
+            vehicle=pt.vehicle,
+            category=pt.category,
+            laps=pt.laps,
+            current_rank=player_rank,
+            current_time_cs=player_time_cs,
+            above_count=len(above_entries),
+            next_gap_cs=gaps[0],
+            gains=gains,
+        ))
+
+    # Default sort: most positions gained at the +0.50s "sweet spot",
+    # tiebreak by smaller next_gap (tighter pack first).
+    sweet_idx = EFFORT_LEVELS_CS.index(50)
+    rows.sort(key=lambda r: (-r.gains[sweet_idx], r.next_gap_cs))
+    return rows
 
 
 def _build_overtake_groups(

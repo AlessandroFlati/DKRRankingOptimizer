@@ -5,7 +5,12 @@ import sys
 import yaml
 
 from dkr_optimizer.models import LeaderboardEntry, format_time, parse_time
-from dkr_optimizer.optimizer import compute_opportunities, compute_overtake_plan
+from dkr_optimizer.optimizer import (
+    EFFORT_LEVELS_CS,
+    compute_effort_table,
+    compute_opportunities,
+    compute_overtake_plan,
+)
 from dkr_optimizer.parser import (
     parse_combined_ranking,
     parse_leaderboard,
@@ -244,7 +249,11 @@ def main():
             else:
                 print("  Not enough improvement available to overtake.")
 
-    # Step 7: Generate reports
+    # Step 7: Compute by-effort table (positions per fixed time delta)
+    effort_rows = compute_effort_table(player_times, leaderboards, username)
+    print(f"\nBy-effort table: {len(effort_rows)} ranked tracks")
+
+    # Step 8: Generate reports
     print("\nGenerating reports...")
     html_path, json_path = generate_reports(
         profile=profile,
@@ -255,6 +264,8 @@ def main():
         total_tracks=valid_tracks,
         output_dir=output_dir,
         overtake_min_time=overtake_min_time,
+        effort_rows=effort_rows,
+        effort_levels_cs=EFFORT_LEVELS_CS,
     )
 
     print(f"\n{'='*60}")

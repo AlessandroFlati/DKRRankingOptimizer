@@ -21,15 +21,20 @@ def generate_reports(
     output_dir: str,
     template_dir: str = "templates",
     overtake_min_time: OvertakePlan | None = None,
+    effort_rows: list | None = None,
+    effort_levels_cs: list[int] | None = None,
 ):
     """Generate both HTML and JSON reports."""
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    effort_rows = effort_rows or []
+    effort_levels_cs = effort_levels_cs or []
+    effort_labels = [f"+{cs / 100:.2f}s" for cs in effort_levels_cs]
 
     report_data = _build_report_data(
         profile, current_af, current_rank, total_tracks, timestamp,
-        overtake_min_time,
+        overtake_min_time, effort_rows, effort_levels_cs,
     )
 
     # JSON report
@@ -51,6 +56,8 @@ def generate_reports(
         timestamp=timestamp,
         format_time=format_time,
         overtake_min_time=overtake_min_time,
+        effort_rows=effort_rows,
+        effort_labels=effort_labels,
     )
     html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w", encoding="utf-8") as f:
@@ -61,7 +68,7 @@ def generate_reports(
 
 def _build_report_data(
     profile, current_af, current_rank, total_tracks, timestamp,
-    overtake_min_time=None,
+    overtake_min_time=None, effort_rows=None, effort_levels_cs=None,
 ) -> dict:
     """Build JSON-serializable report data."""
     data = {
@@ -78,6 +85,27 @@ def _build_report_data(
     }
     if overtake_min_time:
         data["overtake_min_time"] = _overtake_plan_to_dict(overtake_min_time)
+    if effort_rows:
+        data["by_effort"] = {
+            "effort_levels_cs": effort_levels_cs or [],
+            "rows": [
+                {
+                    "track_slug": r.track_slug,
+                    "track_name": r.track_name,
+                    "vehicle": r.vehicle,
+                    "category": r.category,
+                    "laps": r.laps,
+                    "current_rank": r.current_rank,
+                    "current_time": format_time(r.current_time_cs),
+                    "above_count": r.above_count,
+                    "next_gap_cs": r.next_gap_cs,
+                    "next_gap": format_time(r.next_gap_cs),
+                    "gains": r.gains,
+                    "leaderboard_url": r.leaderboard_url,
+                }
+                for r in effort_rows
+            ],
+        }
     return data
 
 
